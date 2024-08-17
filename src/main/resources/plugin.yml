@@ -1,0 +1,10 @@
+name: Aeterum-No_Slimefun
+version: '${project.version}'
+main: me.figgnus.aeterum.Plugin
+api-version: '1.21'
+commands:
+  customitem:
+    description: "Spawns test items"
+    usage: /<command>
+    permission: aeterum.item.admin
+

@@ -5,6 +5,9 @@ api-version: '1.21'
 softdepend:
   - Brewery
 commands:
+  recepty:
+    description: "Test"
+    usage: /<command>
   tame:
     description: "Spawns specific horse"
     usage: /tame <god>

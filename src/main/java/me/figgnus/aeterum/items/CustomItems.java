@@ -53,7 +53,7 @@ public class CustomItems {
     private String PARTY_BALL_NAME = "Party Koule";
     private String PARTY_ATMOSPHERE_NAME = "Party Atmosféra";
     private String RANDOM_EFFECT_POTION_NAME = "Záhadný Nápoj";
-    private String RANDOMIZER_NAME = "Randomizer";
+    private static String RANDOMIZER_NAME = "Randomizer";
     private String DARKNESS_POTION_NAME = "Temný Lektvar";
     private String DARK_PEARL_NAME = "Temná Perla";
     private String DARK_PORTAL_NAME = "Temný Portál";
@@ -76,7 +76,7 @@ public class CustomItems {
     private List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + "Pozor na výbuch");
     private List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + "Let's Party!!!");
     private List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + "Kdo vý co se může stát");
-    private List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block s hotbaru");
+    private static List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block s hotbaru");
     private List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + "Oslep své nepřátele");
     private List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + "Prostě Ender Pearl. Možná trochu lepší.");
     private List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + "Kde se objevíš?");
@@ -99,7 +99,7 @@ public class CustomItems {
     private ItemStack PARTY_BALL = createCustomItem(Material.SNOWBALL, PARTY_BALL_ID, PARTY_BALL_NAME, PARTY_BALL_LORE, null);
     private ItemStack PARTY_ATMOSPHERE = createCustomItem(Material.POTION, PARTY_ATMOSPHERE_ID, PARTY_ATMOSPHERE_NAME, PARTY_ATMOSPHERE_LORE, Color.fromRGB(255,158,54));
     private ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, RANDOM_EFFECT_POTION_ID, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
-    private ItemStack RANDOMIZER = createCustomItem(Material.STICK, RANDOMIZER_ID, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
+    public static ItemStack RANDOMIZER = createCustomItem(Material.STICK, RANDOMIZER_ID, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
     private ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, DARKNESS_POTION_ID, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
     private ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, DARK_PEARL_ID, DARK_PEARL_NAME, DARK_PEARL_LORE, null);
     private ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, DARK_PORTAL_ID, DARK_PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
@@ -224,38 +224,38 @@ public class CustomItems {
         pegasusAbilityRecipe.shape("   ", " P ", "   ");
         pegasusAbilityRecipe.setIngredient('P', new RecipeChoice.ExactChoice(ItemUtils.createPotion(PotionType.SLOW_FALLING)));
         //Other Shape
-        ShapelessRecipe randomizerRecipe = new ShapelessRecipe(randomizerKey, RANDOMIZER);
-        randomizerRecipe.addIngredient( Material.IRON_PICKAXE);
-        randomizerRecipe.addIngredient( Material.IRON_AXE);
-        randomizerRecipe.addIngredient( Material.IRON_SHOVEL);
-        randomizerRecipe.addIngredient( Material.IRON_HOE);
-
-        //Demeter Register
-        Bukkit.addRecipe(betterBonemealRecipe);
-        Bukkit.addRecipe(growthPotionRecipe);
-        Bukkit.addRecipe(hoeOfHarvestRecipe);
-        Bukkit.addRecipe(flowerHorseTameRecipe);
-        //Hades Register
-        Bukkit.addRecipe(zombieHorseTameRecipe);
-        Bukkit.addRecipe(darknessPotionRecipe);
-        Bukkit.addRecipe(darkPearlRecipe);
-        Bukkit.addRecipe(darkPortalRecipe);
-        //Dionysus Register
-        Bukkit.addRecipe(drunkHorseTameRecipe);
-        Bukkit.addRecipe(partyBallRecipe);
-        Bukkit.addRecipe(partyAtmosphereRecipe);
-        Bukkit.addRecipe(randomPotionEffectRecipe);
-        //Hermes Register
-        Bukkit.addRecipe(speedHorseTameRecipe);
-        Bukkit.addRecipe(speedHorseAbilityRecipe);
-        Bukkit.addRecipe(flyingItemRecipe);
-        Bukkit.addRecipe(messengerPackRecipe);
-        Bukkit.addRecipe(speedBootsRecipe);
-        //Poseidon Register
-        Bukkit.addRecipe(seaHorseTameRecipe);
-        //Zeus Register
-        Bukkit.addRecipe(pegasusTameRecipe);
-        Bukkit.addRecipe(pegasusAbilityRecipe);
+        ShapedRecipe randomizerRecipe = new ShapedRecipe(randomizerKey, RANDOMIZER);
+        randomizerRecipe.shape("RER", "IBI", "IRI");
+        randomizerRecipe.setIngredient('R', Material.REDSTONE);
+        randomizerRecipe.setIngredient('E', Material.ENDER_PEARL);
+        randomizerRecipe.setIngredient('I', Material.IRON_INGOT);
+        randomizerRecipe.setIngredient('B', Material.BLAZE_ROD);
+//        //Demeter Register
+//        Bukkit.addRecipe(betterBonemealRecipe);
+//        Bukkit.addRecipe(growthPotionRecipe);
+//        Bukkit.addRecipe(hoeOfHarvestRecipe);
+//        Bukkit.addRecipe(flowerHorseTameRecipe);
+//        //Hades Register
+//        Bukkit.addRecipe(zombieHorseTameRecipe);
+//        Bukkit.addRecipe(darknessPotionRecipe);
+//        Bukkit.addRecipe(darkPearlRecipe);
+//        Bukkit.addRecipe(darkPortalRecipe);
+//        //Dionysus Register
+//        Bukkit.addRecipe(drunkHorseTameRecipe);
+//        Bukkit.addRecipe(partyBallRecipe);
+//        Bukkit.addRecipe(partyAtmosphereRecipe);
+//        Bukkit.addRecipe(randomPotionEffectRecipe);
+//        //Hermes Register
+//        Bukkit.addRecipe(speedHorseTameRecipe);
+//        Bukkit.addRecipe(speedHorseAbilityRecipe);
+//        Bukkit.addRecipe(flyingItemRecipe);
+//        Bukkit.addRecipe(messengerPackRecipe);
+//        Bukkit.addRecipe(speedBootsRecipe);
+//        //Poseidon Register
+//        Bukkit.addRecipe(seaHorseTameRecipe);
+//        //Zeus Register
+//        Bukkit.addRecipe(pegasusTameRecipe);
+//        Bukkit.addRecipe(pegasusAbilityRecipe);
         //Other Register
         Bukkit.addRecipe(randomizerRecipe);
     }

@@ -1,6 +1,8 @@
 package me.figgnus.aeterum;
 
+import me.figgnus.aeterum.gui.RecipesGUI;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
+import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
 import me.figgnus.aeterum.listeners.demeter.*;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.listeners.dionysus.*;
@@ -12,13 +14,28 @@ import me.figgnus.aeterum.listeners.zeus.PegasusAbilityListener;
 import me.figgnus.aeterum.listeners.zeus.PegasusTameListener;
 import me.figgnus.aeterum.utils.TameCommandExecutor;
 import me.figgnus.aeterum.utils.TameCommandTabCompleter;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Plugin extends JavaPlugin {
+import java.util.HashMap;
+import java.util.Map;
+
+public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {
 
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
@@ -96,6 +113,10 @@ public final class Plugin extends JavaPlugin {
         getCommand("nightvision").setExecutor(nightVision);
         getCommand("tame").setExecutor(new TameCommandExecutor(this));
         getCommand("tame").setTabCompleter(new TameCommandTabCompleter());
+
+        getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
+
+        new RecipesGUI(this);
     }
 
     @Override

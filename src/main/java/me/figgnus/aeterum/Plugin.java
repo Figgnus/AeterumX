@@ -4,15 +4,14 @@ import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners.demeter.*;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.listeners.dionysus.*;
-import me.figgnus.aeterum.listeners.hades.DarknessPotionListener;
-import me.figgnus.aeterum.listeners.hades.ZombieHorseAbilityListener;
-import me.figgnus.aeterum.listeners.hades.ZombieHorseTameListener;
-import me.figgnus.aeterum.listeners.hermes.SpeedHorseAbilityListener;
-import me.figgnus.aeterum.listeners.hermes.SpeedHorseTameListener;
+import me.figgnus.aeterum.listeners.hades.*;
+import me.figgnus.aeterum.listeners.hermes.*;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
 import me.figgnus.aeterum.listeners.zeus.PegasusAbilityListener;
 import me.figgnus.aeterum.listeners.zeus.PegasusTameListener;
+import me.figgnus.aeterum.utils.TameCommandExecutor;
+import me.figgnus.aeterum.utils.TameCommandTabCompleter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -20,6 +19,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Plugin extends JavaPlugin {
+
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
     private HoeOfHarvestListener hoeOfHarvest;
@@ -29,6 +29,9 @@ public final class Plugin extends JavaPlugin {
     private ZombieHorseTameListener zombieHorseTame;
     private ZombieHorseAbilityListener zombieHorseAbility;
     private DarknessPotionListener darknessPotion;
+    private DarkPearlListener darkPearl;
+    private PortalListener portal;
+    private NightVisionListener nightVision;
 
     private DrunkHorseTameListener drunkHorseTame;
     private DrunkHorseAbilityListener drunkHorseAbility;
@@ -38,6 +41,9 @@ public final class Plugin extends JavaPlugin {
 
     private SpeedHorseTameListener speedHorseTame;
     private SpeedHorseAbilityListener speedHorseAbility;
+    private FlyingItemListener flyingItem;
+    private MessengerPackListener messengerPack;
+    private SpeedBootsListener speedBoots;
 
     private SeaHorseTameListener seaHorseTame;
     private SeaHorseAbilityListener seaHorseAbility;
@@ -49,6 +55,7 @@ public final class Plugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         //Register custom items and recipes
         new CustomItems(this);
 
@@ -62,6 +69,9 @@ public final class Plugin extends JavaPlugin {
         zombieHorseTame = new ZombieHorseTameListener(this);
         zombieHorseAbility = new ZombieHorseAbilityListener(this);
         darknessPotion = new DarknessPotionListener(this);
+        darkPearl = new DarkPearlListener(this);
+        portal = new PortalListener(this);
+        nightVision = new NightVisionListener(this);
 
         drunkHorseTame = new DrunkHorseTameListener(this);
         drunkHorseAbility = new DrunkHorseAbilityListener(this);
@@ -71,6 +81,9 @@ public final class Plugin extends JavaPlugin {
 
         speedHorseTame = new SpeedHorseTameListener(this);
         speedHorseAbility = new SpeedHorseAbilityListener(this);
+        flyingItem = new FlyingItemListener(this);
+        messengerPack = new MessengerPackListener(this);
+        speedBoots = new SpeedBootsListener(this);
 
         seaHorseTame = new SeaHorseTameListener(this);
         seaHorseAbility = new SeaHorseAbilityListener(this);
@@ -79,11 +92,18 @@ public final class Plugin extends JavaPlugin {
         pegasusAbility = new PegasusAbilityListener(this);
 
         randomizer = new RandomizerListener(this);
+
+        getCommand("nightvision").setExecutor(nightVision);
+        getCommand("tame").setExecutor(new TameCommandExecutor(this));
+        getCommand("tame").setTabCompleter(new TameCommandTabCompleter());
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        if (messengerPack != null) {
+            messengerPack.saveAllInventories();
+        }
     }
     //methods for making metadata of entities persistent
     public void setEntityMetadata(Entity entity, String key, String value){

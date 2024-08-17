@@ -2,9 +2,17 @@ name: Aeterum-No_Slimefun
 version: '${project.version}'
 main: me.figgnus.aeterum.Plugin
 api-version: '1.21'
+softdepend:
+  - Brewery
 commands:
-  customitem:
-    description: "Spawns test items"
-    usage: /<command>
-    permission: aeterum.item.admin
-
+  tame:
+    description: "Spawns specific horse"
+    usage: /tame <god>
+    permission: aeterum.tame.admin
+    permission-message: "You don't have permission to use this command."
+  nightvision:
+    description: "Gives player nightvision"
+    usage: /nightvision
+  dolphingrace:
+    description: "Gives player dolphin's grace"
+    usage: /dolphingrace

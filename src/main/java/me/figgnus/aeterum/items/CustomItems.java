@@ -32,6 +32,11 @@ public class CustomItems {
     public static int RANDOM_EFFECT_POTION_ID = 69014;
     public static int RANDOMIZER_ID = 69015;
     public static int DARKNESS_POTION_ID = 69016;
+    public static int DARK_PEARL_ID = 69017;
+    public static int DARK_PORTAL_ID = 69018;
+    public static int FLYING_ITEM_ID = 69019;
+    public static int MESSENGER_PACK_ID = 69020;
+    public static int SPEED_BOOTS_ID = 69021;
 
     //Name
     private String BETTER_BONEMEAL_NAME = "Vylepšená Kostní Moučka";
@@ -50,6 +55,11 @@ public class CustomItems {
     private String RANDOM_EFFECT_POTION_NAME = "Záhadný Nápoj";
     private String RANDOMIZER_NAME = "Randomizer";
     private String DARKNESS_POTION_NAME = "Temný Lektvar";
+    private String DARK_PEARL_NAME = "Temná Perla";
+    private String DARK_PORTAL_NAME = "Temný Portál";
+    private String FLYING_ITEM_NAME = "Nekonečná Raketka";
+    private String MESSENGER_PACK_NAME = "Poštovní Brašna";
+    private String SPEED_BOOTS_NAME = "Rychlé botky";
 
     //Lore
     private List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + "Bonemeal který se dá použít na Cactus a Sugar Cane");
@@ -68,6 +78,11 @@ public class CustomItems {
     private List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + "Kdo vý co se může stát");
     private List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block s hotbaru");
     private List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + "Oslep své nepřátele");
+    private List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + "Prostě Ender Pearl. Možná trochu lepší.");
+    private List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + "Kde se objevíš?");
+    private List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + "Málo raketek? Použij toto.");
+    private List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + "Bůh zpráv potřebuje pořádnou brašnu");
+    private List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + "Tyhle botky vypadají rychle. Nezakopni.");
 
     //ItemStack
     private ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, BETTER_BONEMEAL_ID, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null);
@@ -86,6 +101,11 @@ public class CustomItems {
     private ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, RANDOM_EFFECT_POTION_ID, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
     private ItemStack RANDOMIZER = createCustomItem(Material.STICK, RANDOMIZER_ID, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
     private ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, DARKNESS_POTION_ID, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
+    private ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, DARK_PEARL_ID, DARK_PEARL_NAME, DARK_PEARL_LORE, null);
+    private ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, DARK_PORTAL_ID, DARK_PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
+    private ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, FLYING_ITEM_ID, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null);
+    private ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, MESSENGER_PACK_ID, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null);
+    private ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, SPEED_BOOTS_ID, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null);
 
     public CustomItems(Plugin plugin) {
         this.plugin = plugin;
@@ -102,6 +122,8 @@ public class CustomItems {
         //Hades Key
         NamespacedKey zombieHorseTameKey = new NamespacedKey(plugin, "zombie_horse_tame_recipe");
         NamespacedKey darknessPotionKey = new NamespacedKey(plugin, "darkness_potion_recipe");
+        NamespacedKey darkPearlKey = new NamespacedKey(plugin, "dark_pearl_recipe");
+        NamespacedKey darkPortalKey = new NamespacedKey(plugin, "dark_portal_recipe");
         //Dionysus Key
         NamespacedKey drunkHorseTameKey = new NamespacedKey(plugin, "drunk_horse_tame_recipe");
         NamespacedKey partyBallKey = new NamespacedKey(plugin, "party_ball_recipe");
@@ -110,6 +132,9 @@ public class CustomItems {
         //Hermes Key
         NamespacedKey speedHorseTameKey = new NamespacedKey(plugin, "speed_horse_tame_recipe");
         NamespacedKey speedHorseAbilityKey = new NamespacedKey(plugin, "speed_horse_ability_recipe");
+        NamespacedKey flyingItemKey = new NamespacedKey(plugin, "flying_item_recipe");
+        NamespacedKey messengerPackKey = new NamespacedKey(plugin, "messenger_pack_recipe");
+        NamespacedKey speedBootsKey = new NamespacedKey(plugin, "speed_boots_recipe");
         //Poseidon Key
         NamespacedKey seaHorseTameKey = new NamespacedKey(plugin, "sea_horse_tame_recipe");
         //Zeus Key
@@ -142,6 +167,14 @@ public class CustomItems {
         darknessPotionRecipe.shape(" B ", "BGB" , " B ");
         darknessPotionRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemUtils.createPotion(PotionType.NIGHT_VISION)));
         darknessPotionRecipe.setIngredient('G', Material.GLASS_BOTTLE);
+        ShapedRecipe darkPearlRecipe = new ShapedRecipe(darkPearlKey, DARK_PEARL);
+        darkPearlRecipe.shape(" B ", "BEB", " B ");
+        darkPearlRecipe.setIngredient('B', Material.BLAZE_POWDER);
+        darkPearlRecipe.setIngredient('E', Material.ENDER_PEARL);
+        ShapedRecipe darkPortalRecipe = new ShapedRecipe(darkPortalKey, DARK_PORTAL);
+        darkPortalRecipe.shape(" A ", "AGA", " A ");
+        darkPortalRecipe.setIngredient('A', Material.ANCIENT_DEBRIS);
+        darkPortalRecipe.setIngredient('G', Material.GLASS_BOTTLE);
         //Dionysus Shape
         ShapedRecipe drunkHorseTameRecipe = new ShapedRecipe(drunkHorseTameKey, DRUNK_HORSE_TAME);
         drunkHorseTameRecipe.shape(" S ", "SAS", " S ");
@@ -167,6 +200,16 @@ public class CustomItems {
         ShapedRecipe speedHorseAbilityRecipe = new ShapedRecipe(speedHorseAbilityKey, SPEED_HORSE_ABILITY);
         speedHorseAbilityRecipe.shape("   ", " P ", "   ");
         speedHorseAbilityRecipe.setIngredient('P', new RecipeChoice.ExactChoice(ItemUtils.createPotion(PotionType.SWIFTNESS)));
+        ShapedRecipe flyingItemRecipe = new ShapedRecipe(flyingItemKey, FLYING_ITEM);
+        flyingItemRecipe.shape(" F ", "FSF", " F ");
+        flyingItemRecipe.setIngredient('F', Material.FIREWORK_ROCKET);
+        flyingItemRecipe.setIngredient('S', Material.STICK);
+        ShapedRecipe messengerPackRecipe = new ShapedRecipe(messengerPackKey, MESSENGER_PACK);
+        messengerPackRecipe.shape("   ", " B ", "   ");
+        messengerPackRecipe.setIngredient('B', Material.LEATHER);
+        ShapedRecipe speedBootsRecipe = new ShapedRecipe(speedBootsKey, SPEED_BOOTS);
+        speedBootsRecipe.shape("   ", " S ", "   ");
+        speedBootsRecipe.setIngredient('S', Material.IRON_BOOTS);
         //Poseidon Shape
         ShapedRecipe seaHorseTameRecipe = new ShapedRecipe(seaHorseTameKey, SEA_HORSE_TAME);
         seaHorseTameRecipe.shape(" S ", "SAS", " S ");
@@ -195,6 +238,8 @@ public class CustomItems {
         //Hades Register
         Bukkit.addRecipe(zombieHorseTameRecipe);
         Bukkit.addRecipe(darknessPotionRecipe);
+        Bukkit.addRecipe(darkPearlRecipe);
+        Bukkit.addRecipe(darkPortalRecipe);
         //Dionysus Register
         Bukkit.addRecipe(drunkHorseTameRecipe);
         Bukkit.addRecipe(partyBallRecipe);
@@ -203,6 +248,9 @@ public class CustomItems {
         //Hermes Register
         Bukkit.addRecipe(speedHorseTameRecipe);
         Bukkit.addRecipe(speedHorseAbilityRecipe);
+        Bukkit.addRecipe(flyingItemRecipe);
+        Bukkit.addRecipe(messengerPackRecipe);
+        Bukkit.addRecipe(speedBootsRecipe);
         //Poseidon Register
         Bukkit.addRecipe(seaHorseTameRecipe);
         //Zeus Register

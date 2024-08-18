@@ -31,7 +31,7 @@ public class BetterBonemealListener implements Listener {
     private void onBlockRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL_ID)){
+        if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(GodUtils.demeterPermission)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

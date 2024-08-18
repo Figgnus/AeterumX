@@ -41,7 +41,7 @@ public class ZombieHorseTameListener implements Listener {
             ItemStack item = player.getInventory().getItemInMainHand();
             if (item == null)return;
             if (item.getItemMeta() == null)return;
-            if (ItemUtils.isCustomItem(item, CustomItems.ZOMBIE_HORSE_TAME_ID)){
+            if (ItemUtils.isCustomItem(item, CustomItems.ZOMBIE_HORSE_TAME.getItemMeta().getCustomModelData())){
                 if (!player.hasPermission(GodUtils.hadesPermission)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;

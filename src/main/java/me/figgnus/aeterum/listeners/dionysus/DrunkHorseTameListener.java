@@ -34,7 +34,7 @@ public class DrunkHorseTameListener implements Listener {
             Horse horse = (Horse) event.getRightClicked();
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
-            if (ItemUtils.isCustomItem(item, CustomItems.DRUNK_HORSE_TAME_ID)){
+            if (ItemUtils.isCustomItem(item, CustomItems.DRUNK_HORSE_TAME.getItemMeta().getCustomModelData())){
                 if (!player.hasPermission(GodUtils.dionysusPermission)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;

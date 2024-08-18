@@ -40,7 +40,7 @@ public class MessengerPackListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
-        if (ItemUtils.isCustomItem(item, CustomItems.MESSENGER_PACK_ID)) {
+        if (ItemUtils.isCustomItem(item, CustomItems.MESSENGER_PACK.getItemMeta().getCustomModelData())) {
             if (!player.hasPermission(GodUtils.hermesPermission)) {
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

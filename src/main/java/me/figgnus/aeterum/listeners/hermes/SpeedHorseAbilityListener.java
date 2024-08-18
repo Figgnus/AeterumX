@@ -29,7 +29,7 @@ public class SpeedHorseAbilityListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_ABILITY_ID)){
+        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_ABILITY.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(GodUtils.hermesPermission)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

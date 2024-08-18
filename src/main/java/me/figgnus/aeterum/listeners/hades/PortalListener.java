@@ -24,7 +24,7 @@ public class PortalListener implements Listener {
     public void onPlayerThrow(PlayerInteractEvent event){
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL_ID)){
+        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(GodUtils.hadesPermission)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

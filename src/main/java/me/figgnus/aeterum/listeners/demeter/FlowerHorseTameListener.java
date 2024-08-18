@@ -34,7 +34,7 @@ public class FlowerHorseTameListener implements Listener {
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
 
-            if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME_ID)){
+            if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME.getItemMeta().getCustomModelData())){
                 if (!player.hasPermission(GodUtils.demeterPermission)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;

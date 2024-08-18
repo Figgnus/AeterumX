@@ -26,7 +26,7 @@ public class GrowthPotionListener implements Listener {
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         ItemStack consumedItem = event.getItem();
-        if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION_ID)) {
+        if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION.getItemMeta().getCustomModelData())) {
             if (!player.hasPermission(GodUtils.demeterPermission)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

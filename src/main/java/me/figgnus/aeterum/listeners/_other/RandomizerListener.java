@@ -36,7 +36,7 @@ public class RandomizerListener implements Listener {
         Player player = event.getPlayer();
         UUID playerUuid = player.getUniqueId();
         ItemStack item = player.getInventory().getItemInMainHand();
-        if (ItemUtils.isCustomItem(item, CustomItems.RANDOMIZER_ID)){
+        if (ItemUtils.isCustomItem(item, CustomItems.RANDOMIZER.getItemMeta().getCustomModelData())){
             if (!player.hasPermission("trowel.use")){
                 player.sendMessage(ChatColor.RED + "Nemáš oprávnění použít tento předmět");
                 return;

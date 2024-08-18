@@ -9,103 +9,66 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
 
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class CustomItems {
     private final Plugin plugin;
 
-    //Ids
-    public static int BETTER_BONEMEAL_ID = 69001;
-    public static int GROWTH_POTION_ID = 69002;
-    public static int HOE_OF_HARVEST_ID = 69003;
-    public static int FLOWER_HORSE_TAME_ID = 69004;
-    public static int ZOMBIE_HORSE_TAME_ID = 69005;
-    public static int DRUNK_HORSE_TAME_ID = 69006;
-    public static int SPEED_HORSE_TAME_ID = 69007;
-    public static int SPEED_HORSE_ABILITY_ID = 69008;
-    public static int SEA_HORSE_TAME_ID = 69009;
-    public static int PEGASUS_TAME_ID = 69010;
-    public static int PEGASUS_ABILITY_ID = 69011;
-    public static int PARTY_BALL_ID = 69012;
-    public static int PARTY_ATMOSPHERE_ID = 69013;
-    public static int RANDOM_EFFECT_POTION_ID = 69014;
-    public static int RANDOMIZER_ID = 69015;
-    public static int DARKNESS_POTION_ID = 69016;
-    public static int DARK_PEARL_ID = 69017;
-    public static int DARK_PORTAL_ID = 69018;
-    public static int FLYING_ITEM_ID = 69019;
-    public static int MESSENGER_PACK_ID = 69020;
-    public static int SPEED_BOOTS_ID = 69021;
-
-    //Name
-    private String BETTER_BONEMEAL_NAME = "Vylepšená Kostní Moučka";
-    private String GROWTH_POTION_NAME = "Lektvar Růstu";
-    private String HOE_OF_HARVEST_NAME = "Kosa Úrody";
-    private String FLOWER_HORSE_TAME_NAME = "Sladké Jablko";
-    private String ZOMBIE_HORSE_TAME_NAME = "Otrávené Jablko";
-    private String DRUNK_HORSE_TAME_NAME = "Fermentované Jablko";
-    private String SPEED_HORSE_TAME_NAME = "Rychlé Jablko";
-    private String SPEED_HORSE_ABILITY_NAME = "Lektvar Rychlích Kopit";
-    private String SEA_HORSE_TAME_NAME = "Slané Jablko";
-    private String PEGASUS_TAME_NAME = "Levitující Jablko";
-    private String PEGASUS_ABILITY_NAME = "Lektvar Levitujících Kopit";
-    private String PARTY_BALL_NAME = "Party Koule";
-    private String PARTY_ATMOSPHERE_NAME = "Party Atmosféra";
-    private String RANDOM_EFFECT_POTION_NAME = "Záhadný Nápoj";
-    private static String RANDOMIZER_NAME = "Randomizer";
-    private String DARKNESS_POTION_NAME = "Temný Lektvar";
-    private String DARK_PEARL_NAME = "Temná Perla";
-    private String DARK_PORTAL_NAME = "Temný Portál";
-    private String FLYING_ITEM_NAME = "Nekonečná Raketka";
-    private String MESSENGER_PACK_NAME = "Poštovní Brašna";
-    private String SPEED_BOOTS_NAME = "Rychlé botky";
-
     //Lore
-    private List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + "Bonemeal který se dá použít na Cactus a Sugar Cane");
-    private List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + "Lektvar který urychlý růst rostlin v okolí hráče");
-    private List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + "Jestli-že někdo vý jak farmařit tak jsi to ty.");
-    private List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Demeter může ochočit svého koňe");
-    private List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hades může ochočit svého koňe");
-    private List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Dionysus může ochočit svého koňe");
-    private List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hermes může ochočit svého koňe");
-    private List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + "Sedni na svého koně, napij se a drž se");
-    private List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Poseidon může ochočit svého koňe");
-    private List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Zeus může ochočit svého koňe");
-    private List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + "Napij se když si na svém koni");
-    private List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + "Pozor na výbuch");
-    private List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + "Let's Party!!!");
-    private List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + "Kdo vý co se může stát");
-    private static List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block s hotbaru");
-    private List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + "Oslep své nepřátele");
-    private List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + "Prostě Ender Pearl. Možná trochu lepší.");
-    private List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + "Kde se objevíš?");
-    private List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + "Málo raketek? Použij toto.");
-    private List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + "Bůh zpráv potřebuje pořádnou brašnu");
-    private List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + "Tyhle botky vypadají rychle. Nezakopni.");
+    private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + "Bonemeal který se dá použít na Cactus a Sugar Cane");
+    private static final List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + "Lektvar který urychlý růst rostlin v okolí hráče");
+    private static final List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + "Jestli-že někdo vý jak farmařit tak jsi to ty.");
+    private static final List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Demeter může ochočit svého koňe");
+    private static final List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hades může ochočit svého koňe");
+    private static final List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Dionysus může ochočit svého koňe");
+    private static final List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hermes může ochočit svého koňe");
+    private static final List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + "Sedni na svého koně, napij se a drž se");
+    private static final List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Poseidon může ochočit svého koňe");
+    private static final List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Zeus může ochočit svého koňe");
+    private static final List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + "Napij se když si na svém koni");
+    private static final List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + "Pozor na výbuch");
+    private static final List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + "Let's Party!!!");
+    private static final List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + "Kdo vý co se může stát");
+    private static final List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block s hotbaru");
+    private static final List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + "Oslep své nepřátele");
+    private static final List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + "Prostě Ender Pearl. Možná trochu lepší.");
+    private static final List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + "Kde se objevíš?");
+    private static final List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + "Málo raketek? Použij toto.");
+    private static final List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + "Bůh zpráv potřebuje pořádnou brašnu");
+    private static final List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + "Tyhle botky vypadají rychle. Nezakopni.");
 
     //ItemStack
-    private ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, BETTER_BONEMEAL_ID, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null);
-    private ItemStack GROWTH_POTION = createCustomItem(Material.POTION, GROWTH_POTION_ID, GROWTH_POTION_NAME, GROWTH_POTION_LORE, Color.fromRGB(63, 206, 130));
-    private ItemStack HOE_OF_HARVEST = createCustomItem(Material.STICK, HOE_OF_HARVEST_ID, HOE_OF_HARVEST_NAME, HOE_OF_HARVEST_LORE, null);
-    private ItemStack FLOWER_HORSE_TAME = createCustomItem(Material.APPLE, FLOWER_HORSE_TAME_ID, FLOWER_HORSE_TAME_NAME, FLOWER_HORSE_TAME_LORE, null);
-    private ItemStack ZOMBIE_HORSE_TAME = createCustomItem(Material.APPLE, ZOMBIE_HORSE_TAME_ID, ZOMBIE_HORSE_TAME_NAME, ZOMBIE_HORSE_TAME_LORE, null);
-    private ItemStack DRUNK_HORSE_TAME = createCustomItem(Material.APPLE, DRUNK_HORSE_TAME_ID, DRUNK_HORSE_TAME_NAME, DRUNK_HORSE_TAME_LORE, null);
-    private ItemStack SPEED_HORSE_TAME = createCustomItem(Material.APPLE, SPEED_HORSE_TAME_ID, SPEED_HORSE_TAME_NAME, SPEED_HORSE_TAME_LORE, null);
-    private ItemStack SPEED_HORSE_ABILITY = createCustomItem(Material.POTION, SPEED_HORSE_ABILITY_ID, SPEED_HORSE_ABILITY_NAME, SPEED_HORSE_ABILITY_LORE, Color.fromRGB(193, 193, 193));
-    private ItemStack SEA_HORSE_TAME = createCustomItem(Material.APPLE, SEA_HORSE_TAME_ID, SEA_HORSE_TAME_NAME, SEA_HORSE_TAME_LORE, null);
-    private ItemStack PEGASUS_TAME = createCustomItem(Material.APPLE, PEGASUS_TAME_ID, PEGASUS_TAME_NAME, PEGASUS_TAME_LORE, null);
-    private ItemStack PEGASUS_ABILITY = createCustomItem(Material.POTION, PEGASUS_ABILITY_ID, PEGASUS_ABILITY_NAME, PEGASUS_ABILITY_LORE, Color.fromRGB(204,205,208));
-    private ItemStack PARTY_BALL = createCustomItem(Material.SNOWBALL, PARTY_BALL_ID, PARTY_BALL_NAME, PARTY_BALL_LORE, null);
-    private ItemStack PARTY_ATMOSPHERE = createCustomItem(Material.POTION, PARTY_ATMOSPHERE_ID, PARTY_ATMOSPHERE_NAME, PARTY_ATMOSPHERE_LORE, Color.fromRGB(255,158,54));
-    private ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, RANDOM_EFFECT_POTION_ID, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
-    public static ItemStack RANDOMIZER = createCustomItem(Material.STICK, RANDOMIZER_ID, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
-    private ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, DARKNESS_POTION_ID, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
-    private ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, DARK_PEARL_ID, DARK_PEARL_NAME, DARK_PEARL_LORE, null);
-    private ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, DARK_PORTAL_ID, DARK_PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
-    private ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, FLYING_ITEM_ID, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null);
-    private ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, MESSENGER_PACK_ID, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null);
-    private ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, SPEED_BOOTS_ID, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null);
+    public static final ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, 60001, "Vylepšená Kostní Moučka", BETTER_BONEMEAL_LORE, null);
+    public static final ItemStack GROWTH_POTION = createCustomItem(Material.POTION, 60002, "Lektvar Růstu", GROWTH_POTION_LORE, Color.fromRGB(63, 206, 130));
+    public static final ItemStack HOE_OF_HARVEST = createCustomItem(Material.STICK, 60003, "Kosa Úrody", HOE_OF_HARVEST_LORE, null);
+    public static final ItemStack FLOWER_HORSE_TAME = createCustomItem(Material.APPLE, 60004, "Sladké Jablko", FLOWER_HORSE_TAME_LORE, null);
+    public static final ItemStack ZOMBIE_HORSE_TAME = createCustomItem(Material.APPLE, 60005, "Otrávené Jablko", ZOMBIE_HORSE_TAME_LORE, null);
+    public static final ItemStack DRUNK_HORSE_TAME = createCustomItem(Material.APPLE, 60006, "Fermentované Jablko", DRUNK_HORSE_TAME_LORE, null);
+    public static final ItemStack SPEED_HORSE_TAME = createCustomItem(Material.APPLE, 60007, "Rychlé Jablko", SPEED_HORSE_TAME_LORE, null);
+    public static final ItemStack SPEED_HORSE_ABILITY = createCustomItem(Material.POTION, 60008, "Lektvar Rychlích Kopit", SPEED_HORSE_ABILITY_LORE, Color.fromRGB(193, 193, 193));
+    public static final ItemStack SEA_HORSE_TAME = createCustomItem(Material.APPLE, 60009, "Slané Jablko", SEA_HORSE_TAME_LORE, null);
+    public static final ItemStack PEGASUS_TAME = createCustomItem(Material.APPLE, 60010, "Levitující Jablko", PEGASUS_TAME_LORE, null);
+    public static final ItemStack PEGASUS_ABILITY = createCustomItem(Material.POTION, 60011, "Lektvar Levitujících Kopit", PEGASUS_ABILITY_LORE, Color.fromRGB(204,205,208));
+    public static final ItemStack PARTY_BALL = createCustomItem(Material.SNOWBALL, 60012, "Party Koule", PARTY_BALL_LORE, null);
+    public static final ItemStack PARTY_ATMOSPHERE = createCustomItem(Material.POTION, 60013, "Party Atmosféra", PARTY_ATMOSPHERE_LORE, Color.fromRGB(255,158,54));
+    public static final ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, 60014, "Záhadný Nápoj", RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
+    public static final ItemStack RANDOMIZER = createCustomItem(Material.STICK, 60015, "Randomizer", RANDOMIZER_LORE, null);
+    public static final ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, 60016, "Temný Lektvar", DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
+    public static final ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, 60017, "Temná Perla", DARK_PEARL_LORE, null);
+    public static final ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, 60018, "Temný Portál", DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
+    public static final ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, 60019, "Nekonečná Raketka", FLYING_ITEM_LORE, null);
+    public static final ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, 60020, "Poštovní Brašna", MESSENGER_PACK_LORE, null);
+    public static final ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, 60021, "Rychlé botky", SPEED_BOOTS_LORE, null);
+
+    public static final List<ItemStack> RANDOMIZER_RECIPE = List.of(
+            new ItemStack(Material.REDSTONE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.REDSTONE),
+            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.BLAZE_ROD), new ItemStack(Material.IRON_INGOT),
+            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.AIR), new ItemStack(Material.IRON_INGOT)
+    );
 
     public CustomItems(Plugin plugin) {
         this.plugin = plugin;
@@ -223,13 +186,15 @@ public class CustomItems {
         ShapedRecipe pegasusAbilityRecipe = new ShapedRecipe(pegasusAbilityKey, PEGASUS_ABILITY);
         pegasusAbilityRecipe.shape("   ", " P ", "   ");
         pegasusAbilityRecipe.setIngredient('P', new RecipeChoice.ExactChoice(ItemUtils.createPotion(PotionType.SLOW_FALLING)));
-        //Other Shape
-        ShapedRecipe randomizerRecipe = new ShapedRecipe(randomizerKey, RANDOMIZER);
-        randomizerRecipe.shape("RER", "IBI", "IRI");
-        randomizerRecipe.setIngredient('R', Material.REDSTONE);
-        randomizerRecipe.setIngredient('E', Material.ENDER_PEARL);
-        randomizerRecipe.setIngredient('I', Material.IRON_INGOT);
-        randomizerRecipe.setIngredient('B', Material.BLAZE_ROD);
+//        //Other Shape
+//        ShapedRecipe randomizerRecipe = new ShapedRecipe(randomizerKey, RANDOMIZER);
+//        randomizerRecipe.shape("RER", "IBI", "IRI");
+//        randomizerRecipe.setIngredient('R', Material.REDSTONE);
+//        randomizerRecipe.setIngredient('E', Material.ENDER_PEARL);
+//        randomizerRecipe.setIngredient('I', Material.IRON_INGOT);
+//        randomizerRecipe.setIngredient('B', Material.BLAZE_ROD);
+        ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey, "RER", "IBI", "I I");
+        Bukkit.addRecipe(randomizerRecipe);
 //        //Demeter Register
 //        Bukkit.addRecipe(betterBonemealRecipe);
 //        Bukkit.addRecipe(growthPotionRecipe);
@@ -256,8 +221,51 @@ public class CustomItems {
 //        //Zeus Register
 //        Bukkit.addRecipe(pegasusTameRecipe);
 //        Bukkit.addRecipe(pegasusAbilityRecipe);
-        //Other Register
-        Bukkit.addRecipe(randomizerRecipe);
+
+    }
+
+    private ShapedRecipe createShapedRecipeFromList(ItemStack result, List<ItemStack> ingredients, NamespacedKey key, String row1, String row2, String row3) {
+        // Create a mutable copy of the ingredients list
+        List<ItemStack> mutableIngredients = new ArrayList<>(ingredients);
+
+        ArrayList<Character> charList = new ArrayList<>();
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
+
+        // Define the shape of the recipe
+        recipe.shape(row1, row2, row3);
+
+        // Combine the rows to form a single string for easy processing
+        String combined = row1 + row2 + row3;
+        for (int i = 0; i < 9; i++) {
+            char charAt = combined.charAt(i);
+            charList.add(charAt);
+        }
+
+        // Remove White Spaces
+        charList.removeIf(ch -> ch == ' ');
+
+        // Remove duplicates by converting to a LinkedHashSet (preserves order)
+        Set<Character> charSet = new LinkedHashSet<>(charList);
+
+        // Convert back to an ArrayList if needed
+        ArrayList<Character> uniqueCharList = new ArrayList<>(charSet);
+
+        // Remove all instances of Material.AIR from mutableIngredients
+        mutableIngredients.removeIf(item -> item.getType() == Material.AIR);
+
+        // Remove duplicates from ingredients
+        Set<ItemStack> uniqueItemStackSet = new LinkedHashSet<>(mutableIngredients);
+
+        // Convert back to an ArrayList if needed
+        List<ItemStack> uniqueItemStackList = new ArrayList<>(uniqueItemStackSet);
+
+        // Assign each character in uniqueCharList to the corresponding Material from uniqueItemStackList
+        for (int i = 0; i < uniqueCharList.size(); i++) {
+            char ingredientChar = uniqueCharList.get(i);
+            Material material = uniqueItemStackList.get(i).getType();
+            recipe.setIngredient(ingredientChar, material);
+        }
+        return recipe;
     }
 
 

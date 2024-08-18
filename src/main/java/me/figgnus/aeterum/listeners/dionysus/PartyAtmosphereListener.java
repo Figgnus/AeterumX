@@ -27,7 +27,7 @@ public class PartyAtmosphereListener implements Listener {
     public void onPlayerConsume(PlayerItemConsumeEvent event){
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE_ID)){
+        if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(GodUtils.dionysusPermission)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;

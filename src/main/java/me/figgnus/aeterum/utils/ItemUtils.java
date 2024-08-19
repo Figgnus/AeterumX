@@ -1,8 +1,12 @@
 package me.figgnus.aeterum.utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionType;
@@ -11,6 +15,8 @@ import org.bukkit.profile.PlayerTextures;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class ItemUtils {
@@ -53,5 +59,22 @@ public class ItemUtils {
         meta.setOwnerProfile(profile);
         head.setItemMeta(meta);
         return head;
+    }
+    // Configures metadata of custom Slimefun items
+    public static void configureMeta(ItemStack item, Color color, List<Map.Entry<Enchantment, Integer>> enchantments){
+        if (item.getType() == Material.POTION || item.getType() == Material.SPLASH_POTION){
+            PotionMeta meta = (PotionMeta) item.getItemMeta();
+            assert meta != null;
+            meta.setColor(color);
+            meta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+            item.setItemMeta(meta);
+        }else{
+            ItemMeta meta = item.getItemMeta();
+            for (Map.Entry<Enchantment, Integer> enchantment : enchantments){
+                assert meta != null;
+                meta.addEnchant(enchantment.getKey(), enchantment.getValue(), true);
+            }
+            item.setItemMeta(meta);
+        }
     }
 }

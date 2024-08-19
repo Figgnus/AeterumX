@@ -8,10 +8,10 @@ import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.listeners.dionysus.*;
 import me.figgnus.aeterum.listeners.hades.*;
 import me.figgnus.aeterum.listeners.hermes.*;
+import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
-import me.figgnus.aeterum.listeners.zeus.PegasusAbilityListener;
-import me.figgnus.aeterum.listeners.zeus.PegasusTameListener;
+import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.TameCommandExecutor;
 import me.figgnus.aeterum.utils.TameCommandTabCompleter;
 import org.bukkit.Bukkit;
@@ -64,9 +64,13 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
     private SeaHorseTameListener seaHorseTame;
     private SeaHorseAbilityListener seaHorseAbility;
+    private DolphinGraceListener dolphinGrace;
 
     private PegasusTameListener pegasusTame;
     private PegasusAbilityListener pegasusAbility;
+    private BreedingItemListener breedingItem;
+    private LightningSpearListener lightningSpear;
+    private WeatherChangerListener weatherChanger;
 
     private RandomizerListener randomizer;
 
@@ -104,12 +108,17 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
         seaHorseTame = new SeaHorseTameListener(this);
         seaHorseAbility = new SeaHorseAbilityListener(this);
+        dolphinGrace = new DolphinGraceListener(this);
 
         pegasusTame = new PegasusTameListener(this);
         pegasusAbility = new PegasusAbilityListener(this);
+        breedingItem = new BreedingItemListener(this);
+        lightningSpear = new LightningSpearListener(this);
+        weatherChanger = new WeatherChangerListener(this);
 
         randomizer = new RandomizerListener(this);
 
+        getCommand("dolphingrace").setExecutor(dolphinGrace);
         getCommand("nightvision").setExecutor(nightVision);
         getCommand("tame").setExecutor(new TameCommandExecutor(this));
         getCommand("tame").setTabCompleter(new TameCommandTabCompleter());

@@ -1,6 +1,7 @@
 package me.figgnus.aeterum;
 
 import me.figgnus.aeterum.gui.RecipesGUI;
+import me.figgnus.aeterum.listeners._other.CraftingPermissionListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
 import me.figgnus.aeterum.listeners.demeter.*;
@@ -125,6 +126,7 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
         getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
 
+        new CraftingPermissionListener(this);
         new RecipesGUI(this);
     }
 

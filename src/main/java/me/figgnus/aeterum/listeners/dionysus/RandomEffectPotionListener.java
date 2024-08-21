@@ -48,7 +48,7 @@ public class RandomEffectPotionListener implements Listener {
     private void applyRandomEffect(Player player) {
         Random random = new Random();
         int index = random.nextInt(0, effects.size());
-        int duration = random.nextInt(20, 600);
+        int duration = random.nextInt(200, 2400);
         int amplifier = random.nextInt(1, 3);
         player.addPotionEffect(new PotionEffect((PotionEffectType) effects.get(index), duration, amplifier, false));
     }

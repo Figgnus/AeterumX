@@ -82,7 +82,7 @@ public class CustomItems {
     public static final List<ItemStack> RANDOMIZER_RECIPE = List.of(
             new ItemStack(Material.REDSTONE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.REDSTONE),
             new ItemStack(Material.IRON_INGOT), new ItemStack(Material.BLAZE_ROD), new ItemStack(Material.IRON_INGOT),
-            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.AIR), new ItemStack(Material.IRON_INGOT)
+            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.REDSTONE), new ItemStack(Material.IRON_INGOT)
     );
     public static final List<ItemStack> BETTER_BONEMEAL_RECIPE = List.of(
             new ItemStack(Material.BONE_MEAL), new ItemStack(Material.BONE_MEAL), new ItemStack(Material.AIR),
@@ -301,7 +301,7 @@ public class CustomItems {
         ShapedRecipe lightningSpearRecipe = createShapedRecipeFromList(LIGHTNING_SPEAR, LIGHTNING_SPEAR_RECIPE, lightningSpearKey, "I I", "SBS", " L ");
         ShapedRecipe weatherChangerRecipe = createShapedRecipeFromList(WEATHER_CHANGER, WEATHER_CHANGER_RECIPE, weatherChangerKey, " N ", "DRD", "IBI");
 
-        ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey, "RER", "IBI", "I I");
+        ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey, "RER", "IBI", "IRI");
         Bukkit.addRecipe(randomizerRecipe);
         //Demeter Register
         Bukkit.addRecipe(betterBonemealRecipe);

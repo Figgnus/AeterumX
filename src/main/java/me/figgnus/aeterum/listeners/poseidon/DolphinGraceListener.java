@@ -38,7 +38,7 @@ public class DolphinGraceListener implements Listener, CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if (!player.hasPermission(GodUtils.poseidonPermission)){
+        if (!player.hasPermission(GodUtils.poseidonTogglePermission)){
             player.sendMessage(GodUtils.permissionCommandMessage);
             return true;
         }

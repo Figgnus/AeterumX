@@ -51,12 +51,13 @@ public class ItemUtils {
         profile.setTextures(textures); // Set the textures back to the profile
         return profile;
     }
-    public static ItemStack createHead(String texture){
+    public static ItemStack createHead(String texture, String name){
         String url = "https://textures.minecraft.net/texture/" + texture;
         PlayerProfile profile = getProfile(url);
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         meta.setOwnerProfile(profile);
+        meta.setDisplayName(name);
         head.setItemMeta(meta);
         return head;
     }

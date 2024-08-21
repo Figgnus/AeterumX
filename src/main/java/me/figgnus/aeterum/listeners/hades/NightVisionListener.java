@@ -33,7 +33,7 @@ public class NightVisionListener implements Listener, CommandExecutor {
         Player player = event.getPlayer();
         Block block = player.getLocation().getBlock();
 
-        if (player.hasPermission(GodUtils.hadesPermission) && enabledPlayers.contains(player.getUniqueId())){
+        if (player.hasPermission(GodUtils.hadesTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
             if (isUnderground(player) && isLowLightLevel(block)) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 400, 1, true, false));
             }else {

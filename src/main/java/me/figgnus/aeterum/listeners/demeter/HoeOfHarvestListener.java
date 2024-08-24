@@ -48,12 +48,16 @@ public class HoeOfHarvestListener implements Listener {
             if (clickedBlock == null || !isFullyGrownCrop(clickedBlock)){
                 return;
             }
-            // Harvest and replant crops in a 3x3 area around the clicked block
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dz = -1; dz <= 1; dz++) {
-                    Block block = clickedBlock.getRelative(dx, 0, dz);
-                    if (isFullyGrownCrop(block)) {
-                        harvestAndReplant(block);
+            int radius = 3; // The radius of the circular area
+
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    // Check if the current (dx, dz) coordinate is within the circle
+                    if (Math.sqrt(dx * dx + dz * dz) <= radius) {
+                        Block block = clickedBlock.getRelative(dx, 0, dz);
+                        if (isFullyGrownCrop(block)) {
+                            harvestAndReplant(block);
+                        }
                     }
                 }
             }

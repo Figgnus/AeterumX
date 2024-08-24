@@ -79,7 +79,6 @@ public class DrunkHorseAbilityListener implements Listener {
                 if (drunkenness > 0) {
                     // Calculate damage based on drunkenness level
                     double damage = drunkenness * 0.03; // Example: 0.1 damage per drunkenness level
-
                     // Apply damage to nearby entities
                     for (Entity entity : horse.getNearbyEntities(2, 2, 2)) {
                         if (entity instanceof LivingEntity && entity != player) {

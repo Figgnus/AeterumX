@@ -6,6 +6,8 @@ import me.figgnus.aeterum.utils.GodUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,20 +52,27 @@ public class DarknessPotionListener implements Listener {
 
         @Override
         public void run() {
-            if (interaction >= 20){
+            if (interaction >= 20) {
                 cancel();
                 return;
             }
-            for (Player nearbyPlayer : player.getWorld().getPlayers()) {
-                if (nearbyPlayer.equals(player)) {
+
+            Location playerLocation = player.getLocation();
+
+            // Get all nearby entities within the radius
+            for (Entity nearbyEntity : player.getWorld().getNearbyEntities(playerLocation, radius, radius, radius)) {
+                if (nearbyEntity.equals(player)) {
                     continue; // Skip the player who drank the potion
                 }
-                if (nearbyPlayer.getLocation().distance(player.getLocation()) <= radius) {
-                    nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 1));
-                    nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 40, 0));
-                    nearbyPlayer.getWorld().spawnParticle(Particle.DAMAGE_INDICATOR, nearbyPlayer.getLocation(), 30, 0.5, 0.5, 0.5, 0);
+                if (nearbyEntity instanceof LivingEntity) { // Ensure the entity is living (e.g., players, mobs, etc.)
+                    LivingEntity livingEntity = (LivingEntity) nearbyEntity;
+                    livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 1));
+                    livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 40, 1));
+                    livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 40, 0));
+                    livingEntity.getWorld().spawnParticle(Particle.DAMAGE_INDICATOR, livingEntity.getLocation(), 30, 0.5, 0.5, 0.5, 0);
                 }
             }
+
             spawnParticles(player.getLocation());
             interaction++;
         }

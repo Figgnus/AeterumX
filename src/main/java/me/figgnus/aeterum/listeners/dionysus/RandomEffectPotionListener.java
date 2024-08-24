@@ -1,9 +1,11 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
+import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.GodUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -41,6 +43,13 @@ public class RandomEffectPotionListener implements Listener {
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }
+            BPlayer bPlayer = BPlayer.get(player);
+            if (bPlayer == null){
+                bPlayer = new BPlayer(player.getUniqueId().toString());
+            }
+            int drunkenness = bPlayer.getDrunkeness() + 5;
+            String command = "brew " + player.getName() + " " + drunkenness;
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
             applyRandomEffect(player);
         }
     }

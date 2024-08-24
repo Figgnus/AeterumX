@@ -1,9 +1,11 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
+import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.GodUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -15,8 +17,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+
 public class PartyAtmosphereListener implements Listener {
     private final Plugin plugin;
+
 
     public PartyAtmosphereListener(Plugin plugin) {
         this.plugin = plugin;
@@ -32,6 +36,16 @@ public class PartyAtmosphereListener implements Listener {
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }
+            BPlayer bPlayer = BPlayer.get(player);
+            if (bPlayer == null){
+                bPlayer = new BPlayer(player.getUniqueId().toString());
+            }
+            int drunkenness = bPlayer.getDrunkeness() + 10;
+            //player.performCommand("brew " + player.getName() + " " + drunkenness);
+            String command = "brew " + player.getName() + " " + drunkenness;
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+
+            // Apply effects based on the new drunkenness level
             applyEffect(player);
         }
     }

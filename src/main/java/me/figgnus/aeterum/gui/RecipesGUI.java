@@ -39,11 +39,12 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private Inventory hermesInventory;
     private Inventory recipeInventory;
 
-    private final List<Integer> blockedSpots = List.of(0,4,5,6,7,9,13,14,16,17,18,22,23,24,25,26);
+    private final List<Integer> blockedSpots = List.of(0,1,2,6,7,9,11,15,17,18,19,20,24,25,26);
 
     private final Map<ItemStack, List<ItemStack>> recipes = new HashMap<>();
 
     private final ItemStack backButton = createGuiItem(Material.BOOK, "Back", null);
+    private final ItemStack craftingTableItem = createGuiItem(Material.CRAFTING_TABLE, "Vytvořit v Crafting Table", null);
     private final ItemStack toolCategoryItem = createGuiItem(Material.DIAMOND_PICKAXE, "Nástroje", null);
     private final ItemStack demeterCategoryItem = ItemUtils.createHead("d2fe0f2e6c0ffeefbb84c32e71876b68dcbf7ac9e8420a3d1bf593aa21a8374a", "Démétér");
     private final ItemStack dionysusCategoryItem = ItemUtils.createHead("b2b0a1ca399f35dc54519c4c996f9629a510c49938151f759ec8f07041e78566", "Dionýsos");
@@ -115,6 +116,12 @@ public class RecipesGUI implements CommandExecutor, Listener {
 
         if (title.contains("Aeterum")){
             event.setCancelled(true);
+            if (title.contains(clickedItem.getItemMeta().getDisplayName())){
+                if (!player.hasPermission("aeterum.admin")){
+                    return;
+                }
+                player.getInventory().addItem(clickedItem);
+            }
             if (recipes.containsKey(clickedItem)){
                 openRecipeInventory(player, clickedItem);
             }
@@ -270,7 +277,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
         fillWithBlockers(recipeInventory);
 
         // Define the slots for the 3x3 recipe grid
-        int[] recipeSlots = {1, 2, 3, 10, 11, 12, 19, 20, 21};
+        int[] recipeSlots = {3, 4, 5, 12, 13, 14, 21, 22, 23};
 
         // Place the recipe items in the designated slots
         for (int i = 0; i < recipe.size() && i < recipeSlots.length; i++) {
@@ -278,7 +285,8 @@ public class RecipesGUI implements CommandExecutor, Listener {
         }
 
         // Place the output item in slot 15 (assuming the clicked item is the output)
-        recipeInventory.setItem(15, clickedItem);
+        recipeInventory.setItem(16, clickedItem);
+        recipeInventory.setItem(10, craftingTableItem);
 
         recipeInventory.setItem(8, backButton);
         player.openInventory(recipeInventory);

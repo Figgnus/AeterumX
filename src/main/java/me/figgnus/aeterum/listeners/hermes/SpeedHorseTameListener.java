@@ -34,7 +34,7 @@ public class SpeedHorseTameListener implements Listener {
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
             if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.hermesPermission)) {
+                if (!player.hasPermission(GodUtils.hermesHorseTame)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;
                 }

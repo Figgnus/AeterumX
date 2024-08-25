@@ -27,7 +27,7 @@ public class GrowthPotionListener implements Listener {
         Player player = event.getPlayer();
         ItemStack consumedItem = event.getItem();
         if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION.getItemMeta().getCustomModelData())) {
-            if (!player.hasPermission(GodUtils.demeterPermission)){
+            if (!player.hasPermission(GodUtils.demeterGrowthPotion)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }
@@ -92,7 +92,7 @@ public class GrowthPotionListener implements Listener {
                 double x = center.getX() + radius * Math.cos(radians);
                 double z = center.getZ() + radius * Math.sin(radians);
                 Location particleLocation = new Location(center.getWorld(), x, center.getY(), z);
-                center.getWorld().spawnParticle(Particle.WITCH, particleLocation, 1);
+                center.getWorld().spawnParticle(Particle.WITCH, particleLocation, 5);
             }
         }
 

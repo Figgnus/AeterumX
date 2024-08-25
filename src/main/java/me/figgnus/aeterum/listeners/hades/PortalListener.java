@@ -33,7 +33,7 @@ public class PortalListener implements Listener {
         Player player = (Player) potion.getShooter();
         ItemStack item = potion.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())) {
-            if (!player.hasPermission(GodUtils.hadesPermission)) {
+            if (!player.hasPermission(GodUtils.hadesPortal)) {
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }
@@ -48,8 +48,8 @@ public class PortalListener implements Listener {
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())){
 
-            if (player.getWorld().getName().equals("world_nether")){
-                player.sendMessage(ChatColor.RED + "Tento předmět nemůže být použit v Netheru.");
+            if (player.getWorld().getName().equals("world_the_end")){
+                player.sendMessage(ChatColor.RED + "Tento předmět nemůže být použit v Endu.");
                 event.setCancelled(true);
             }
         }
@@ -72,8 +72,8 @@ public class PortalListener implements Listener {
                 // Generate the portal frame particles
                 for (int y = 0; y <= 2; y++) {
                     for (int x = -1; x <= 1; x++) {
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y, 0), 10);
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y, -1), 10);
+                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, 0), 10);
+                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, -1), 10);
                         world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, 0), 10);
                         world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, -1), 10);
                     }
@@ -89,13 +89,24 @@ public class PortalListener implements Listener {
             public void run() {
                 for (Player player : world.getPlayers()) {
                     if (isPlayerInPortal(player, loc)) {
-                        Location netherLocation = findSafeNetherLocation(new Location(Bukkit.getWorld("world_nether"), loc.getX() / 8, loc.getY(), loc.getZ() / 8));
-                        if (netherLocation != null) {
-                            player.teleport(netherLocation);
-                            player.getWorld().playSound(netherLocation, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, 1.0F);
+                        Location targetLocation;
+
+                        if (world.getName().equals("world")) {
+                            // If in Overworld, teleport to Nether
+                            targetLocation = findSafeNetherLocation(new Location(Bukkit.getWorld("world_nether"), loc.getX() / 8, loc.getY(), loc.getZ() / 8));
+                        } else if (world.getName().equals("world_nether")) {
+                            // If in Nether, teleport to Overworld
+                            targetLocation = findSafeOverworldLocation(new Location(Bukkit.getWorld("world"), loc.getX() * 8, loc.getY(), loc.getZ() * 8));
+                        } else {
+                            continue; // Not in Overworld or Nether, skip teleportation
+                        }
+
+                        if (targetLocation != null) {
+                            player.teleport(targetLocation);
+                            player.getWorld().playSound(targetLocation, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, 1.0F);
                             player.playSound(player.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 1.0F, 1.0F);
                         } else {
-                            player.sendMessage(ChatColor.RED + "A safe location could not be found in the Nether!");
+                            player.sendMessage(ChatColor.RED + "A safe location could not be found!");
                         }
                     }
                 }
@@ -134,6 +145,33 @@ public class PortalListener implements Listener {
                 for (int x = startX - radius; x <= startX + radius; x++) {
                     for (int z = startZ - radius; z <= startZ + radius; z++) {
                         Location candidateLocation = new Location(nether, x, y, z);
+
+                        // Check if the location is safe
+                        if (isSafeLocation(candidateLocation)) {
+                            return candidateLocation.add(0.5, 1, 0.5); // Center the player on the block
+                        }
+                    }
+                }
+            }
+            // If no valid location is found within the current radius, increase the radius and retry
+        }
+
+        return null; // Return null if no safe location is found after all radius attempts
+    }
+    private Location findSafeOverworldLocation(Location loc) {
+        World overworld = loc.getWorld();
+        int startX = loc.getBlockX();
+        int startZ = loc.getBlockZ();
+        int initialRadius = 3; // Starting radius
+        int maxRadius = 50; // Define a maximum radius limit to avoid infinite loops
+
+        // Iterate over radius values starting from initialRadius
+        for (int radius = initialRadius; radius <= maxRadius; radius++) {
+            // Loop to find a safe location by checking y-coordinates first
+            for (int y = 255; y >= 0; y--) { // Check from y=255 to y=0
+                for (int x = startX - radius; x <= startX + radius; x++) {
+                    for (int z = startZ - radius; z <= startZ + radius; z++) {
+                        Location candidateLocation = new Location(overworld, x, y, z);
 
                         // Check if the location is safe
                         if (isSafeLocation(candidateLocation)) {

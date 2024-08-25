@@ -34,7 +34,7 @@ public class SeaHorseTameListener implements Listener {
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
             if (ItemUtils.isCustomItem(item, CustomItems.SEA_HORSE_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.poseidonPermission)) {
+                if (!player.hasPermission(GodUtils.poseidonHorseTame)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;
                 }

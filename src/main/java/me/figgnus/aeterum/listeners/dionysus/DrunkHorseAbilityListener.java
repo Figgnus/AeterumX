@@ -38,7 +38,7 @@ public class DrunkHorseAbilityListener implements Listener {
                         Horse horse = (Horse) player.getVehicle();
                         String metadataValue = plugin.getEntityMetadata(horse, DrunkHorseTameListener.DRUNK_KEY);
                         if ("true".equals(metadataValue)) {
-                            if (!player.hasPermission(GodUtils.dionysusPermission)) {
+                            if (!player.hasPermission(GodUtils.dionysusHorseAbility)) {
                                 player.sendMessage(GodUtils.permissionItemMessage);
                                 return;
                             }

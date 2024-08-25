@@ -66,7 +66,7 @@ public class CustomItems {
     public static final ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, 60020, "Poštovní Brašna", MESSENGER_PACK_LORE, null);
     public static final ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, 60021, "Rychlé botky", SPEED_BOOTS_LORE, null);
     public static final ItemStack BETTER_TRIDENT = createCustomItem(Material.TRIDENT, 60022, "Královský Trojzubec", BETTER_TRIDENT_LORE, null);
-    public static final ItemStack WATER_BREATHING_CROWN = createCustomItem(Material.IRON_HELMET, 60023, "Mořská Koruna", WATER_BREATHING_CROW_LORE, null);
+    public static final ItemStack WATER_BREATHING_CROWN = createCustomItem(Material.TURTLE_HELMET, 60023, "Mořská Koruna", WATER_BREATHING_CROW_LORE, null);
     public static final ItemStack BREEDING_ITEM = createCustomItem(Material.SLIME_BALL, 60024, "Afrodisiakum", BREEDING_ITEM_LORE, null);
     public static final ItemStack LIGHTNING_SPEAR = createCustomItem(Material.TRIDENT, 60025, "Blesk", LIGHTNING_SPEAR_LORE, null);
     public static final ItemStack WEATHER_CHANGER = createCustomItem(Material.POTION, 60026, "Lektvar Bouře", WEATHER_CHANGER_LORE, Color.fromRGB(165, 161, 215));
@@ -135,9 +135,9 @@ public class CustomItems {
             new ItemStack(Material.AIR), new ItemStack(Material.FIRE_CHARGE), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> PARTY_ATMOSPHERE_RECIPE = List.of(
-            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.FIREWORK_STAR), new ItemStack(Material.GLOWSTONE_DUST),
-            new ItemStack(Material.HONEY_BOTTLE), new ItemStack(Material.AIR), new ItemStack(Material.HONEY_BOTTLE),
-            new ItemStack(Material.AIR), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.AIR)
+            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.GLOWSTONE_DUST),
+            new ItemStack(Material.HONEY_BOTTLE), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.HONEY_BOTTLE),
+            new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> RANDOM_EFFECT_POTION_RECIPE = List.of(
             new ItemStack(Material.RABBIT_FOOT), new ItemStack(Material.GOLDEN_CARROT), new ItemStack(Material.GHAST_TEAR),
@@ -175,9 +175,9 @@ public class CustomItems {
             new ItemStack(Material.AIR), new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> PEGASUS_TAME_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.FEATHER), new ItemStack(Material.AIR),
-            new ItemStack(Material.FEATHER), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.FEATHER),
-            new ItemStack(Material.AIR), new ItemStack(Material.FEATHER), new ItemStack(Material.AIR)
+            new ItemStack(Material.AIR), new ItemStack(Material.WIND_CHARGE), new ItemStack(Material.AIR),
+            new ItemStack(Material.WIND_CHARGE), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.WIND_CHARGE),
+            new ItemStack(Material.AIR), new ItemStack(Material.WIND_CHARGE), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> PEGASUS_ABILITY_RECIPE = List.of(
             new ItemStack(Material.AIR), new ItemStack(Material.FEATHER), new ItemStack(Material.AIR),
@@ -185,13 +185,13 @@ public class CustomItems {
             new ItemStack(Material.AIR), new ItemStack(Material.FEATHER), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> BETTER_TRIDENT_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.AIR),
-            new ItemStack(Material.AIR), new ItemStack(Material.TRIDENT), new ItemStack(Material.AIR),
-            new ItemStack(Material.AIR), new ItemStack(Material.BOOK), new ItemStack(Material.AIR)
+            new ItemStack(Material.AIR), new ItemStack(Material.HEART_OF_THE_SEA), new ItemStack(Material.AIR),
+            new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.TRIDENT), new ItemStack(Material.NAUTILUS_SHELL),
+            new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.BOOK), new ItemStack(Material.NAUTILUS_SHELL)
     );
     public static final List<ItemStack> WATER_BREATHING_CROWN_RECIPE = List.of(
             new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.NAUTILUS_SHELL),
-            new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.IRON_HELMET), new ItemStack(Material.NAUTILUS_SHELL),
+            new ItemStack(Material.NAUTILUS_SHELL), new ItemStack(Material.TURTLE_HELMET), new ItemStack(Material.NAUTILUS_SHELL),
             new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)
     );
     public static final List<ItemStack> BREEDING_ITEM_RECIPE = List.of(
@@ -209,6 +209,72 @@ public class CustomItems {
             new ItemStack(Material.DIAMOND), new ItemStack(Material.REDSTONE), new ItemStack(Material.DIAMOND),
             new ItemStack(Material.IRON_INGOT), new ItemStack(Material.BLAZE_ROD), new ItemStack(Material.IRON_INGOT)
     );
+    public static final List<ItemStack> INFINITE_DEBUG_STICK_RECIPE = List.of(
+            new ItemStack(Material.BEACON), new ItemStack(Material.BREEZE_ROD), new ItemStack(Material.BEACON),
+            new ItemStack(Material.AIR), new ItemStack(Material.NETHERITE_BLOCK), new ItemStack(Material.AIR),
+            new ItemStack(Material.AIR), new ItemStack(Material.NETHER_STAR), new ItemStack(Material.AIR)
+    );
+    public static final List<ItemStack> BASIC_DEBUG_STICK_RECIPE = List.of(
+            new ItemStack(Material.AIR), new ItemStack(Material.DIAMOND), new ItemStack(Material.AIR),
+            new ItemStack(Material.DIAMOND), new ItemStack(Material.BREEZE_ROD), new ItemStack(Material.DIAMOND),
+            new ItemStack(Material.AIR), new ItemStack(Material.DIAMOND), new ItemStack(Material.AIR)
+    );
+    public static ItemStack createInfiniteDebugStick() {
+        ItemStack itemStack = new ItemStack(Material.DEAD_BUSH);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setDisplayName(ChatColor.RED + "NEKONEČNÝ DEBUG STICK");
+        // Set the lore (description) of the item with color and multiple lines
+        meta.setLore(Arrays.asList(
+                ChatColor.GOLD + "PRAVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro změnění hodnoty",
+                "",
+                ChatColor.GREEN + "LEVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro změnění vlastnosti",
+                "",
+                ChatColor.RED + "SHIFT + PRAVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro vymazání trvalých hodnot",
+                "",
+                ChatColor.DARK_PURPLE + "SHIFT + LEVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro vidění všech vlastností",
+                "",
+                ChatColor.YELLOW + "Výdrž: " + ChatColor.GOLD + "∞"
+        ));
+        meta.setUnbreakable(true);
+        itemStack.setItemMeta(meta);
+        return itemStack;
+    }
+    public static ItemStack createBasicDebugStick() {
+        // Create the item stack with the desired material (in this case, a blaze rod)
+        ItemStack item = new ItemStack(Material.BREEZE_ROD);
+
+        // Get the item meta (for setting name, lore, etc.)
+        ItemMeta meta = item.getItemMeta();
+
+        // Set the custom name (with color)
+        meta.setDisplayName(ChatColor.AQUA + "ZÁKLADNÍ DEBUG STICK");
+
+        // Set the lore (description) of the item with color and multiple lines
+        meta.setLore(Arrays.asList(
+                ChatColor.GOLD + "PRAVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro změnění hodnoty",
+                "",
+                ChatColor.GREEN + "LEVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro změnění vlastnosti",
+                "",
+                ChatColor.RED + "SHIFT + PRAVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro vymazání trvalých hodnot",
+                "",
+                ChatColor.DARK_PURPLE + "SHIFT + LEVÉ-KLIKNUTÍ",
+                ChatColor.GRAY + "pro vidění všech vlastností",
+                "",
+                ChatColor.YELLOW + "Výdrž: " + ChatColor.GREEN + "250"
+        ));
+        // Set the meta back to the item
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
 
 
     // Lists of enchantments for items
@@ -268,6 +334,7 @@ public class CustomItems {
         NamespacedKey weatherChangerKey = new NamespacedKey(plugin, "weather_changer_recipe");
         //Other Key
         NamespacedKey randomizerKey = new NamespacedKey(plugin, "randomizer_recipe");
+        NamespacedKey infiniteDebugKey = new NamespacedKey(plugin, "infinite_debug_recipe");
 
         //Demeter
         ShapedRecipe betterBonemealRecipe = createShapedRecipeFromList(BETTER_BONEMEAL, BETTER_BONEMEAL_RECIPE, betterBonemealkey, " A ", "ABA", " A ");
@@ -282,7 +349,7 @@ public class CustomItems {
         //Dionysus
         ShapedRecipe drunkHorseTameRecipe = createShapedRecipeFromList(DRUNK_HORSE_TAME, DRUNK_HORSE_TAME_RECIPE, drunkHorseTameKey, " P ", "PAP", " P ");
         ShapedRecipe partyBallRecipe = createShapedRecipeFromList(PARTY_BALL, PARTY_BALL_RECIPE, partyBallKey, "GDG", "DSD", " A ");
-        ShapedRecipe partyAtmosphereRecipe = createShapedRecipeFromList(PARTY_ATMOSPHERE, PARTY_ATMOSPHERE_RECIPE, partyAtmosphereKey, "GFG", "H H", " A ");
+        ShapedRecipe partyAtmosphereRecipe = createShapedRecipeFromList(PARTY_ATMOSPHERE, PARTY_ATMOSPHERE_RECIPE, partyAtmosphereKey, "GFG", "HAH", "   ");
         ShapedRecipe randomPotionEffectRecipe = createShapedRecipeFromList(RANDOM_EFFECT_POTION, RANDOM_EFFECT_POTION_RECIPE, randomEffectPotionKey, "RGT", "FPM", " A ");
         //Hermes
         ShapedRecipe speedHorseTameRecipe = createShapedRecipeFromList(SPEED_HORSE_TAME, SPEED_HORSE_TAME_RECIPE, speedHorseTameKey, " S ", "SGS", "   ");
@@ -292,7 +359,7 @@ public class CustomItems {
         ShapedRecipe speedBootsRecipe = createShapedRecipeFromList(SPEED_BOOTS, SPEED_BOOTS_RECIPE, speedBootsKey, "L L", "CBC", "L L");
         //Poseidon
         ShapedRecipe seaHorseTameRecipe = createShapedRecipeFromList(SEA_HORSE_TAME, SEA_HORSE_TAME_RECIPE, seaHorseTameKey, " N ", "NAN", " N ");
-        ShapedRecipe betterTridentRecipe = createShapedRecipeFromList(BETTER_TRIDENT, BETTER_TRIDENT_RECIPE, betterTridentKey, " N ", " T ", " B ");
+        ShapedRecipe betterTridentRecipe = createShapedRecipeFromList(BETTER_TRIDENT, BETTER_TRIDENT_RECIPE, betterTridentKey, " N ", "HTH", "HBH");
         ShapedRecipe waterBreathingCrownRecipe = createShapedRecipeFromList(WATER_BREATHING_CROWN, WATER_BREATHING_CROWN_RECIPE, waterBreathingCrownKey, "NNN", "NHN", "   ");
         //Zeus
         ShapedRecipe pegasusTameRecipe = createShapedRecipeFromList(PEGASUS_TAME, PEGASUS_TAME_RECIPE, pegasusTameKey, " N ", "NAN", " N ");
@@ -300,7 +367,7 @@ public class CustomItems {
         ShapedRecipe breedingItemRecipe = createShapedRecipeFromList(BREEDING_ITEM, BREEDING_ITEM_RECIPE, breedingItemKey, " C ", "BSW", " P ");
         ShapedRecipe lightningSpearRecipe = createShapedRecipeFromList(LIGHTNING_SPEAR, LIGHTNING_SPEAR_RECIPE, lightningSpearKey, "I I", "SBS", " L ");
         ShapedRecipe weatherChangerRecipe = createShapedRecipeFromList(WEATHER_CHANGER, WEATHER_CHANGER_RECIPE, weatherChangerKey, " N ", "DRD", "IBI");
-
+        // Other
         ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey, "RER", "IBI", "IRI");
         Bukkit.addRecipe(randomizerRecipe);
         //Demeter Register

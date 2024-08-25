@@ -53,7 +53,7 @@ public class FlowerHorseAbilityListener  implements Listener {
 
                         // Check if the block below is farmland
                         if (blockBelow.getType() == Material.FARMLAND || blockBelowSave.getType() == Material.FARMLAND) {
-                            if (!player.hasPermission(GodUtils.demeterPermission)) {
+                            if (!player.hasPermission(GodUtils.demeterHorseAbility)) {
                                 player.sendMessage(GodUtils.permissionItemMessage);
                                 return;
                             }

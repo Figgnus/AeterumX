@@ -26,7 +26,7 @@ public class LightningSpearListener implements Listener {
             if (trident.getShooter() instanceof Player player){
                 ItemStack item = trident.getItem();
                 if (ItemUtils.isCustomItem(item, CustomItems.LIGHTNING_SPEAR.getItemMeta().getCustomModelData())){
-                    if (!player.hasPermission(GodUtils.zeusPermission)){
+                    if (!player.hasPermission(GodUtils.zeusLightningSpear)){
                         player.sendMessage(GodUtils.permissionItemMessage);
                         return;
                     }

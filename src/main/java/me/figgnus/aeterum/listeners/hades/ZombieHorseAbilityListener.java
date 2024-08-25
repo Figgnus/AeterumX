@@ -47,7 +47,7 @@ public class ZombieHorseAbilityListener implements Listener {
 
                     // Check if the block under the horse is lava
                     if (blockUnder.getType() == Material.LAVA) {
-                        if (!player.hasPermission(GodUtils.hadesPermission)) {
+                        if (!player.hasPermission(GodUtils.hadesHorseAbility)) {
                             player.sendMessage(GodUtils.permissionItemMessage);
                             return;
                         }

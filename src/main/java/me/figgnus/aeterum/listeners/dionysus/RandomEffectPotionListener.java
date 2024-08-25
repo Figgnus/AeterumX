@@ -39,7 +39,7 @@ public class RandomEffectPotionListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.RANDOM_EFFECT_POTION.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.dionysusPermission)){
+            if (!player.hasPermission(GodUtils.dionysusRandomEffectPotion)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

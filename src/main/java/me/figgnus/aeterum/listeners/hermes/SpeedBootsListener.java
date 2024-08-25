@@ -31,7 +31,7 @@ public class SpeedBootsListener implements Listener {
         ItemStack item = player.getInventory().getBoots();
 
         if (ItemUtils.isCustomItem(item, CustomItems.SPEED_BOOTS.getItemMeta().getCustomModelData())){
-            if (!(player.hasPermission(GodUtils.hermesPermission))){
+            if (!(player.hasPermission(GodUtils.hermesSpeedBoots))){
                 long currentTime = System.currentTimeMillis();
                 UUID playerUUID = player.getUniqueId();
                 if (!messageCooldowns.containsKey(playerUUID) || (currentTime - messageCooldowns.get(playerUUID) > COOLDOWN_TIME)){

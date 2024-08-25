@@ -57,7 +57,7 @@ public class NightVisionListener implements Listener, CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if (!player.hasPermission(GodUtils.hadesPermission)){
+        if (!player.hasPermission(GodUtils.hadesTogglePermission)){
             player.sendMessage(GodUtils.permissionCommandMessage);
             return true;
         }

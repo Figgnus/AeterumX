@@ -60,7 +60,7 @@ public class DolphinGraceListener implements Listener, CommandExecutor {
     public void onWaterEnter(PlayerMoveEvent event){
         Player player = event.getPlayer();
         Material blockType = player.getLocation().getBlock().getType();
-        if (player.hasPermission(GodUtils.poseidonPermission) && enabledPlayers.contains(player.getUniqueId())){
+        if (player.hasPermission(GodUtils.poseidonTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
             if (blockType == Material.WATER || blockType == Material.BUBBLE_COLUMN){
                 player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 100, 1, true, true));
             }

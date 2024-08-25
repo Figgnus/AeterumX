@@ -30,7 +30,7 @@ public class DarknessPotionListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARKNESS_POTION.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.hadesPermission)){
+            if (!player.hasPermission(GodUtils.hadesDarknessPotion)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

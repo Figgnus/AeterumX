@@ -30,7 +30,7 @@ public class PartyBallListener implements Listener {
             if (snowball.getShooter() instanceof  Player player){
                 ItemStack item = snowball.getItem();
                 if (ItemUtils.isCustomItem(item, CustomItems.PARTY_BALL.getItemMeta().getCustomModelData())){
-                    if (!player.hasPermission(GodUtils.dionysusPermission)){
+                    if (!player.hasPermission(GodUtils.dionysusPartyBall)){
                         player.sendMessage(GodUtils.permissionItemMessage);
                         return;
                     }

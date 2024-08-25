@@ -1,11 +1,11 @@
 package me.figgnus.aeterum.gui;
 
-import com.dre.brewery.recipe.CustomItem;
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.GodUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -55,6 +55,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private final ItemStack breweryCategoryItem = createGuiItem(Material.POTION, "Brewery", Color.fromRGB(55, 209, 122));
 
 
+
     public RecipesGUI(Plugin plugin) {
         this.plugin = plugin;
 
@@ -62,6 +63,8 @@ public class RecipesGUI implements CommandExecutor, Listener {
         plugin.getCommand("recepty").setExecutor(this);
 
         recipes.put(CustomItems.RANDOMIZER, CustomItems.RANDOMIZER_RECIPE);
+        recipes.put(CustomItems.createInfiniteDebugStick(), CustomItems.INFINITE_DEBUG_STICK_RECIPE);
+        recipes.put(CustomItems.createBasicDebugStick(), CustomItems.BASIC_DEBUG_STICK_RECIPE);
 
         recipes.put(CustomItems.FLOWER_HORSE_TAME, CustomItems.FLOWER_HORSE_TAME_RECIPE);
         recipes.put(CustomItems.BETTER_BONEMEAL, CustomItems.BETTER_BONEMEAL_RECIPE);
@@ -219,6 +222,8 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private void openToolInventory(Player player) {
         toolInventory = Bukkit.createInventory(null, 9, "Aeterum Nástroje");
         toolInventory.addItem(CustomItems.RANDOMIZER);
+        toolInventory.addItem(CustomItems.createBasicDebugStick());
+        toolInventory.addItem(CustomItems.createInfiniteDebugStick());
         toolInventory.setItem(8, backButton);
         player.openInventory(toolInventory);
     }
@@ -227,22 +232,22 @@ public class RecipesGUI implements CommandExecutor, Listener {
         mainInventory = Bukkit.createInventory(null, 9, "Aeterum Recepty");
         mainInventory.addItem(toolCategoryItem);
         mainInventory.addItem(breweryCategoryItem);
-        if (player.hasPermission(GodUtils.demeterBasePermission)){
+        if (player.hasPermission(GodUtils.demeterGuiPermission)){
             mainInventory.addItem(demeterCategoryItem);
         }
-        if (player.hasPermission(GodUtils.dionysusBasePermission)){
+        if (player.hasPermission(GodUtils.dionysusGuiPermission)){
             mainInventory.addItem(dionysusCategoryItem);
         }
-        if (player.hasPermission(GodUtils.hermesBasePermission)){
+        if (player.hasPermission(GodUtils.hermesGuiPermission)){
             mainInventory.addItem(hermesCategoryItem);
         }
-        if (player.hasPermission(GodUtils.hadesBasePermission)){
+        if (player.hasPermission(GodUtils.hadesGuiPermission)){
             mainInventory.addItem(hadesCategoryItem);
         }
-        if (player.hasPermission(GodUtils.zeusBasePermission)){
+        if (player.hasPermission(GodUtils.zeusGuiPermission)){
             mainInventory.addItem(zeusCategoryItem);
         }
-        if (player.hasPermission(GodUtils.poseidonBasePermission)){
+        if (player.hasPermission(GodUtils.poseidonGuiPermission)){
             mainInventory.addItem(poseidonCategoryItem);
         }
         player.openInventory(mainInventory);
@@ -250,7 +255,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private ItemStack createGuiItem(Material material, String name, Color color) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(name);
+        meta.setDisplayName(ChatColor.GREEN + name);
         if (item.getType() == Material.POTION || item.getType() == Material.SPLASH_POTION || item.getType() == Material.LINGERING_POTION){
             if (meta instanceof PotionMeta){
                 PotionMeta potionMeta = (PotionMeta) meta;

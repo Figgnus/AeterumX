@@ -47,7 +47,7 @@ public class SeaHorseAbilityListener implements Listener {
 
                     // Check if the block under the horse is water
                     if (blockUnder.getType() == Material.WATER) {
-                        if (!player.hasPermission(GodUtils.poseidonPermission)) {
+                        if (!player.hasPermission(GodUtils.poseidonHorseAbility)) {
                             player.sendMessage(GodUtils.permissionItemMessage);
                             return;
                         }

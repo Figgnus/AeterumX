@@ -28,7 +28,7 @@ public class FlyingItemListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.FLYING_ITEM.getItemMeta().getCustomModelData())){
-            if (!(player.hasPermission(GodUtils.hermesPermission))){
+            if (!(player.hasPermission(GodUtils.hermesFlyingItem))){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

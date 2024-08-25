@@ -31,7 +31,7 @@ public class HoeOfHarvestListener implements Listener {
         ItemStack item = event.getItem();
         UUID playerUuid = player.getUniqueId();
         if (ItemUtils.isCustomItem(item, CustomItems.HOE_OF_HARVEST.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.demeterPermission)){
+            if (!player.hasPermission(GodUtils.demeterHoe)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

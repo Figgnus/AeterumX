@@ -39,7 +39,7 @@ public class DarkPearlListener implements Listener {
             if (enderPearl.getShooter() instanceof Player player){
                 ItemStack item = enderPearl.getItem();
                 if (ItemUtils.isCustomItem(item, CustomItems.DARK_PEARL.getItemMeta().getCustomModelData())){
-                    if (!player.hasPermission(GodUtils.hadesPermission)){
+                    if (!player.hasPermission(GodUtils.hadesDarkPearl)){
                         player.sendMessage(GodUtils.permissionItemMessage);
                         return;
                     }

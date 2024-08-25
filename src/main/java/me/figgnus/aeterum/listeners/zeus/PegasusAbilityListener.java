@@ -32,7 +32,7 @@ public class PegasusAbilityListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.zeusPermission)){
+            if (!player.hasPermission(GodUtils.zeusHorseAbility)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

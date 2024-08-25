@@ -32,21 +32,28 @@ public class PartyAtmosphereListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.dionysusPermission)){
+            if (!player.hasPermission(GodUtils.dionysusPartyAtmosphere)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }
-            BPlayer bPlayer = BPlayer.get(player);
-            if (bPlayer == null){
-                bPlayer = new BPlayer(player.getUniqueId().toString());
-            }
-            int drunkenness = bPlayer.getDrunkeness() + 10;
-            //player.performCommand("brew " + player.getName() + " " + drunkenness);
-            String command = "brew " + player.getName() + " " + drunkenness;
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-
-            // Apply effects based on the new drunkenness level
             applyEffect(player);
+            applyDrunkness(player);
+        }
+    }
+
+    private void applyDrunkness(Player player) {
+        int radius = 10;
+        BPlayer bPlayer = BPlayer.get(player);
+        if (bPlayer == null){
+            bPlayer = new BPlayer(player.getUniqueId().toString());
+        }
+        int drunkenness = bPlayer.getDrunkeness() + 10;
+
+        for (Player nearbyPlayer : player.getWorld().getPlayers()) {
+            if (nearbyPlayer.getLocation().distance(player.getLocation()) <= radius) {
+                String command = "brew " + nearbyPlayer.getName() + " " + drunkenness;
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+            }
         }
     }
 

@@ -38,7 +38,7 @@ public class RandomizerListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (ItemUtils.isCustomItem(item, CustomItems.RANDOMIZER.getItemMeta().getCustomModelData())){
             event.setCancelled(true);
-            if (!player.hasPermission("trowel.use")){
+            if (!player.hasPermission("aeterum.trowel.use")){
                 player.sendMessage(ChatColor.RED + "Nemáš oprávnění použít tento předmět");
                 return;
             }
@@ -126,7 +126,7 @@ public class RandomizerListener implements Listener {
         if (world == null){
             return false;
         }
-        List<Entity> entities = (List<Entity>) world.getNearbyEntities(location, 0.5,0.5,0.5);
+        List<Entity> entities = (List<Entity>) world.getNearbyEntities(location, 0.7,0.7,0.7);
         for (Entity entity : entities){
             if(!(entity instanceof Item) && !(entity instanceof ExperienceOrb)){
                 //found entity that is not an item or experience orb

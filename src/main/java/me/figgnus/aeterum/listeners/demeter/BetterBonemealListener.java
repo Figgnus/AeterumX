@@ -32,7 +32,7 @@ public class BetterBonemealListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.demeterPermission)){
+            if (!player.hasPermission(GodUtils.demeterBetterBonemeal)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

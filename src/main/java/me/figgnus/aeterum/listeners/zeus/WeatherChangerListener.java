@@ -25,7 +25,7 @@ public class WeatherChangerListener implements Listener {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
         if (ItemUtils.isCustomItem(item, CustomItems.WEATHER_CHANGER.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.zeusPermission)){
+            if (!player.hasPermission(GodUtils.zeusWeatherChanger)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

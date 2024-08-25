@@ -34,7 +34,7 @@ public class PegasusTameListener implements Listener {
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
             if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.zeusPermission)) {
+                if (!player.hasPermission(GodUtils.zeusHorseTame)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;
                 }

@@ -36,7 +36,7 @@ public class BreedingItemListener implements Listener {
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         UUID playerId = player.getUniqueId();
         if (ItemUtils.isCustomItem(itemInHand, CustomItems.BREEDING_ITEM.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.zeusPermission)){
+            if (!player.hasPermission(GodUtils.zeusBreedingItem)){
                 player.sendMessage(GodUtils.permissionItemMessage);
                 return;
             }

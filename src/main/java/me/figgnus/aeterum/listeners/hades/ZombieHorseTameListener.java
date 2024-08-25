@@ -42,7 +42,7 @@ public class ZombieHorseTameListener implements Listener {
             if (item == null)return;
             if (item.getItemMeta() == null)return;
             if (ItemUtils.isCustomItem(item, CustomItems.ZOMBIE_HORSE_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.hadesPermission)) {
+                if (!player.hasPermission(GodUtils.hadesHorseTame)) {
                     player.sendMessage(GodUtils.permissionItemMessage);
                     return;
                 }

@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -53,8 +53,8 @@ public class FlowerHorseAbilityListener  implements Listener {
 
                         // Check if the block below is farmland
                         if (blockBelow.getType() == Material.FARMLAND || blockBelowSave.getType() == Material.FARMLAND) {
-                            if (!player.hasPermission(GodUtils.demeterHorseAbility)) {
-                                player.sendMessage(GodUtils.permissionItemMessage);
+                            if (!player.hasPermission(PermissionUtils.demeterHorseAbility)) {
+                                player.sendMessage(PermissionUtils.permissionItemMessage);
                                 return;
                             }
                             // Check if the player has seeds in their inventory

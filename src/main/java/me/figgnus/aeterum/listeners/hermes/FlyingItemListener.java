@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hermes;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -28,8 +28,8 @@ public class FlyingItemListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.FLYING_ITEM.getItemMeta().getCustomModelData())){
-            if (!(player.hasPermission(GodUtils.hermesFlyingItem))){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!(player.hasPermission(PermissionUtils.hermesFlyingItem))){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             if (event.getAction() == Action.RIGHT_CLICK_AIR){

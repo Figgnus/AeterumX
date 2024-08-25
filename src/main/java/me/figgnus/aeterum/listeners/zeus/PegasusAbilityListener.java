@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Particle;
@@ -32,8 +32,8 @@ public class PegasusAbilityListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.zeusHorseAbility)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.zeusHorseAbility)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             Horse horse = (Horse) player.getVehicle();

@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -33,7 +33,7 @@ public class NightVisionListener implements Listener, CommandExecutor {
         Player player = event.getPlayer();
         Block block = player.getLocation().getBlock();
 
-        if (player.hasPermission(GodUtils.hadesTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
+        if (player.hasPermission(PermissionUtils.hadesTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
             if (isUnderground(player) && isLowLightLevel(block)) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 400, 1, true, false));
             }else {
@@ -57,8 +57,8 @@ public class NightVisionListener implements Listener, CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if (!player.hasPermission(GodUtils.hadesTogglePermission)){
-            player.sendMessage(GodUtils.permissionCommandMessage);
+        if (!player.hasPermission(PermissionUtils.hadesTogglePermission)){
+            player.sendMessage(PermissionUtils.permissionCommandMessage);
             return true;
         }
         UUID playerId = player.getUniqueId();

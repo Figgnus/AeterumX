@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hermes;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Particle;
@@ -30,8 +30,8 @@ public class SpeedHorseAbilityListener implements Listener {
         ItemStack item = event.getItem();
 
         if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_ABILITY.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.hermesHorseAbility)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.hermesHorseAbility)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             Horse horse = (Horse) player.getVehicle();

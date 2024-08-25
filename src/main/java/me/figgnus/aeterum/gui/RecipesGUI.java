@@ -2,7 +2,7 @@ package me.figgnus.aeterum.gui;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -232,22 +232,22 @@ public class RecipesGUI implements CommandExecutor, Listener {
         mainInventory = Bukkit.createInventory(null, 9, "Aeterum Recepty");
         mainInventory.addItem(toolCategoryItem);
         mainInventory.addItem(breweryCategoryItem);
-        if (player.hasPermission(GodUtils.demeterGuiPermission)){
+        if (player.hasPermission(PermissionUtils.demeterGuiPermission)){
             mainInventory.addItem(demeterCategoryItem);
         }
-        if (player.hasPermission(GodUtils.dionysusGuiPermission)){
+        if (player.hasPermission(PermissionUtils.dionysusGuiPermission)){
             mainInventory.addItem(dionysusCategoryItem);
         }
-        if (player.hasPermission(GodUtils.hermesGuiPermission)){
+        if (player.hasPermission(PermissionUtils.hermesGuiPermission)){
             mainInventory.addItem(hermesCategoryItem);
         }
-        if (player.hasPermission(GodUtils.hadesGuiPermission)){
+        if (player.hasPermission(PermissionUtils.hadesGuiPermission)){
             mainInventory.addItem(hadesCategoryItem);
         }
-        if (player.hasPermission(GodUtils.zeusGuiPermission)){
+        if (player.hasPermission(PermissionUtils.zeusGuiPermission)){
             mainInventory.addItem(zeusCategoryItem);
         }
-        if (player.hasPermission(GodUtils.poseidonGuiPermission)){
+        if (player.hasPermission(PermissionUtils.poseidonGuiPermission)){
             mainInventory.addItem(poseidonCategoryItem);
         }
         player.openInventory(mainInventory);

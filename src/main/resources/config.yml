@@ -1,0 +1,142 @@
+permissions:
+  demeter:
+    60001:
+      name: "Better Bonemeal"
+      permission: "aeterum.demeter.bonemeal"
+      custom_id: 60001
+    60002:
+      name: "Growth Potion"
+      permission: "aeterum.demeter.growth_potion"
+      custom_id: 60002
+    60003:
+      name: "Hoe"
+      permission: "aeterum.demeter.hoe"
+      custom_id: 60003
+    60004:
+      name: "Horse Tame"
+      permission: "aeterum.demeter.horse_tame"
+      custom_id: 60004
+    70001:
+      name: "Horse Ability"
+      permission: "aeterum.demeter.horse_ability"
+    80001:
+      permission: "aeterum.demeter.gui"
+  dionysus:
+    60013:
+      name: "Party Atmosphere"
+      permission: "aeterum.dionysus.party_atmosphere"
+      custom_id: 60013
+    60012:
+      name: "Party Ball"
+      permission: "aeterum.dionysus.party_ball"
+      custom_id: 60012
+    60014:
+      name: "Random Effect Potion"
+      permission: "aeterum.dionysus.random_effect_potion"
+      custom_id: 60014
+    60006:
+      name: "Horse Tame"
+      permission: "aeterum.dionysus.horse_tame"
+      custom_id: 60006
+    70002:
+      name: "Horse Ability"
+      permission: "aeterum.dionysus.horse_ability"
+    80002:
+      permission: "aeterum.dionysus.gui"
+  hades:
+    60016:
+      name: "Darkness Potion"
+      permission: "aeterum.hades.darkness_potion"
+      custom_id: 60016
+    60017:
+      name: "Dark Pearl"
+      permission: "aeterum.hades.dark_pearl"
+      custom_id: 60017
+    60018:
+      name: "Portal"
+      permission: "aeterum.hades.portal"
+      custom_id: 60018
+    60005:
+      name: "Horse Tame"
+      permission: "aeterum.hades.horse_tame"
+      custom_id: 60005
+    70003:
+      name: "Horse Ability"
+      permission: "aeterum.hades.horse_ability"
+    70004:
+      name: "Nightvision"
+      permission: "aeterum.hades.command"
+    80003:
+      permission: "aeterum.hades.gui"
+  hermes:
+    60019:
+      name: "Flying Item"
+      permission: "aeterum.hermes.flying_item"
+      custom_id: 60019
+    60020:
+      name: "Messenger Pack"
+      permission: "aeterum.hermes.messenger_pack"
+      custom_id: 60020
+    60021:
+      name: "Speed Boots"
+      permission: "aeterum.hermes.speed_boots"
+      custom_id: 60021
+    60007:
+      name: "Horse Tame"
+      permission: "aeterum.hermes.horse_tame"
+      custom_id: 60007
+    60008:
+      name: "Horse Ability"
+      permission: "aeterum.hermes.horse_ability"
+      custom_id: 60008
+    80004:
+      permission: "aeterum.hermes.gui"
+  poseidon:
+    60009:
+      name: "Horse Tame"
+      permission: "aeterum.poseidon.horse_tame"
+      custom_id: 60009
+    70005:
+      name: "Horse Ability"
+      permission: "aeterum.poseidon.horse_ability"
+    60023:
+      name: "Crown"
+      permission: "aeterum.poseidon.crown"
+      custom_id: 60023
+    60022:
+      name: "Trident"
+      permission: "aeterum.poseidon.trident"
+      custom_id: 60022
+    70006:
+      name: "Dolphingrace"
+      permission: "aeterum.poseidon.command"
+    80005:
+      permission: "aeterum.poseidon.gui"
+  zeus:
+    60010:
+      name: "Horse Tame"
+      permission: "aeterum.zeus.horse_tame"
+      custom_id: 60010
+    60011:
+      name: "Horse Ability"
+      permission: "aeterum.zeus.horse_ability"
+      custom_id: 60011
+    60024:
+      name: "Breeding Item"
+      permission: "aeterum.zeus.breeding_item"
+      custom_id: 60024
+    60025:
+      name: "Lightning Spear"
+      permission: "aeterum.zeus.lightning_spear"
+      custom_id: 60025
+    60026:
+      name: "Weather Changer"
+      permission: "aeterum.zeus.weather_changer"
+      custom_id: 60026
+    80006:
+      permission: "aeterum.zeus.gui"
+  other:
+    60015:
+      name: "Randomizer"
+      permission: "aeterum.trowel.use"
+      custom_id: 60015

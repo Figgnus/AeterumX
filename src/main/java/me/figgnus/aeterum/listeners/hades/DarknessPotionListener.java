@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -30,8 +30,8 @@ public class DarknessPotionListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARKNESS_POTION.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.hadesDarknessPotion)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.hadesDarknessPotion)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             applyEffect(player);

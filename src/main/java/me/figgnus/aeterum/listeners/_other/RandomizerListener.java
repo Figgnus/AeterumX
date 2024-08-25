@@ -3,6 +3,7 @@ package me.figgnus.aeterum.listeners._other;
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.ItemUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -38,7 +39,7 @@ public class RandomizerListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (ItemUtils.isCustomItem(item, CustomItems.RANDOMIZER.getItemMeta().getCustomModelData())){
             event.setCancelled(true);
-            if (!player.hasPermission("aeterum.trowel.use")){
+            if (!player.hasPermission(PermissionUtils.randomizerPermission)){
                 player.sendMessage(ChatColor.RED + "Nemáš oprávnění použít tento předmět");
                 return;
             }

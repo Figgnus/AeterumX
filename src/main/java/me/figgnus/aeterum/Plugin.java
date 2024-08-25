@@ -21,6 +21,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,10 +35,13 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {
+
+    private FileConfiguration config;
 
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
@@ -77,6 +82,7 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
     @Override
     public void onEnable() {
+        loadConfig();
 
         //Register custom items and recipes
         new CustomItems(this);
@@ -128,6 +134,20 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
         new CraftingPermissionListener(this);
         new RecipesGUI(this);
+    }
+
+    private void loadConfig() {
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            saveDefaultConfig();  // Creates default config.yml if it doesn't exist
+        }
+        config = YamlConfiguration.loadConfiguration(configFile);
+    }
+    public String getPermission(String god, Integer itemId) {
+        return config.getString("permissions." + god + "." + itemId + ".permission");
+    }
+    public Integer getItemId(String god, Integer itemId) {
+        return config.getInt("permissions." + god + "." + itemId + ".custom_id");
     }
 
     @Override

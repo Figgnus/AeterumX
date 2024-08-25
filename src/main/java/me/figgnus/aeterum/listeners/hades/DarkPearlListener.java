@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EnderPearl;
@@ -39,8 +39,8 @@ public class DarkPearlListener implements Listener {
             if (enderPearl.getShooter() instanceof Player player){
                 ItemStack item = enderPearl.getItem();
                 if (ItemUtils.isCustomItem(item, CustomItems.DARK_PEARL.getItemMeta().getCustomModelData())){
-                    if (!player.hasPermission(GodUtils.hadesDarkPearl)){
-                        player.sendMessage(GodUtils.permissionItemMessage);
+                    if (!player.hasPermission(PermissionUtils.hadesDarkPearl)){
+                        player.sendMessage(PermissionUtils.permissionItemMessage);
                         return;
                     }
                     player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 160, 1));

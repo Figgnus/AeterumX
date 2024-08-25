@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,8 +25,8 @@ public class WeatherChangerListener implements Listener {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
         if (ItemUtils.isCustomItem(item, CustomItems.WEATHER_CHANGER.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.zeusWeatherChanger)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.zeusWeatherChanger)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             boolean wasStormy = player.getWorld().hasStorm();

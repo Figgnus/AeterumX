@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -27,8 +27,8 @@ public class GrowthPotionListener implements Listener {
         Player player = event.getPlayer();
         ItemStack consumedItem = event.getItem();
         if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION.getItemMeta().getCustomModelData())) {
-            if (!player.hasPermission(GodUtils.demeterGrowthPotion)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.demeterGrowthPotion)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             if (player.getGameMode() == GameMode.SURVIVAL){

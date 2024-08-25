@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -42,8 +42,8 @@ public class ZombieHorseTameListener implements Listener {
             if (item == null)return;
             if (item.getItemMeta() == null)return;
             if (ItemUtils.isCustomItem(item, CustomItems.ZOMBIE_HORSE_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.hadesHorseTame)) {
-                    player.sendMessage(GodUtils.permissionItemMessage);
+                if (!player.hasPermission(PermissionUtils.hadesHorseTame)) {
+                    player.sendMessage(PermissionUtils.permissionItemMessage);
                     return;
                 }
                 if (player.getGameMode() == GameMode.SURVIVAL){
@@ -51,7 +51,7 @@ public class ZombieHorseTameListener implements Listener {
                 }
                 plugin.setEntityMetadata(horse, METADATA_KEY, "true");
 
-                player.sendMessage(GodUtils.horseTameMessage);
+                player.sendMessage(PermissionUtils.horseTameMessage);
             }
         }
     }
@@ -92,7 +92,7 @@ public class ZombieHorseTameListener implements Listener {
                 // Set metadata to indicate the horse has frost walker ability
                 plugin.setEntityMetadata(zombieHorse, LAVA_WALKER, "true");
 
-                player.sendMessage(GodUtils.horseTransformMessage);
+                player.sendMessage(PermissionUtils.horseTransformMessage);
             }
         }
     }

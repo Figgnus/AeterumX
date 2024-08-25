@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -47,8 +47,8 @@ public class ZombieHorseAbilityListener implements Listener {
 
                     // Check if the block under the horse is lava
                     if (blockUnder.getType() == Material.LAVA) {
-                        if (!player.hasPermission(GodUtils.hadesHorseAbility)) {
-                            player.sendMessage(GodUtils.permissionItemMessage);
+                        if (!player.hasPermission(PermissionUtils.hadesHorseAbility)) {
+                            player.sendMessage(PermissionUtils.permissionItemMessage);
                             return;
                         }
                         // Convert water to basalt

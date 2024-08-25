@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.poseidon;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
@@ -34,8 +34,8 @@ public class SeaHorseTameListener implements Listener {
             Player player = event.getPlayer();
             ItemStack item = player.getInventory().getItemInMainHand();
             if (ItemUtils.isCustomItem(item, CustomItems.SEA_HORSE_TAME.getItemMeta().getCustomModelData())){
-                if (!player.hasPermission(GodUtils.poseidonHorseTame)) {
-                    player.sendMessage(GodUtils.permissionItemMessage);
+                if (!player.hasPermission(PermissionUtils.poseidonHorseTame)) {
+                    player.sendMessage(PermissionUtils.permissionItemMessage);
                     return;
                 }
                 if (player.getGameMode() == GameMode.SURVIVAL){
@@ -45,7 +45,7 @@ public class SeaHorseTameListener implements Listener {
                 plugin.setEntityMetadata(horse, METADATA_KEY, "true");
                 // Set metadata to indicate the horse has frost walker ability
                 plugin.setEntityMetadata(horse, FROST_WALKER_KEY, "true");
-                player.sendMessage(GodUtils.horseTameMessage);
+                player.sendMessage(PermissionUtils.horseTameMessage);
             }
         }
     }
@@ -73,7 +73,7 @@ public class SeaHorseTameListener implements Listener {
                 horse.setMaxHealth(health);
                 horse.setHealth(health);
 
-                player.sendMessage(GodUtils.horseTransformMessage);
+                player.sendMessage(PermissionUtils.horseTransformMessage);
             }
         }
     }

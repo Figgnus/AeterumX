@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.hermes;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,8 +41,8 @@ public class MessengerPackListener implements Listener {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
         if (ItemUtils.isCustomItem(item, CustomItems.MESSENGER_PACK.getItemMeta().getCustomModelData())) {
-            if (!player.hasPermission(GodUtils.hermesMessengerPack)) {
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.hermesMessengerPack)) {
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             player.openInventory(getPlayerInventory(player));

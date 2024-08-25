@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -33,8 +33,8 @@ public class PortalListener implements Listener {
         Player player = (Player) potion.getShooter();
         ItemStack item = potion.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())) {
-            if (!player.hasPermission(GodUtils.hadesPortal)) {
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.hadesPortal)) {
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             Location hitLocation = event.getHitBlock() != null ? event.getHitBlock().getLocation() : event.getHitEntity().getLocation();

@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.dionysus;
 
 import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -38,8 +38,8 @@ public class DrunkHorseAbilityListener implements Listener {
                         Horse horse = (Horse) player.getVehicle();
                         String metadataValue = plugin.getEntityMetadata(horse, DrunkHorseTameListener.DRUNK_KEY);
                         if ("true".equals(metadataValue)) {
-                            if (!player.hasPermission(GodUtils.dionysusHorseAbility)) {
-                                player.sendMessage(GodUtils.permissionItemMessage);
+                            if (!player.hasPermission(PermissionUtils.dionysusHorseAbility)) {
+                                player.sendMessage(PermissionUtils.permissionItemMessage);
                                 return;
                             }
                             startAuraTask(player, horse);

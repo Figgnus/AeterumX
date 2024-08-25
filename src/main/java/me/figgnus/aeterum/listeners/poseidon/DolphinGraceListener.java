@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.poseidon;
 
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -13,7 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.UUID;
@@ -38,8 +37,8 @@ public class DolphinGraceListener implements Listener, CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if (!player.hasPermission(GodUtils.poseidonTogglePermission)){
-            player.sendMessage(GodUtils.permissionCommandMessage);
+        if (!player.hasPermission(PermissionUtils.poseidonTogglePermission)){
+            player.sendMessage(PermissionUtils.permissionCommandMessage);
             return true;
         }
         UUID playerId = player.getUniqueId();
@@ -60,7 +59,7 @@ public class DolphinGraceListener implements Listener, CommandExecutor {
     public void onWaterEnter(PlayerMoveEvent event){
         Player player = event.getPlayer();
         Material blockType = player.getLocation().getBlock().getType();
-        if (player.hasPermission(GodUtils.poseidonTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
+        if (player.hasPermission(PermissionUtils.poseidonTogglePermission) && enabledPlayers.contains(player.getUniqueId())){
             if (blockType == Material.WATER || blockType == Material.BUBBLE_COLUMN){
                 player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 100, 1, true, true));
             }

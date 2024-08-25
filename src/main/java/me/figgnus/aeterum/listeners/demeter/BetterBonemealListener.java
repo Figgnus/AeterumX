@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -32,8 +32,8 @@ public class BetterBonemealListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.demeterBetterBonemeal)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.demeterBetterBonemeal)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             long currentTime = System.currentTimeMillis();

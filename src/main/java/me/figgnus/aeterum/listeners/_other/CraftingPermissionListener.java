@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners._other;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,71 +11,174 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
+import java.util.Objects;
 
 public class CraftingPermissionListener implements Listener {
     private final Plugin plugin;
 
     private String message = "§cNemáš oprávnění vytvořit tento předmět!";
 
-    private final List<ItemStack> demeterItems = List.of(CustomItems.BETTER_BONEMEAL, CustomItems.FLOWER_HORSE_TAME, CustomItems.GROWTH_POTION, CustomItems.HOE_OF_HARVEST);
-    private final List<ItemStack> dionysusItems = List.of(CustomItems.DRUNK_HORSE_TAME, CustomItems.PARTY_ATMOSPHERE, CustomItems.PARTY_BALL, CustomItems.RANDOM_EFFECT_POTION);
-    private final List<ItemStack> hadesItems = List.of(CustomItems.ZOMBIE_HORSE_TAME, CustomItems.DARK_PEARL, CustomItems.DARK_PORTAL, CustomItems.DARKNESS_POTION);
-    private final List<ItemStack> poseidonItems = List.of(CustomItems.SEA_HORSE_TAME, CustomItems.WATER_BREATHING_CROWN, CustomItems.BETTER_TRIDENT);
-    private final List<ItemStack> zeusItems = List.of(CustomItems.PEGASUS_TAME, CustomItems.PEGASUS_ABILITY, CustomItems.BREEDING_ITEM, CustomItems.LIGHTNING_SPEAR, CustomItems.WEATHER_CHANGER);
-    private final List<ItemStack> hermesItems = List.of(CustomItems.SPEED_HORSE_TAME, CustomItems.SPEED_HORSE_ABILITY, CustomItems.SPEED_BOOTS, CustomItems.FLYING_ITEM, CustomItems.MESSENGER_PACK);
-
     public CraftingPermissionListener(Plugin plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this , plugin);
     }
+
     @EventHandler
     public void onPrepareCraft(PrepareItemCraftEvent event) {
         CraftingInventory inventory = event.getInventory();
         ItemStack result = inventory.getResult();
+        if (result != null) {
+            Player player = (Player) event.getView().getPlayer();
 
-        if (result != null && demeterItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.demeterPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
+            int itemId = Objects.requireNonNull(result.getItemMeta()).getCustomModelData();
+
+            // Check all god's permissions for the crafted item
+            for (String god : plugin.getConfig().getConfigurationSection("permissions").getKeys(false)) {
+                String permission = plugin.getPermission(god, itemId);
+                if (permission != null && !player.hasPermission(permission)) {
+                    denyCrafting(inventory, player);
+                }
             }
         }
-        if (result != null && dionysusItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.dionysusPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
-            }
-        }
-        if (result != null && hadesItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.hadesPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
-            }
-        }
-        if (result != null && poseidonItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.poseidonPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
-            }
-        }
-        if (result != null && hermesItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.hermesPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
-            }
-        }
-        if (result != null && zeusItems.contains(result)) {
-            Player player = (Player) event.getView().getPlayer();
-            if (!player.hasPermission(GodUtils.zeusPermission)) {
-                inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
-                player.sendMessage(message);
-            }
-        }
+    }
+//    @EventHandler
+//    public void onPrepareCraft(PrepareItemCraftEvent event) {
+//        CraftingInventory inventory = event.getInventory();
+//        ItemStack result = inventory.getResult();
+//
+//        if (result != null) {
+//            Player player = (Player) event.getView().getPlayer();
+//            checkDemeterPermissions(player, result, inventory);
+//            checkDionysusPermissions(player, result, inventory);
+//            checkHadesPermissions(player, result, inventory);
+//            checkPoseidonPermissions(player, result, inventory);
+//            checkHermesPermissions(player, result, inventory);
+//            checkZeusPermissions(player, result, inventory);
+//        }
+//    }
+//
+//    private void checkDemeterPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.BETTER_BONEMEAL)) {
+//            if (!player.hasPermission(PermissionUtils.demeterBetterBonemeal)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.FLOWER_HORSE_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.demeterHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.GROWTH_POTION)) {
+//            if (!player.hasPermission(PermissionUtils.demeterGrowthPotion)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.HOE_OF_HARVEST)) {
+//            if (!player.hasPermission(PermissionUtils.demeterHoe)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+//    private void checkDionysusPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.DRUNK_HORSE_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.dionysusHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.PARTY_ATMOSPHERE)) {
+//            if (!player.hasPermission(PermissionUtils.dionysusPartyAtmosphere)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.PARTY_BALL)) {
+//            if (!player.hasPermission(PermissionUtils.dionysusPartyBall)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.RANDOM_EFFECT_POTION)) {
+//            if (!player.hasPermission(PermissionUtils.dionysusRandomEffectPotion)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+//    private void checkHadesPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.ZOMBIE_HORSE_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.hadesHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.DARK_PEARL)) {
+//            if (!player.hasPermission(PermissionUtils.hadesDarkPearl)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.DARK_PORTAL)) {
+//            if (!player.hasPermission(PermissionUtils.hadesPortal)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.DARKNESS_POTION)) {
+//            if (!player.hasPermission(PermissionUtils.hadesDarknessPotion)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+//    private void checkPoseidonPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.SEA_HORSE_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.poseidonHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.WATER_BREATHING_CROWN)) {
+//            if (!player.hasPermission(PermissionUtils.poseidonCrown)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.BETTER_TRIDENT)) {
+//            if (!player.hasPermission(PermissionUtils.poseidonTrident)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+//    private void checkHermesPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.SPEED_HORSE_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.hermesHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.SPEED_HORSE_ABILITY)) {
+//            if (!player.hasPermission(PermissionUtils.hermesHorseAbility)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.SPEED_BOOTS)) {
+//            if (!player.hasPermission(PermissionUtils.hermesSpeedBoots)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.FLYING_ITEM)) {
+//            if (!player.hasPermission(PermissionUtils.hermesFlyingItem)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.MESSENGER_PACK)) {
+//            if (!player.hasPermission(PermissionUtils.hermesMessengerPack)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+//    private void checkZeusPermissions(Player player, ItemStack result, CraftingInventory inventory) {
+//        if (result.isSimilar(CustomItems.PEGASUS_TAME)) {
+//            if (!player.hasPermission(PermissionUtils.zeusHorseTame)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.PEGASUS_ABILITY)) {
+//            if (!player.hasPermission(PermissionUtils.zeusHorseAbility)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.BREEDING_ITEM)) {
+//            if (!player.hasPermission(PermissionUtils.zeusBreedingItem)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.LIGHTNING_SPEAR)) {
+//            if (!player.hasPermission(PermissionUtils.zeusLightningSpear)) {
+//                denyCrafting(inventory, player);
+//            }
+//        } else if (result.isSimilar(CustomItems.WEATHER_CHANGER)) {
+//            if (!player.hasPermission(PermissionUtils.zeusWeatherChanger)) {
+//                denyCrafting(inventory, player);
+//            }
+//        }
+//    }
+
+    private void denyCrafting(CraftingInventory inventory, Player player) {
+        inventory.setResult(new ItemStack(Material.AIR)); // Clear the result to prevent crafting
+        player.sendMessage(message);
     }
 }

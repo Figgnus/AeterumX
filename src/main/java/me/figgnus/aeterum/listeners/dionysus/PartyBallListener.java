@@ -2,7 +2,7 @@ package me.figgnus.aeterum.listeners.dionysus;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -30,8 +30,8 @@ public class PartyBallListener implements Listener {
             if (snowball.getShooter() instanceof  Player player){
                 ItemStack item = snowball.getItem();
                 if (ItemUtils.isCustomItem(item, CustomItems.PARTY_BALL.getItemMeta().getCustomModelData())){
-                    if (!player.hasPermission(GodUtils.dionysusPartyBall)){
-                        player.sendMessage(GodUtils.permissionItemMessage);
+                    if (!player.hasPermission(PermissionUtils.dionysusPartyBall)){
+                        player.sendMessage(PermissionUtils.permissionItemMessage);
                         return;
                     }
                     Entity hitEntity = event.getHitEntity();

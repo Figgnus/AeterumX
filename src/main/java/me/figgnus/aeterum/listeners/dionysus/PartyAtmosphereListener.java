@@ -3,7 +3,7 @@ package me.figgnus.aeterum.listeners.dionysus;
 import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.GodUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,8 +32,8 @@ public class PartyAtmosphereListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE.getItemMeta().getCustomModelData())){
-            if (!player.hasPermission(GodUtils.dionysusPartyAtmosphere)){
-                player.sendMessage(GodUtils.permissionItemMessage);
+            if (!player.hasPermission(PermissionUtils.dionysusPartyAtmosphere)){
+                player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
             applyEffect(player);

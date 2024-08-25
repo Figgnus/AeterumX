@@ -2,7 +2,7 @@ package me.figgnus.aeterum.utils;
 
 import org.bukkit.ChatColor;
 
-public class GodUtils {
+public class PermissionUtils {
     public static final String permissionItemMessage = ChatColor.RED + "Nemáš oprávnění použít tento předmět.";
     public static final String permissionCommandMessage = ChatColor.RED + "Nemáš oprávnění použít tento příkaz";
     public static final String horseTameMessage = ChatColor.GOLD + "Nakrmil/a jsi koně. Nyní můžeš koně ochočit.";
@@ -34,6 +34,8 @@ public class GodUtils {
 
     public static final String poseidonHorseTame = "aeterum.poseidon.horse_tame";
     public static final String poseidonHorseAbility = "aeterum.poseidon.horse_ability";
+    public static final String poseidonCrown = "aeterum.poseidon.crown";
+    public static final String poseidonTrident = "aeterum.poseidon.trident";
 
     public static final String zeusHorseTame = "aeterum.zeus.horse_tame";
     public static final String zeusHorseAbility = "aeterum.zeus.horse_ability";
@@ -41,14 +43,8 @@ public class GodUtils {
     public static final String zeusLightningSpear = "aeterum.zeus.lightning_spear";
     public static final String zeusWeatherChanger = "aeterum.zeus.weather_changer";
 
-    public static final String demeterPermission = "aeterum.demeter.use";
-    public static final String dionysusPermission = "aeterum.dionysus.use";
-    public static final String hadesPermission = "aeterum.hades.use";
     public static final String hadesTogglePermission = "aeterum.hades.command";
-    public static final String hermesPermission = "aeterum.hermes.use";
-    public static final String poseidonPermission = "aeterum.poseidon.use";
     public static final String poseidonTogglePermission = "aeterum.poseidon.command";
-    public static final String zeusPermission = "aeterum.zeus.use";
 
     public static final String demeterGuiPermission = "aeterum.demeter.gui";
     public static final String dionysusGuiPermission = "aeterum.dionysus.gui";
@@ -56,4 +52,6 @@ public class GodUtils {
     public static final String hermesGuiPermission = "aeterum.hermes.gui";
     public static final String poseidonGuiPermission = "aeterum.poseidon.gui";
     public static final String zeusGuiPermission = "aeterum.zeus.gui";
+
+    public static final String randomizerPermission = "aeterum.trowel.use";
 }

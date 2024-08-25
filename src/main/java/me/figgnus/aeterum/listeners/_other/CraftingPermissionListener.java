@@ -1,8 +1,6 @@
 package me.figgnus.aeterum.listeners._other;
 
 import me.figgnus.aeterum.Plugin;
-import me.figgnus.aeterum.items.CustomItems;
-import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

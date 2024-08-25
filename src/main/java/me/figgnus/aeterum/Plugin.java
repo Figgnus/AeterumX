@@ -41,7 +41,7 @@ import java.util.Map;
 
 public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {
 
-    private FileConfiguration config;
+    private static FileConfiguration config;
 
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
@@ -148,6 +148,9 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
     }
     public Integer getItemId(String god, Integer itemId) {
         return config.getInt("permissions." + god + "." + itemId + ".custom_id");
+    }
+    public static String getItemName(String god, Integer itemId) {
+        return config.getString("permissions." + god + "." + itemId + ".name");
     }
 
     @Override

@@ -14,6 +14,33 @@ import java.util.*;
 
 public class CustomItems {
     private final Plugin plugin;
+    private static final String BETTER_BONEMEAL_NAME = Plugin.getItemName("demeter", 60001);
+    private static final String GROWTH_POTION_NAME = Plugin.getItemName("demeter", 60002);
+    private static final String HOE_OF_HARVEST_NAME = Plugin.getItemName("demeter", 60003);
+    private static final String FLOWER_HORSE_TAME_NAME = Plugin.getItemName("demeter", 60004);
+    private static final String ZOMBIE_HORSE_TAME_NAME = Plugin.getItemName("hades", 60005);
+    private static final String DRUNK_HORSE_TAME_NAME = Plugin.getItemName("dionysus", 60006);
+    private static final String SPEED_HORSE_TAME_NAME = Plugin.getItemName("hermes", 60007);
+    private static final String SPEED_HORSE_ABILITY_NAME = Plugin.getItemName("hermes", 60008);
+    private static final String SEA_HORSE_TAME_NAME = Plugin.getItemName("poseidon", 60009);
+    private static final String PEGASUS_HORSE_TAME_NAME = Plugin.getItemName("zeus", 60010);
+    private static final String PEGASUS_HORSE_ABILITY_NAME = Plugin.getItemName("zeus", 60011);
+    private static final String PARTY_BALL_NAME = Plugin.getItemName("dionysus", 60012);
+    private static final String PARTY_ATMOSPHERE_NAME = Plugin.getItemName("dionysus", 60013);
+    private static final String RANDOM_EFFECT_POTION_NAME = Plugin.getItemName("dionysus", 60014);
+    private static final String RANDOMIZER_NAME = Plugin.getItemName("other", 60015);
+    private static final String DARKNESS_POTION_NAME = Plugin.getItemName("hades", 60016);
+    private static final String DARK_PEARL_NAME = Plugin.getItemName("hades", 60017);
+    private static final String PORTAL_NAME = Plugin.getItemName("hades", 60018);
+    private static final String FLYING_ITEM_NAME = Plugin.getItemName("hermes", 60019);
+    private static final String MESSENGER_PACK_NAME = Plugin.getItemName("hermes", 60020);
+    private static final String SPEED_BOOTS_NAME = Plugin.getItemName("hermes", 60021);
+    private static final String BETTER_TRIDENT_NAME = Plugin.getItemName("poseidon", 60022);
+    private static final String WATER_BREATHING_CROWN_NAME = Plugin.getItemName("poseidon", 60023);
+    private static final String BREEDING_ITEM_NAME = Plugin.getItemName("zeus", 60024);
+    private static final String LIGHTNING_SPEAR_NAME = Plugin.getItemName("zeus", 60025);
+    private static final String WEATHER_CHANGER_NAME = Plugin.getItemName("zeus", 60026);
+
 
     //Lore
     private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + "Bonemeal který se dá použít na Cactus a Sugar Cane");
@@ -44,32 +71,32 @@ public class CustomItems {
     private static final List<String> WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + "Moc slunečno? Tohle by mohlo být řešení");
 
     //ItemStack
-    public static final ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, 60001, "Vylepšená Kostní Moučka", BETTER_BONEMEAL_LORE, null);
-    public static final ItemStack GROWTH_POTION = createCustomItem(Material.POTION, 60002, "Lektvar Růstu", GROWTH_POTION_LORE, Color.fromRGB(63, 206, 130));
-    public static final ItemStack HOE_OF_HARVEST = createCustomItem(Material.NETHERITE_HOE, 60003, "Kosa Úrody", HOE_OF_HARVEST_LORE, null);
-    public static final ItemStack FLOWER_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60004, "Sladké Jablko", FLOWER_HORSE_TAME_LORE, null);
-    public static final ItemStack ZOMBIE_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60005, "Otrávené Jablko", ZOMBIE_HORSE_TAME_LORE, null);
-    public static final ItemStack DRUNK_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60006, "Fermentované Jablko", DRUNK_HORSE_TAME_LORE, null);
-    public static final ItemStack SPEED_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60007, "Rychlé Jablko", SPEED_HORSE_TAME_LORE, null);
-    public static final ItemStack SPEED_HORSE_ABILITY = createCustomItem(Material.POTION, 60008, "Lektvar Rychlích Kopit", SPEED_HORSE_ABILITY_LORE, Color.fromRGB(193, 193, 193));
-    public static final ItemStack SEA_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60009, "Slané Jablko", SEA_HORSE_TAME_LORE, null);
-    public static final ItemStack PEGASUS_TAME = createCustomItem(Material.GOLDEN_APPLE, 60010, "Levitující Jablko", PEGASUS_TAME_LORE, null);
-    public static final ItemStack PEGASUS_ABILITY = createCustomItem(Material.POTION, 60011, "Lektvar Levitujících Kopit", PEGASUS_ABILITY_LORE, Color.fromRGB(204,205,208));
-    public static final ItemStack PARTY_BALL = createCustomItem(Material.SNOWBALL, 60012, "Party Koule", PARTY_BALL_LORE, null);
-    public static final ItemStack PARTY_ATMOSPHERE = createCustomItem(Material.POTION, 60013, "Party Atmosféra", PARTY_ATMOSPHERE_LORE, Color.fromRGB(255,158,54));
-    public static final ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, 60014, "Záhadný Nápoj", RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
-    public static final ItemStack RANDOMIZER = createCustomItem(Material.IRON_SHOVEL, 60015, "Lopatka", RANDOMIZER_LORE, null);
-    public static final ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, 60016, "Temný Lektvar", DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
-    public static final ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, 60017, "Temná Perla", DARK_PEARL_LORE, null);
-    public static final ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, 60018, "Temný Portál", DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
-    public static final ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, 60019, "Nekonečná Raketka", FLYING_ITEM_LORE, null);
-    public static final ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, 60020, "Poštovní Brašna", MESSENGER_PACK_LORE, null);
-    public static final ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, 60021, "Rychlé botky", SPEED_BOOTS_LORE, null);
-    public static final ItemStack BETTER_TRIDENT = createCustomItem(Material.TRIDENT, 60022, "Královský Trojzubec", BETTER_TRIDENT_LORE, null);
-    public static final ItemStack WATER_BREATHING_CROWN = createCustomItem(Material.TURTLE_HELMET, 60023, "Mořská Koruna", WATER_BREATHING_CROW_LORE, null);
-    public static final ItemStack BREEDING_ITEM = createCustomItem(Material.SLIME_BALL, 60024, "Afrodisiakum", BREEDING_ITEM_LORE, null);
-    public static final ItemStack LIGHTNING_SPEAR = createCustomItem(Material.TRIDENT, 60025, "Blesk", LIGHTNING_SPEAR_LORE, null);
-    public static final ItemStack WEATHER_CHANGER = createCustomItem(Material.POTION, 60026, "Lektvar Bouře", WEATHER_CHANGER_LORE, Color.fromRGB(165, 161, 215));
+    public static final ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, 60001, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null);
+    public static final ItemStack GROWTH_POTION = createCustomItem(Material.POTION, 60002, GROWTH_POTION_NAME, GROWTH_POTION_LORE, Color.fromRGB(63, 206, 130));
+    public static final ItemStack HOE_OF_HARVEST = createCustomItem(Material.NETHERITE_HOE, 60003, HOE_OF_HARVEST_NAME, HOE_OF_HARVEST_LORE, null);
+    public static final ItemStack FLOWER_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60004, FLOWER_HORSE_TAME_NAME, FLOWER_HORSE_TAME_LORE, null);
+    public static final ItemStack ZOMBIE_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60005, ZOMBIE_HORSE_TAME_NAME, ZOMBIE_HORSE_TAME_LORE, null);
+    public static final ItemStack DRUNK_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60006, DRUNK_HORSE_TAME_NAME, DRUNK_HORSE_TAME_LORE, null);
+    public static final ItemStack SPEED_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60007, SPEED_HORSE_TAME_NAME, SPEED_HORSE_TAME_LORE, null);
+    public static final ItemStack SPEED_HORSE_ABILITY = createCustomItem(Material.POTION, 60008, SPEED_HORSE_ABILITY_NAME, SPEED_HORSE_ABILITY_LORE, Color.fromRGB(193, 193, 193));
+    public static final ItemStack SEA_HORSE_TAME = createCustomItem(Material.GOLDEN_APPLE, 60009, SEA_HORSE_TAME_NAME, SEA_HORSE_TAME_LORE, null);
+    public static final ItemStack PEGASUS_TAME = createCustomItem(Material.GOLDEN_APPLE, 60010, PEGASUS_HORSE_TAME_NAME, PEGASUS_TAME_LORE, null);
+    public static final ItemStack PEGASUS_ABILITY = createCustomItem(Material.POTION, 60011, PEGASUS_HORSE_ABILITY_NAME, PEGASUS_ABILITY_LORE, Color.fromRGB(204,205,208));
+    public static final ItemStack PARTY_BALL = createCustomItem(Material.SNOWBALL, 60012, PARTY_BALL_NAME, PARTY_BALL_LORE, null);
+    public static final ItemStack PARTY_ATMOSPHERE = createCustomItem(Material.POTION, 60013, PARTY_ATMOSPHERE_NAME, PARTY_ATMOSPHERE_LORE, Color.fromRGB(255,158,54));
+    public static final ItemStack RANDOM_EFFECT_POTION = createCustomItem(Material.POTION, 60014, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, Color.fromRGB(43,158,54));
+    public static final ItemStack RANDOMIZER = createCustomItem(Material.IRON_SHOVEL, 60015, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
+    public static final ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, 60016, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
+    public static final ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, 60017, DARK_PEARL_NAME, DARK_PEARL_LORE, null);
+    public static final ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, 60018, PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
+    public static final ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, 60019, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null);
+    public static final ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, 60020, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null);
+    public static final ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, 60021, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null);
+    public static final ItemStack BETTER_TRIDENT = createCustomItem(Material.TRIDENT, 60022, BETTER_TRIDENT_NAME, BETTER_TRIDENT_LORE, null);
+    public static final ItemStack WATER_BREATHING_CROWN = createCustomItem(Material.TURTLE_HELMET, 60023, WATER_BREATHING_CROWN_NAME, WATER_BREATHING_CROW_LORE, null);
+    public static final ItemStack BREEDING_ITEM = createCustomItem(Material.SLIME_BALL, 60024, BREEDING_ITEM_NAME, BREEDING_ITEM_LORE, null);
+    public static final ItemStack LIGHTNING_SPEAR = createCustomItem(Material.TRIDENT, 60025, LIGHTNING_SPEAR_NAME, LIGHTNING_SPEAR_LORE, null);
+    public static final ItemStack WEATHER_CHANGER = createCustomItem(Material.POTION, 60026, WEATHER_CHANGER_NAME, WEATHER_CHANGER_LORE, Color.fromRGB(165, 161, 215));
 
     // TO_DO add inviz frame
 

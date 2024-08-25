@@ -1,63 +1,65 @@
 permissions:
   demeter:
     60001:
-      name: "Better Bonemeal"
+      name: "Vylepšená Kostní Moučka"
       permission: "aeterum.demeter.bonemeal"
       custom_id: 60001
     60002:
-      name: "Growth Potion"
+      name: "Lektvar Růstu"
       permission: "aeterum.demeter.growth_potion"
       custom_id: 60002
     60003:
-      name: "Hoe"
+      name: "Kosa Úrody"
       permission: "aeterum.demeter.hoe"
       custom_id: 60003
     60004:
-      name: "Horse Tame"
+      name: "Sladké Jablko"
       permission: "aeterum.demeter.horse_tame"
       custom_id: 60004
     70001:
       name: "Horse Ability"
       permission: "aeterum.demeter.horse_ability"
     80001:
+      name: "GUI"
       permission: "aeterum.demeter.gui"
   dionysus:
     60013:
-      name: "Party Atmosphere"
+      name: "Party Atmosféra"
       permission: "aeterum.dionysus.party_atmosphere"
       custom_id: 60013
     60012:
-      name: "Party Ball"
+      name: "Party Koule"
       permission: "aeterum.dionysus.party_ball"
       custom_id: 60012
     60014:
-      name: "Random Effect Potion"
+      name: "Záhadný Nápoj"
       permission: "aeterum.dionysus.random_effect_potion"
       custom_id: 60014
     60006:
-      name: "Horse Tame"
+      name: "Fermentované Jablko"
       permission: "aeterum.dionysus.horse_tame"
       custom_id: 60006
     70002:
       name: "Horse Ability"
       permission: "aeterum.dionysus.horse_ability"
     80002:
+      name: "GUI"
       permission: "aeterum.dionysus.gui"
   hades:
     60016:
-      name: "Darkness Potion"
+      name: "Temný Lektvar"
       permission: "aeterum.hades.darkness_potion"
       custom_id: 60016
     60017:
-      name: "Dark Pearl"
+      name: "Temná Perla"
       permission: "aeterum.hades.dark_pearl"
       custom_id: 60017
     60018:
-      name: "Portal"
+      name: "Temný Portál"
       permission: "aeterum.hades.portal"
       custom_id: 60018
     60005:
-      name: "Horse Tame"
+      name: "Otrávené Jablko"
       permission: "aeterum.hades.horse_tame"
       custom_id: 60005
     70003:
@@ -67,76 +69,80 @@ permissions:
       name: "Nightvision"
       permission: "aeterum.hades.command"
     80003:
+      name: "GUI"
       permission: "aeterum.hades.gui"
   hermes:
     60019:
-      name: "Flying Item"
+      name: "Nekonečná Raketka"
       permission: "aeterum.hermes.flying_item"
       custom_id: 60019
     60020:
-      name: "Messenger Pack"
+      name: "Poštovní Brašna"
       permission: "aeterum.hermes.messenger_pack"
       custom_id: 60020
     60021:
-      name: "Speed Boots"
+      name: "Rychlé botky"
       permission: "aeterum.hermes.speed_boots"
       custom_id: 60021
     60007:
-      name: "Horse Tame"
+      name: "Rychlé Jablko"
       permission: "aeterum.hermes.horse_tame"
       custom_id: 60007
     60008:
-      name: "Horse Ability"
+      name: "Lektvar Rychlích Kopit"
       permission: "aeterum.hermes.horse_ability"
       custom_id: 60008
     80004:
+      name: "GUI"
       permission: "aeterum.hermes.gui"
   poseidon:
     60009:
-      name: "Horse Tame"
+      name: "Slané Jablko"
       permission: "aeterum.poseidon.horse_tame"
       custom_id: 60009
     70005:
       name: "Horse Ability"
       permission: "aeterum.poseidon.horse_ability"
     60023:
-      name: "Crown"
+      name: "Mořská Koruna"
       permission: "aeterum.poseidon.crown"
       custom_id: 60023
     60022:
-      name: "Trident"
+      name: "Královský Trojzubec"
       permission: "aeterum.poseidon.trident"
       custom_id: 60022
     70006:
       name: "Dolphingrace"
       permission: "aeterum.poseidon.command"
     80005:
+      name: "GUI"
       permission: "aeterum.poseidon.gui"
   zeus:
     60010:
-      name: "Horse Tame"
+      name: "Levitující Jablko"
       permission: "aeterum.zeus.horse_tame"
       custom_id: 60010
     60011:
-      name: "Horse Ability"
+      name: "Lektvar Levitujících Kopit"
       permission: "aeterum.zeus.horse_ability"
       custom_id: 60011
     60024:
-      name: "Breeding Item"
+      name: "Afrodisiakum"
       permission: "aeterum.zeus.breeding_item"
       custom_id: 60024
     60025:
-      name: "Lightning Spear"
+      name: "Blesk"
       permission: "aeterum.zeus.lightning_spear"
       custom_id: 60025
     60026:
-      name: "Weather Changer"
+      name: "Lektvar Bouře"
       permission: "aeterum.zeus.weather_changer"
       custom_id: 60026
     80006:
+      name: "GUI"
       permission: "aeterum.zeus.gui"
   other:
     60015:
-      name: "Randomizer"
+      name: "Lopatka"
       permission: "aeterum.trowel.use"
       custom_id: 60015

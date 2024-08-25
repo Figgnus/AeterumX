@@ -143,7 +143,7 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
         }
         config = YamlConfiguration.loadConfiguration(configFile);
     }
-    public String getPermission(String god, Integer itemId) {
+    public static String getPermission(String god, Integer itemId) {
         return config.getString("permissions." + god + "." + itemId + ".permission");
     }
     public Integer getItemId(String god, Integer itemId) {
@@ -151,6 +151,9 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
     }
     public static String getItemName(String god, Integer itemId) {
         return config.getString("permissions." + god + "." + itemId + ".name");
+    }
+    public static String getItemLore(String god, Integer itemId) {
+        return config.getString("permissions." + god + "." + itemId + ".lore");
     }
 
     @Override

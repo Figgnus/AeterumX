@@ -43,32 +43,32 @@ public class CustomItems {
 
 
     //Lore
-    private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + "Bonemeal který se dá použít na Cactus a Sugar Cane");
-    private static final List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + "Lektvar který urychlý růst rostlin v okolí hráče");
-    private static final List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + "Jestli-že někdo vý jak farmařit tak jsi to ty.");
-    private static final List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Demeter může ochočit svého koňe");
-    private static final List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hades může ochočit svého koňe");
-    private static final List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Dionysus může ochočit svého koňe");
-    private static final List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Hermes může ochočit svého koňe");
-    private static final List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + "Sedni na svého koně, napij se a drž se");
-    private static final List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Poseidon může ochočit svého koňe");
-    private static final List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + "Jablko kterým Zeus může ochočit svého koňe");
-    private static final List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + "Napij se když si na svém koni");
-    private static final List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + "Pozor na výbuch");
-    private static final List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + "Let's Party!!!");
-    private static final List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + "Kdo vý co se může stát");
-    private static final List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + "Položí náhodný block z hotbaru");
-    private static final List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + "Oslep své nepřátele");
-    private static final List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + "Prostě Ender Pearl. Možná trochu lepší.");
-    private static final List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + "Kde se objevíš?");
-    private static final List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + "Málo raketek? Použij toto.");
-    private static final List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + "Bůh zpráv potřebuje pořádnou brašnu");
-    private static final List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + "Tyhle botky vypadají rychle. Nezakopni.");
-    private static final List<String> BETTER_TRIDENT_LORE = List.of(ChatColor.GRAY + "Zbraň hodná krále moří");
-    private static final List<String> WATER_BREATHING_CROW_LORE = List.of(ChatColor.GRAY + "Pomáhá dýchat pod vodou.");
-    private static final List<String> BREEDING_ITEM_LORE = List.of(ChatColor.GRAY + "Nakrm zvíře");
-    private static final List<String> LIGHTNING_SPEAR_LORE = List.of(ChatColor.GRAY + "Zbraň hodná hrále Olympu");
-    private static final List<String> WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + "Moc slunečno? Tohle by mohlo být řešení");
+    private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60001));
+    private static final List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60002));
+    private static final List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60003));
+    private static final List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60004));
+    private static final List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60005));
+    private static final List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60006));
+    private static final List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60007));
+    private static final List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60008));
+    private static final List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60009));
+    private static final List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60010));
+    private static final List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60011));
+    private static final List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60012));
+    private static final List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60013));
+    private static final List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60014));
+    private static final List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("other", 60015));
+    private static final List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60016));
+    private static final List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60017));
+    private static final List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60018));
+    private static final List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60019));
+    private static final List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60020));
+    private static final List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60021));
+    private static final List<String> BETTER_TRIDENT_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60022));
+    private static final List<String> WATER_BREATHING_CROW_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60023));
+    private static final List<String> BREEDING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60024));
+    private static final List<String> LIGHTNING_SPEAR_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60025));
+    private static final List<String> WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60026));
 
     //ItemStack
     public static final ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, 60001, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null);

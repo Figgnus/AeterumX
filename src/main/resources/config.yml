@@ -2,18 +2,22 @@ permissions:
   demeter:
     60001:
       name: "Vylepšená Kostní Moučka"
+      lore: "Bonemeal který se dá použít na Cactus a Sugar Cane"
       permission: "aeterum.demeter.bonemeal"
       custom_id: 60001
     60002:
       name: "Lektvar Růstu"
+      lore: "Lektvar který urychlý růst rostlin v okolí hráče"
       permission: "aeterum.demeter.growth_potion"
       custom_id: 60002
     60003:
       name: "Kosa Úrody"
+      lore: "Jestli-že někdo vý jak farmařit tak jsi to ty."
       permission: "aeterum.demeter.hoe"
       custom_id: 60003
     60004:
       name: "Sladké Jablko"
+      lore: "Jablko kterým Demeter může ochočit svého koňe"
       permission: "aeterum.demeter.horse_tame"
       custom_id: 60004
     70001:
@@ -25,18 +29,22 @@ permissions:
   dionysus:
     60013:
       name: "Party Atmosféra"
+      lore: Let's Party!!!
       permission: "aeterum.dionysus.party_atmosphere"
       custom_id: 60013
     60012:
       name: "Party Koule"
+      lore: "Pozor na výbuch"
       permission: "aeterum.dionysus.party_ball"
       custom_id: 60012
     60014:
       name: "Záhadný Nápoj"
+      lore: "Kdo vý co se může stát"
       permission: "aeterum.dionysus.random_effect_potion"
       custom_id: 60014
     60006:
       name: "Fermentované Jablko"
+      lore: "Jablko kterým Dionysus může ochočit svého koňe"
       permission: "aeterum.dionysus.horse_tame"
       custom_id: 60006
     70002:
@@ -48,18 +56,22 @@ permissions:
   hades:
     60016:
       name: "Temný Lektvar"
+      lore: "Oslep své nepřátele"
       permission: "aeterum.hades.darkness_potion"
       custom_id: 60016
     60017:
       name: "Temná Perla"
+      lore: "Prostě Ender Pearl. Možná trochu lepší."
       permission: "aeterum.hades.dark_pearl"
       custom_id: 60017
     60018:
       name: "Temný Portál"
+      lore: "Kde se objevíš?"
       permission: "aeterum.hades.portal"
       custom_id: 60018
     60005:
       name: "Otrávené Jablko"
+      lore: "Jablko kterým Hades může ochočit svého koňe"
       permission: "aeterum.hades.horse_tame"
       custom_id: 60005
     70003:
@@ -74,22 +86,27 @@ permissions:
   hermes:
     60019:
       name: "Nekonečná Raketka"
+      lore: "Málo raketek? Použij toto."
       permission: "aeterum.hermes.flying_item"
       custom_id: 60019
     60020:
       name: "Poštovní Brašna"
+      lore: "Bůh zpráv potřebuje pořádnou brašnu"
       permission: "aeterum.hermes.messenger_pack"
       custom_id: 60020
     60021:
       name: "Rychlé botky"
+      lore: "Tyhle botky vypadají rychle. Nezakopni."
       permission: "aeterum.hermes.speed_boots"
       custom_id: 60021
     60007:
       name: "Rychlé Jablko"
+      lore: "Jablko kterým Hermes může ochočit svého koňe"
       permission: "aeterum.hermes.horse_tame"
       custom_id: 60007
     60008:
       name: "Lektvar Rychlích Kopit"
+      lore: "Sedni na svého koně, napij se a drž se"
       permission: "aeterum.hermes.horse_ability"
       custom_id: 60008
     80004:
@@ -98,6 +115,7 @@ permissions:
   poseidon:
     60009:
       name: "Slané Jablko"
+      lore: "Jablko kterým Poseidon může ochočit svého koňe"
       permission: "aeterum.poseidon.horse_tame"
       custom_id: 60009
     70005:
@@ -105,10 +123,12 @@ permissions:
       permission: "aeterum.poseidon.horse_ability"
     60023:
       name: "Mořská Koruna"
+      lore: "Pomáhá dýchat pod vodou."
       permission: "aeterum.poseidon.crown"
       custom_id: 60023
     60022:
       name: "Královský Trojzubec"
+      lore: "Zbraň hodná krále moří"
       permission: "aeterum.poseidon.trident"
       custom_id: 60022
     70006:
@@ -120,22 +140,27 @@ permissions:
   zeus:
     60010:
       name: "Levitující Jablko"
+      lore: "Jablko kterým Zeus může ochočit svého koňe"
       permission: "aeterum.zeus.horse_tame"
       custom_id: 60010
     60011:
       name: "Lektvar Levitujících Kopit"
+      lore: "Napij se když si na svém koni"
       permission: "aeterum.zeus.horse_ability"
       custom_id: 60011
     60024:
       name: "Afrodisiakum"
+      lore: "Nakrm zvíře"
       permission: "aeterum.zeus.breeding_item"
       custom_id: 60024
     60025:
       name: "Blesk"
+      lore: "Zbraň hodná hrále Olympu"
       permission: "aeterum.zeus.lightning_spear"
       custom_id: 60025
     60026:
       name: "Lektvar Bouře"
+      lore: "Moc slunečno? Tohle by mohlo být řešení"
       permission: "aeterum.zeus.weather_changer"
       custom_id: 60026
     80006:

@@ -334,9 +334,9 @@ public class CustomItems {
 
 
     private void registerRecipes(Plugin plugin) {
-        BETTER_BONEMEAL_RECIPE = Plugin.getRecipe("permissions.BETTER_BONEMEAL.recipe");
-        GROWTH_POTION_RECIPE = Plugin.getRecipe("permissions.GROWTH_POTION.recipe");
-        RANDOMIZER_RECIPE = Plugin.getRecipe("permissions.RANDOMIZER.recipe");
+        BETTER_BONEMEAL_RECIPE = Plugin.getRecipe("BETTER_BONEMEAL");
+        GROWTH_POTION_RECIPE = Plugin.getRecipe("GROWTH_POTION");
+        RANDOMIZER_RECIPE = Plugin.getRecipe("RANDOMIZER");
 
         //Demeter Key
         NamespacedKey betterBonemealkey = new NamespacedKey(plugin, "better_bonemeal_recipe");

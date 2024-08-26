@@ -14,9 +14,10 @@ permissions:
     lore: "Lektvar který urychlý růst rostlin v okolí hráče"
     permission: "aeterum.demeter.growth_potion"
     custom_id: 60002
+    recipe_potion: regeneration
     recipe:
       - AIR:BETTER_BONEMEAL:AIR
-      - BETTER_BONEMEAL:GLASS:BETTER_BONEMEAL
+      - BETTER_BONEMEAL:POTION:BETTER_BONEMEAL
       - AIR:BETTER_BONEMEAL:AIR
   HOE_OF_THE_HARVEST:
     name: "Kosa Úrody"

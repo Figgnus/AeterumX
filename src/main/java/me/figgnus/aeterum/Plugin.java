@@ -1,5 +1,6 @@
 package me.figgnus.aeterum;
 
+import com.dre.brewery.P;
 import me.figgnus.aeterum.gui.RecipesGUI;
 import me.figgnus.aeterum.listeners._other.CraftingPermissionListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
@@ -16,6 +17,7 @@ import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.TameCommandExecutor;
 import me.figgnus.aeterum.utils.TameCommandTabCompleter;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +29,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -160,9 +164,13 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
         String nameOfMaterial = config.getString("permissions." + id + ".material");
         return Material.getMaterial(nameOfMaterial);
     }
-    public static List<ItemStack> getRecipe(String path) {
+    public static String getPotionType(String id) {
+        return config.getString("permissions." + id + ".recipe_potion");
+    }
+    public static List<ItemStack> getRecipe(String id) {
         List<ItemStack> recipe = new ArrayList<>();
-        List<String> recipeConfig = config.getStringList(path);
+        String pathToRecipe = "permissions." + id + ".recipe";
+        List<String> recipeConfig = config.getStringList(pathToRecipe);
 
         for (String row : recipeConfig) {
             String[] ingredients = row.split(":");
@@ -171,8 +179,20 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
                 Material material = Material.getMaterial(ingredient);
 
                 if (material != null) {
-                    // Material found, add it to the recipe list
-                    recipe.add(new ItemStack(material));
+                    if (material == Material.POTION || material == Material.SPLASH_POTION || material == Material.LINGERING_POTION) {
+                        String potionTypeString = getPotionType(id);
+                        try {
+                            ItemStack potion = ItemUtils.createPotion(PotionType.valueOf(potionTypeString));
+                            recipe.add(potion);
+                        } catch (IllegalArgumentException e) {
+                            // Invalid potion type, use default water potion
+                            System.out.println("Invalid potion type: " + potionTypeString + ". Using WATER instead.");
+                            ItemStack potion = ItemUtils.createPotion(PotionType.WATER);
+                            recipe.add(potion);
+                        }
+                    } else {
+                        recipe.add(new ItemStack(material));
+                    }
                 } else {
                     // Check if the ingredient matches a custom item identifier
                     boolean customItemAdded = false;
@@ -184,7 +204,7 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
                                     getItemMaterial(item),
                                     getItemId(item),
                                     getItemName(item),
-                                    Arrays.asList(getItemLore(item)),
+                                    getGrayLore(getItemLore(item)),
                                     null
                             );
                             recipe.add(customItem);
@@ -201,6 +221,17 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
             }
         }
         return recipe;
+    }
+    private static List<String> getGrayLore(String lore) {
+        List<String> grayLore = new ArrayList<>();
+        if (lore != null && !lore.isEmpty()) {
+            // Split the lore into lines and apply gray color to each line
+            String[] lines = lore.split("\n");
+            for (String line : lines) {
+                grayLore.add(ChatColor.GRAY + line);
+            }
+        }
+        return grayLore;
     }
 
     @Override

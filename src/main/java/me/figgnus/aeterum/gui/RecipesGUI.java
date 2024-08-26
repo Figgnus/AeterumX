@@ -60,7 +60,6 @@ public class RecipesGUI implements CommandExecutor, Listener {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        plugin.getCommand("recepty").setExecutor(this);
 
         recipes.put(CustomItems.RANDOMIZER, CustomItems.RANDOMIZER_RECIPE);
         recipes.put(CustomItems.createInfiniteDebugStick(), CustomItems.INFINITE_DEBUG_STICK_RECIPE);
@@ -104,8 +103,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
             return true;
         }
         openMainInventory(player);
-        return false;
-
+        return true;
     }
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
@@ -114,6 +112,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
         ItemStack clickedItem = event.getCurrentItem();
 
         if (clickedInventory == null || clickedItem == null) return;
+        if (clickedItem.getItemMeta() == null) return;
 
         String title = event.getView().getTitle();
 

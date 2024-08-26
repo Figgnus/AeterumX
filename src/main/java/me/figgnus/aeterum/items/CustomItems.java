@@ -14,61 +14,65 @@ import java.util.*;
 
 public class CustomItems {
     private final Plugin plugin;
-    private static final String BETTER_BONEMEAL_NAME = Plugin.getItemName("demeter", 60001);
-    private static final String GROWTH_POTION_NAME = Plugin.getItemName("demeter", 60002);
-    private static final String HOE_OF_HARVEST_NAME = Plugin.getItemName("demeter", 60003);
-    private static final String FLOWER_HORSE_TAME_NAME = Plugin.getItemName("demeter", 60004);
-    private static final String ZOMBIE_HORSE_TAME_NAME = Plugin.getItemName("hades", 60005);
-    private static final String DRUNK_HORSE_TAME_NAME = Plugin.getItemName("dionysus", 60006);
-    private static final String SPEED_HORSE_TAME_NAME = Plugin.getItemName("hermes", 60007);
-    private static final String SPEED_HORSE_ABILITY_NAME = Plugin.getItemName("hermes", 60008);
-    private static final String SEA_HORSE_TAME_NAME = Plugin.getItemName("poseidon", 60009);
-    private static final String PEGASUS_HORSE_TAME_NAME = Plugin.getItemName("zeus", 60010);
-    private static final String PEGASUS_HORSE_ABILITY_NAME = Plugin.getItemName("zeus", 60011);
-    private static final String PARTY_BALL_NAME = Plugin.getItemName("dionysus", 60012);
-    private static final String PARTY_ATMOSPHERE_NAME = Plugin.getItemName("dionysus", 60013);
-    private static final String RANDOM_EFFECT_POTION_NAME = Plugin.getItemName("dionysus", 60014);
-    private static final String RANDOMIZER_NAME = Plugin.getItemName("other", 60015);
-    private static final String DARKNESS_POTION_NAME = Plugin.getItemName("hades", 60016);
-    private static final String DARK_PEARL_NAME = Plugin.getItemName("hades", 60017);
-    private static final String PORTAL_NAME = Plugin.getItemName("hades", 60018);
-    private static final String FLYING_ITEM_NAME = Plugin.getItemName("hermes", 60019);
-    private static final String MESSENGER_PACK_NAME = Plugin.getItemName("hermes", 60020);
-    private static final String SPEED_BOOTS_NAME = Plugin.getItemName("hermes", 60021);
-    private static final String BETTER_TRIDENT_NAME = Plugin.getItemName("poseidon", 60022);
-    private static final String WATER_BREATHING_CROWN_NAME = Plugin.getItemName("poseidon", 60023);
-    private static final String BREEDING_ITEM_NAME = Plugin.getItemName("zeus", 60024);
-    private static final String LIGHTNING_SPEAR_NAME = Plugin.getItemName("zeus", 60025);
-    private static final String WEATHER_CHANGER_NAME = Plugin.getItemName("zeus", 60026);
+    public static List<ItemStack> BETTER_BONEMEAL_RECIPE;
+    public static List<ItemStack> GROWTH_POTION_RECIPE;
+    public static List<ItemStack> RANDOMIZER_RECIPE;
+
+    private static final String BETTER_BONEMEAL_NAME = Plugin.getItemName("BETTER_BONEMEAL");
+    private static final String GROWTH_POTION_NAME = Plugin.getItemName("GROWTH_POTION");
+    private static final String HOE_OF_HARVEST_NAME = Plugin.getItemName("HOE_OF_THE_HARVEST");
+    private static final String FLOWER_HORSE_TAME_NAME = Plugin.getItemName("FLOWER_HORSE_TAME");
+    private static final String ZOMBIE_HORSE_TAME_NAME = Plugin.getItemName("ZOMBIE_HORSE_TAME");
+    private static final String DRUNK_HORSE_TAME_NAME = Plugin.getItemName("DRUNK_HORSE_TAME");
+    private static final String SPEED_HORSE_TAME_NAME = Plugin.getItemName("SPEED_HORSE_TAME");
+    private static final String SPEED_HORSE_ABILITY_NAME = Plugin.getItemName("SPEED_HORSE_ABILITY");
+    private static final String SEA_HORSE_TAME_NAME = Plugin.getItemName("SEA_HORSE_TAME");
+    private static final String PEGASUS_HORSE_TAME_NAME = Plugin.getItemName("PEGASUS_HORSE_TAME");
+    private static final String PEGASUS_HORSE_ABILITY_NAME = Plugin.getItemName("PEGASUS_HORSE_ABILITY");
+    private static final String PARTY_BALL_NAME = Plugin.getItemName("PARTY_BALL");
+    private static final String PARTY_ATMOSPHERE_NAME = Plugin.getItemName("PARTY_ATMOSPHERE");
+    private static final String RANDOM_EFFECT_POTION_NAME = Plugin.getItemName("RANDOM_EFFECT_POTION");
+    private static final String RANDOMIZER_NAME = Plugin.getItemName("RANDOMIZER");
+    private static final String DARKNESS_POTION_NAME = Plugin.getItemName("DARKNESS_POTION");
+    private static final String DARK_PEARL_NAME = Plugin.getItemName("DARK_PEARL");
+    private static final String DARK_PORTAL_NAME = Plugin.getItemName("DARK_PORTAL");
+    private static final String FLYING_ITEM_NAME = Plugin.getItemName("FLYING_ITEM");
+    private static final String MESSENGER_PACK_NAME = Plugin.getItemName("MESSENGER_PACK");
+    private static final String SPEED_BOOTS_NAME = Plugin.getItemName("SPEED_BOOTS");
+    private static final String BETTER_TRIDENT_NAME = Plugin.getItemName("BETTER_TRIDENT");
+    private static final String WATER_BREATHING_CROWN_NAME = Plugin.getItemName("WATER_BREATHING_CROWN");
+    private static final String BREEDING_ITEM_NAME = Plugin.getItemName("BREEDING_ITEM");
+    private static final String LIGHTNING_SPEAR_NAME = Plugin.getItemName("LIGHTNING_SPEAR");
+    private static final String WEATHER_CHANGER_NAME = Plugin.getItemName("WEATHER_CHANGER");
 
 
     //Lore
-    private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60001));
-    private static final List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60002));
-    private static final List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60003));
-    private static final List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("demeter", 60004));
-    private static final List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60005));
-    private static final List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60006));
-    private static final List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60007));
-    private static final List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60008));
-    private static final List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60009));
-    private static final List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60010));
-    private static final List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60011));
-    private static final List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60012));
-    private static final List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60013));
-    private static final List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("dionysus", 60014));
-    private static final List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("other", 60015));
-    private static final List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60016));
-    private static final List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60017));
-    private static final List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hades", 60018));
-    private static final List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60019));
-    private static final List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60020));
-    private static final List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("hermes", 60021));
-    private static final List<String> BETTER_TRIDENT_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60022));
-    private static final List<String> WATER_BREATHING_CROW_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("poseidon", 60023));
-    private static final List<String> BREEDING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60024));
-    private static final List<String> LIGHTNING_SPEAR_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60025));
-    private static final List<String> WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("zeus", 60026));
+    private static final List<String> BETTER_BONEMEAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("BETTER_BONEMEAL"));
+    private static final List<String> GROWTH_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("GROWTH_POTION"));
+    private static final List<String> HOE_OF_HARVEST_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("HOE_OF_THE_HARVEST"));
+    private static final List<String> FLOWER_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("FLOWER_HORSE_TAME"));
+    private static final List<String> ZOMBIE_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("ZOMBIE_HORSE_TAME"));
+    private static final List<String> DRUNK_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("DRUNK_HORSE_TAME"));
+    private static final List<String> SPEED_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("SPEED_HORSE_TAME"));
+    private static final List<String> SPEED_HORSE_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("SPEED_HORSE_ABILITY"));
+    private static final List<String> SEA_HORSE_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("SEA_HORSE_TAME"));
+    private static final List<String> PEGASUS_TAME_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("PEGASUS_HORSE_TAME"));
+    private static final List<String> PEGASUS_ABILITY_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("PEGASUS_HORSE_ABILITY"));
+    private static final List<String> PARTY_BALL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("PARTY_BALL"));
+    private static final List<String> PARTY_ATMOSPHERE_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("PARTY_ATMOSPHERE"));
+    private static final List<String> RANDOM_EFFECT_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("RANDOM_EFFECT_POTION"));
+    private static final List<String> RANDOMIZER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("RANDOMIZER"));
+    private static final List<String> DARKNESS_POTION_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("DARKNESS_POTION"));
+    private static final List<String> DARK_PEARL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("DARK_PEARL"));
+    private static final List<String> DARK_PORTAL_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("DARK_PORTAL"));
+    private static final List<String> FLYING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("FLYING_ITEM"));
+    private static final List<String> MESSENGER_PACK_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("MESSENGER_PACK"));
+    private static final List<String> SPEED_BOOTS_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("SPEED_BOOTS"));
+    private static final List<String> BETTER_TRIDENT_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("BETTER_TRIDENT"));
+    private static final List<String> WATER_BREATHING_CROW_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("WATER_BREATHING_CROWN"));
+    private static final List<String> BREEDING_ITEM_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("BREEDING_ITEM"));
+    private static final List<String> LIGHTNING_SPEAR_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("LIGHTNING_SPEAR"));
+    private static final List<String> WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + Plugin.getItemLore("WEATHER_CHANGER"));
 
     //ItemStack
     public static final ItemStack BETTER_BONEMEAL = createCustomItem(Material.BONE_MEAL, 60001, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null);
@@ -88,7 +92,7 @@ public class CustomItems {
     public static final ItemStack RANDOMIZER = createCustomItem(Material.IRON_SHOVEL, 60015, RANDOMIZER_NAME, RANDOMIZER_LORE, null);
     public static final ItemStack DARKNESS_POTION = createCustomItem(Material.POTION, 60016, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, Color.fromRGB(255,30,1));
     public static final ItemStack DARK_PEARL = createCustomItem(Material.ENDER_PEARL, 60017, DARK_PEARL_NAME, DARK_PEARL_LORE, null);
-    public static final ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, 60018, PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
+    public static final ItemStack DARK_PORTAL = createCustomItem(Material.SPLASH_POTION, 60018, DARK_PORTAL_NAME, DARK_PORTAL_LORE, Color.fromRGB(255,30,50));
     public static final ItemStack FLYING_ITEM = createCustomItem(Material.STONE_SWORD, 60019, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null);
     public static final ItemStack MESSENGER_PACK = createCustomItem(Material.BUNDLE, 60020, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null);
     public static final ItemStack SPEED_BOOTS = createCustomItem(Material.IRON_BOOTS, 60021, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null);
@@ -106,21 +110,21 @@ public class CustomItems {
             new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR),
             new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)
     );
-    public static final List<ItemStack> RANDOMIZER_RECIPE = List.of(
-            new ItemStack(Material.REDSTONE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.REDSTONE),
-            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.ELYTRA), new ItemStack(Material.IRON_INGOT),
-            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.REDSTONE), new ItemStack(Material.IRON_INGOT)
-    );
-    public static final List<ItemStack> BETTER_BONEMEAL_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.AIR),
-            new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.BONE_MEAL), new ItemStack(Material.AMETHYST_SHARD),
-            new ItemStack(Material.AIR), new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> GROWTH_POTION_RECIPE = List.of(
-            new ItemStack(Material.AIR), BETTER_BONEMEAL, new ItemStack(Material.AIR),
-            BETTER_BONEMEAL, ItemUtils.createPotion(PotionType.REGENERATION), BETTER_BONEMEAL,
-            new ItemStack(Material.AIR), BETTER_BONEMEAL, new ItemStack(Material.AIR)
-    );
+//    public static final List<ItemStack> RANDOMIZER_RECIPE = List.of(
+//            new ItemStack(Material.REDSTONE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.REDSTONE),
+//            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.ELYTRA), new ItemStack(Material.IRON_INGOT),
+//            new ItemStack(Material.IRON_INGOT), new ItemStack(Material.REDSTONE), new ItemStack(Material.IRON_INGOT)
+//    );
+//    public static final List<ItemStack> BETTER_BONEMEAL_RECIPE = List.of(
+//            new ItemStack(Material.AIR), new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.AIR),
+//            new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.BONE_MEAL), new ItemStack(Material.AMETHYST_SHARD),
+//            new ItemStack(Material.AIR), new ItemStack(Material.AMETHYST_SHARD), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> GROWTH_POTION_RECIPE = List.of(
+//            new ItemStack(Material.AIR), BETTER_BONEMEAL, new ItemStack(Material.AIR),
+//            BETTER_BONEMEAL, ItemUtils.createPotion(PotionType.REGENERATION), BETTER_BONEMEAL,
+//            new ItemStack(Material.AIR), BETTER_BONEMEAL, new ItemStack(Material.AIR)
+//    );
     public static final List<ItemStack> HOE_OF_HARVEST_RECIPE = List.of(
             new ItemStack(Material.GOLD_INGOT), new ItemStack(Material.WHEAT), new ItemStack(Material.GOLD_INGOT),
             new ItemStack(Material.DIAMOND), new ItemStack(Material.NETHERITE_HOE), new ItemStack(Material.DIAMOND),
@@ -310,6 +314,7 @@ public class CustomItems {
 
     public CustomItems(Plugin plugin) {
         this.plugin = plugin;
+
         betterTridentEnchantments.add(new AbstractMap.SimpleEntry<>(Enchantment.RIPTIDE, 5));
         betterTridentEnchantments.add(new AbstractMap.SimpleEntry<>(Enchantment.IMPALING, 7));
         betterTridentEnchantments.add(new AbstractMap.SimpleEntry<>(Enchantment.UNBREAKING, 3));
@@ -327,7 +332,12 @@ public class CustomItems {
         registerRecipes(plugin);
     }
 
+
     private void registerRecipes(Plugin plugin) {
+        BETTER_BONEMEAL_RECIPE = Plugin.getRecipe("permissions.BETTER_BONEMEAL.recipe");
+        GROWTH_POTION_RECIPE = Plugin.getRecipe("permissions.GROWTH_POTION.recipe");
+        RANDOMIZER_RECIPE = Plugin.getRecipe("permissions.RANDOMIZER.recipe");
+
         //Demeter Key
         NamespacedKey betterBonemealkey = new NamespacedKey(plugin, "better_bonemeal_recipe");
         NamespacedKey growthPotionKey = new NamespacedKey(plugin, "growth_potion_recipe");
@@ -364,8 +374,8 @@ public class CustomItems {
         NamespacedKey infiniteDebugKey = new NamespacedKey(plugin, "infinite_debug_recipe");
 
         //Demeter
-        ShapedRecipe betterBonemealRecipe = createShapedRecipeFromList(BETTER_BONEMEAL, BETTER_BONEMEAL_RECIPE, betterBonemealkey, " A ", "ABA", " A ");
-        ShapedRecipe growthPotionRecipe = createShapedRecipeFromList(GROWTH_POTION, GROWTH_POTION_RECIPE, growthPotionKey, " B ", "BGB", " B ");
+        ShapedRecipe betterBonemealRecipe = createShapedRecipeFromList(BETTER_BONEMEAL, BETTER_BONEMEAL_RECIPE, betterBonemealkey);
+        ShapedRecipe growthPotionRecipe = createShapedRecipeFromList(GROWTH_POTION, GROWTH_POTION_RECIPE, growthPotionKey);
         ShapedRecipe hoeOfHarvestRecipe = createShapedRecipeFromList(HOE_OF_HARVEST, HOE_OF_HARVEST_RECIPE, hoeOfHarvestKey, "GWG", "DND", " E ");
         ShapedRecipe flowerHorseTameRecipe = createShapedRecipeFromList(FLOWER_HORSE_TAME, FLOWER_HORSE_TAME_RECIPE, flowerHorseTameKey, " S ", "SAS", " S ");
         //Hades
@@ -395,7 +405,7 @@ public class CustomItems {
         ShapedRecipe lightningSpearRecipe = createShapedRecipeFromList(LIGHTNING_SPEAR, LIGHTNING_SPEAR_RECIPE, lightningSpearKey, "I I", "SBS", " L ");
         ShapedRecipe weatherChangerRecipe = createShapedRecipeFromList(WEATHER_CHANGER, WEATHER_CHANGER_RECIPE, weatherChangerKey, " N ", "DRD", "IBI");
         // Other
-        ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey, "RER", "IBI", "IRI");
+        ShapedRecipe randomizerRecipe = createShapedRecipeFromList(RANDOMIZER, RANDOMIZER_RECIPE, randomizerKey);
         Bukkit.addRecipe(randomizerRecipe);
         //Demeter Register
         Bukkit.addRecipe(betterBonemealRecipe);
@@ -429,6 +439,56 @@ public class CustomItems {
         Bukkit.addRecipe(lightningSpearRecipe);
         Bukkit.addRecipe(weatherChangerRecipe);
 
+    }
+    private ShapedRecipe createShapedRecipeFromList(ItemStack result, List<ItemStack> ingredients, NamespacedKey key) {
+        // Ensure that the ingredients list contains exactly 9 items
+        if (ingredients.size() != 9) {
+            throw new IllegalArgumentException("The ingredients list must contain exactly 9 ItemStacks.");
+        }
+
+        // Create the recipe
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
+
+        // Create a map to track Material to Character mappings
+        Map<Material, Character> materialToCharMap = new LinkedHashMap<>();
+        char nextChar = 'A';
+
+        // Assign unique characters to each material (ignoring AIR)
+        for (ItemStack item : ingredients) {
+            Material material = item.getType();
+            if (material != Material.AIR && !materialToCharMap.containsKey(material)) {
+                materialToCharMap.put(material, nextChar);
+                nextChar++;
+            }
+        }
+
+        // Convert List<ItemStack> to rows using the materialToCharMap
+        String row1 = getRowFromItems(ingredients.subList(0, 3), materialToCharMap);
+        String row2 = getRowFromItems(ingredients.subList(3, 6), materialToCharMap);
+        String row3 = getRowFromItems(ingredients.subList(6, 9), materialToCharMap);
+
+        // Define the shape of the recipe
+        recipe.shape(row1, row2, row3);
+
+        // Set the ingredients in the recipe
+        for (Map.Entry<Material, Character> entry : materialToCharMap.entrySet()) {
+            recipe.setIngredient(entry.getValue(), entry.getKey());
+        }
+
+        return recipe;
+    }
+
+    // Helper method to get a row string from a list of ItemStacks
+    private String getRowFromItems(List<ItemStack> items, Map<Material, Character> materialToCharMap) {
+        StringBuilder row = new StringBuilder();
+        for (ItemStack item : items) {
+            if (item.getType() == Material.AIR) {
+                row.append(' ');
+            } else {
+                row.append(materialToCharMap.get(item.getType()));
+            }
+        }
+        return row.toString();
     }
 
     private ShapedRecipe createShapedRecipeFromList(ItemStack result, List<ItemStack> ingredients, NamespacedKey key, String row1, String row2, String row3) {

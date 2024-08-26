@@ -13,35 +13,31 @@ import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
 import me.figgnus.aeterum.listeners.zeus.*;
+import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.TameCommandExecutor;
 import me.figgnus.aeterum.utils.TameCommandTabCompleter;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {
 
     private static FileConfiguration config;
+
+    private RecipesGUI recipesGUI;
 
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
@@ -80,12 +76,14 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
     private RandomizerListener randomizer;
 
+
     @Override
     public void onEnable() {
-        loadConfig();
 
+        loadConfig();
         //Register custom items and recipes
         new CustomItems(this);
+
 
         //Listeners
         betterBonemeal = new BetterBonemealListener(this);
@@ -125,15 +123,18 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
         randomizer = new RandomizerListener(this);
 
+        recipesGUI = new RecipesGUI(this);
+
         getCommand("dolphingrace").setExecutor(dolphinGrace);
         getCommand("nightvision").setExecutor(nightVision);
+        getCommand("recepty").setExecutor(recipesGUI);
         getCommand("tame").setExecutor(new TameCommandExecutor(this));
         getCommand("tame").setTabCompleter(new TameCommandTabCompleter());
 
         getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
 
         new CraftingPermissionListener(this);
-        new RecipesGUI(this);
+
     }
 
     private void loadConfig() {
@@ -143,17 +144,63 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
         }
         config = YamlConfiguration.loadConfiguration(configFile);
     }
-    public static String getPermission(String god, Integer itemId) {
-        return config.getString("permissions." + god + "." + itemId + ".permission");
+    public static String getPermission(String id) {
+        return config.getString("permissions." + id + ".permission");
     }
-    public Integer getItemId(String god, Integer itemId) {
-        return config.getInt("permissions." + god + "." + itemId + ".custom_id");
+    public static Integer getItemId(String id) {
+        return config.getInt("permissions." + id + ".custom_id");
     }
-    public static String getItemName(String god, Integer itemId) {
-        return config.getString("permissions." + god + "." + itemId + ".name");
+    public static String getItemName(String id) {
+        return config.getString("permissions." +id + ".name");
     }
-    public static String getItemLore(String god, Integer itemId) {
-        return config.getString("permissions." + god + "." + itemId + ".lore");
+    public static String getItemLore(String id) {
+        return config.getString("permissions." + id + ".lore");
+    }
+    public static Material getItemMaterial(String id) {
+        String nameOfMaterial = config.getString("permissions." + id + ".material");
+        return Material.getMaterial(nameOfMaterial);
+    }
+    public static List<ItemStack> getRecipe(String path) {
+        List<ItemStack> recipe = new ArrayList<>();
+        List<String> recipeConfig = config.getStringList(path);
+
+        for (String row : recipeConfig) {
+            String[] ingredients = row.split(":");
+
+            for (String ingredient : ingredients) {
+                Material material = Material.getMaterial(ingredient);
+
+                if (material != null) {
+                    // Material found, add it to the recipe list
+                    recipe.add(new ItemStack(material));
+                } else {
+                    // Check if the ingredient matches a custom item identifier
+                    boolean customItemAdded = false;
+
+                    for (String item : config.getConfigurationSection("permissions").getKeys(false)) {
+                        if (ingredient.equals(item)) {
+                            // Create custom item and add it to the recipe list
+                            ItemStack customItem = CustomItems.createCustomItem(
+                                    getItemMaterial(item),
+                                    getItemId(item),
+                                    getItemName(item),
+                                    Arrays.asList(getItemLore(item)),
+                                    null
+                            );
+                            recipe.add(customItem);
+                            customItemAdded = true;
+                            break;
+                        }
+                    }
+
+                    // If no custom item was found, add AIR to maintain the recipe structure
+                    if (!customItemAdded) {
+                        recipe.add(new ItemStack(Material.AIR));
+                    }
+                }
+            }
+        }
+        return recipe;
     }
 
     @Override

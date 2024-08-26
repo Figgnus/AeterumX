@@ -6,8 +6,8 @@ softdepend:
   - Brewery
 commands:
   recepty:
-    description: "Test"
-    usage: /<command>
+    description: "Opens recepty GUI"
+    usage: /recepty
   tame:
     description: "Spawns specific horse"
     usage: /tame <god>

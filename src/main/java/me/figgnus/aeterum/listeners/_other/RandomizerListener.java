@@ -134,6 +134,7 @@ public class RandomizerListener implements Listener {
                 return true;
             }
         }
+
         return false;
     }
 

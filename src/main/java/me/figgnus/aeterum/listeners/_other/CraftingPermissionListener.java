@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
@@ -26,16 +27,19 @@ public class CraftingPermissionListener implements Listener {
     public void onPrepareCraft(PrepareItemCraftEvent event) {
         CraftingInventory inventory = event.getInventory();
         ItemStack result = inventory.getResult();
-        if (result != null) {
-            Player player = (Player) event.getView().getPlayer();
-
-            int itemId = Objects.requireNonNull(result.getItemMeta()).getCustomModelData();
-
-            // Check all god's permissions for the crafted item
-            for (String god : plugin.getConfig().getConfigurationSection("permissions").getKeys(false)) {
-                String permission = plugin.getPermission(god, itemId);
+        if (result == null || !result.hasItemMeta() || !result.getItemMeta().hasCustomModelData() ) {
+            return;
+        }
+        int itemId = result.getItemMeta().getCustomModelData();
+        Player player = (Player) event.getView().getPlayer();
+        // Check all god's permissions for the crafted item
+        for (String item : plugin.getConfig().getConfigurationSection("permissions").getKeys(false)) {
+            int customId = plugin.getConfig().getInt("permissions." + item + ".custom_id");
+            if (customId == itemId) {
+                String permission = plugin.getConfig().getString("permissions." + item + ".permission");
                 if (permission != null && !player.hasPermission(permission)) {
                     denyCrafting(inventory, player);
+                    return;
                 }
             }
         }

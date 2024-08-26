@@ -14,6 +14,7 @@ permissions:
     lore: "Lektvar který urychlý růst rostlin v okolí hráče"
     permission: "aeterum.demeter.growth_potion"
     custom_id: 60002
+    material: "POTION"
     recipe_potion: regeneration
     recipe:
       - AIR:BETTER_BONEMEAL:AIR
@@ -24,11 +25,21 @@ permissions:
     lore: "Jestli-že někdo vý jak farmařit tak jsi to ty."
     permission: "aeterum.demeter.hoe"
     custom_id: 60003
+    material: "NETHERITE_HOE"
+    recipe:
+      - GOLD_INGOT:WHEAT:GOLD_INGOT
+      - DIAMOND:NETHERITE_HOE:DIAMOND
+      - AIR:EMERALD:AIR
   FLOWER_HORSE_TAME:
     name: "Sladké Jablko"
     lore: "Jablko kterým Demeter může ochočit svého koňe"
     permission: "aeterum.demeter.horse_tame"
     custom_id: 60004
+    material: "GOLDEN_APPLE"
+    recipe:
+      - AIR:OXEYE_DAISY:AIR
+      - OXEYE_DAISY:GOLDEN_APPLE:OXEYE_DAISY
+      - AIR:OXEYE_DAISY:AIR
   FLOWER_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.demeter.horse_ability"
@@ -40,21 +51,45 @@ permissions:
     lore: Let's Party!!!
     permission: "aeterum.dionysus.party_atmosphere"
     custom_id: 60013
+    material: "POTION"
+    recipe:
+      - GLOWSTONE_DUST:GLASS_BOTTLE:GLOWSTONE_DUST
+      - HONEY_BOTTLE:GOLDEN_APPLE:HONEY_BOTTLE
+      - AIR:AIR:AIR
   PARTY_BALL:
     name: "Party Koule"
     lore: "Pozor na výbuch"
     permission: "aeterum.dionysus.party_ball"
     custom_id: 60012
+    material: "SNOWBALL"
+    recipe:
+      - GUNPOWDER:GLOWSTONE_DUST:GUNPOWDER
+      - GLOWSTONE_DUST:SLIME_BALL:GLOWSTONE_DUST
+      - AIR:FIRE_CHARGE:AIR
   RANDOM_EFFECT_POTION:
     name: "Záhadný Nápoj"
     lore: "Kdo vý co se může stát"
     permission: "aeterum.dionysus.random_effect_potion"
     custom_id: 60014
+    material: "POTION"
+    color:
+      red: 43
+      green: 158
+      blue: 54
+    recipe:
+      - RABBIT_FOOT:GOLDEN_CARROT:GHAST_TEAR
+      - FERMENTED_SPIDER_EYE:GLASS_BOTTLE:PHANTOM_MEMBRANE
+      - AIR:GLOWSTONE_DUST:AIR
   DRUNK_HORSE_TAME:
     name: "Fermentované Jablko"
     lore: "Jablko kterým Dionysus může ochočit svého koňe"
     permission: "aeterum.dionysus.horse_tame"
     custom_id: 60006
+    material: "POTION"
+    recipe:
+      - AIR:RANDOM_EFFECT_POTION:AIR
+      - RANDOM_EFFECT_POTION:GOLDEN_APPLE:RANDOM_EFFECT_POTION
+      - AIR:RANDOM_EFFECT_POTION:AIR
   DRUNK_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.dionysus.horse_ability"
@@ -66,16 +101,31 @@ permissions:
     lore: "Oslep své nepřátele"
     permission: "aeterum.hades.darkness_potion"
     custom_id: 60016
+    material: "POTION"
+    recipe:
+      - AIR:BLACK_DYE:AIR
+      - WITHER_ROSE:PHANTOM_MEMBRANE:WITHER_ROSE
+      - AIR:FERMENTED_SPIDER_EYE:AIR
   DARK_PEARL:
     name: "Temná Perla"
     lore: "Prostě Ender Pearl. Možná trochu lepší."
     permission: "aeterum.hades.dark_pearl"
     custom_id: 60017
+    material: "ENDER_PEARL"
+    recipe:
+      - AIR:PHANTOM_MEMBRANE:AIR
+      - PHANTOM_MEMBRANE:ENDER_PEARL:PHANTOM_MEMBRANE
+      - AIR:PHANTOM_MEMBRANE:AIR
   DARK_PORTAL:
     name: "Temný Portál"
     lore: "Kde se objevíš?"
     permission: "aeterum.hades.portal"
     custom_id: 60018
+    material: "SPLASH_POTION"
+    recipe:
+      - AIR:GLASS_BOTTLE:AIR
+      - OBSIDIAN:DRAGON_BREATH:OBSIDIAN
+      - GHAST_TEAR:CRYING_OBSIDIAN:GHAST_TEAR
   ZOMBIE_HORSE_TAME:
     name: "Otrávené Jablko"
     lore: "Jablko kterým Hades může ochočit svého koňe"
@@ -172,6 +222,7 @@ permissions:
     permission: "aeterum.zeus.gui"
   RANDOMIZER:
     name: "Lopatka"
+    lore: "Položí náhodný block z hotbaru"
     permission: "aeterum.trowel.use"
     custom_id: 60015
     recipe:

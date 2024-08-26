@@ -17,6 +17,15 @@ public class CustomItems {
     public static List<ItemStack> BETTER_BONEMEAL_RECIPE;
     public static List<ItemStack> GROWTH_POTION_RECIPE;
     public static List<ItemStack> RANDOMIZER_RECIPE;
+    public static List<ItemStack> HOE_OF_HARVEST_RECIPE;
+    public static List<ItemStack> FLOWER_HORSE_TAME_RECIPE;
+    public static List<ItemStack> PARTY_ATMOSPHERE_RECIPE;
+    public static List<ItemStack> PARTY_BALL_RECIPE;
+    public static List<ItemStack> RANDOM_EFFECT_POTION_RECIPE;
+    public static List<ItemStack> DRUNK_HORSE_TAME_RECIPE;
+    public static List<ItemStack> DARKNESS_POTION_RECIPE;
+    public static List<ItemStack> DARK_PEARL_RECIPE;
+    public static List<ItemStack> DARK_PORTAL_RECIPE;
 
     private static final String BETTER_BONEMEAL_NAME = Plugin.getItemName("BETTER_BONEMEAL");
     private static final String GROWTH_POTION_NAME = Plugin.getItemName("GROWTH_POTION");
@@ -125,56 +134,56 @@ public class CustomItems {
 //            BETTER_BONEMEAL, ItemUtils.createPotion(PotionType.REGENERATION), BETTER_BONEMEAL,
 //            new ItemStack(Material.AIR), BETTER_BONEMEAL, new ItemStack(Material.AIR)
 //    );
-    public static final List<ItemStack> HOE_OF_HARVEST_RECIPE = List.of(
-            new ItemStack(Material.GOLD_INGOT), new ItemStack(Material.WHEAT), new ItemStack(Material.GOLD_INGOT),
-            new ItemStack(Material.DIAMOND), new ItemStack(Material.NETHERITE_HOE), new ItemStack(Material.DIAMOND),
-            new ItemStack(Material.AIR), new ItemStack(Material.EMERALD), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> FLOWER_HORSE_TAME_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.SPORE_BLOSSOM), new ItemStack(Material.AIR),
-            new ItemStack(Material.SPORE_BLOSSOM), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.SPORE_BLOSSOM),
-            new ItemStack(Material.AIR), new ItemStack(Material.SPORE_BLOSSOM), new ItemStack(Material.AIR)
-    );
+//    public static final List<ItemStack> HOE_OF_HARVEST_RECIPE = List.of(
+//            new ItemStack(Material.GOLD_INGOT), new ItemStack(Material.WHEAT), new ItemStack(Material.GOLD_INGOT),
+//            new ItemStack(Material.DIAMOND), new ItemStack(Material.NETHERITE_HOE), new ItemStack(Material.DIAMOND),
+//            new ItemStack(Material.AIR), new ItemStack(Material.EMERALD), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> FLOWER_HORSE_TAME_RECIPE = List.of(
+//            new ItemStack(Material.AIR), new ItemStack(Material.OXEYE_DAISY), new ItemStack(Material.AIR),
+//            new ItemStack(Material.SPORE_BLOSSOM), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.SPORE_BLOSSOM),
+//            new ItemStack(Material.AIR), new ItemStack(Material.SPORE_BLOSSOM), new ItemStack(Material.AIR)
+//    );
     public static final List<ItemStack> ZOMBIE_HORSE_TAME_RECIPE = List.of(
             new ItemStack(Material.AIR), new ItemStack(Material.WITHER_ROSE), new ItemStack(Material.AIR),
             new ItemStack(Material.WITHER_ROSE), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.WITHER_ROSE),
             new ItemStack(Material.AIR), new ItemStack(Material.WITHER_ROSE), new ItemStack(Material.AIR)
     );
-    public static final List<ItemStack> DARKNESS_POTION_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.BLACK_DYE), new ItemStack(Material.AIR),
-            new ItemStack(Material.WITHER_ROSE), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.WITHER_ROSE),
-            new ItemStack(Material.AIR), new ItemStack(Material.FERMENTED_SPIDER_EYE), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> DARK_PEARL_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.AIR),
-            new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.PHANTOM_MEMBRANE),
-            new ItemStack(Material.AIR), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> DARK_PORTAL_RECIPE = List.of(
-            new ItemStack(Material.AIR), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.AIR),
-            new ItemStack(Material.OBSIDIAN), new ItemStack(Material.DRAGON_BREATH), new ItemStack(Material.OBSIDIAN),
-            new ItemStack(Material.GHAST_TEAR), new ItemStack(Material.CRYING_OBSIDIAN), new ItemStack(Material.GHAST_TEAR)
-    );
-    public static final List<ItemStack> DRUNK_HORSE_TAME_RECIPE = List.of(
-            new ItemStack(Material.AIR), RANDOM_EFFECT_POTION, new ItemStack(Material.AIR),
-            RANDOM_EFFECT_POTION, new ItemStack(Material.GOLDEN_APPLE), RANDOM_EFFECT_POTION,
-            new ItemStack(Material.AIR), RANDOM_EFFECT_POTION, new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> PARTY_BALL_RECIPE = List.of(
-            new ItemStack(Material.GUNPOWDER), new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GUNPOWDER),
-            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.SLIME_BALL), new ItemStack(Material.GLOWSTONE_DUST),
-            new ItemStack(Material.AIR), new ItemStack(Material.FIRE_CHARGE), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> PARTY_ATMOSPHERE_RECIPE = List.of(
-            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.GLOWSTONE_DUST),
-            new ItemStack(Material.HONEY_BOTTLE), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.HONEY_BOTTLE),
-            new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)
-    );
-    public static final List<ItemStack> RANDOM_EFFECT_POTION_RECIPE = List.of(
-            new ItemStack(Material.RABBIT_FOOT), new ItemStack(Material.GOLDEN_CARROT), new ItemStack(Material.GHAST_TEAR),
-            new ItemStack(Material.FERMENTED_SPIDER_EYE), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.PHANTOM_MEMBRANE),
-            new ItemStack(Material.AIR), new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.AIR)
-    );
+//    public static final List<ItemStack> DARKNESS_POTION_RECIPE = List.of(
+//            new ItemStack(Material.AIR), new ItemStack(Material.BLACK_DYE), new ItemStack(Material.AIR),
+//            new ItemStack(Material.WITHER_ROSE), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.WITHER_ROSE),
+//            new ItemStack(Material.AIR), new ItemStack(Material.FERMENTED_SPIDER_EYE), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> DARK_PEARL_RECIPE = List.of(
+//            new ItemStack(Material.AIR), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.AIR),
+//            new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.ENDER_PEARL), new ItemStack(Material.PHANTOM_MEMBRANE),
+//            new ItemStack(Material.AIR), new ItemStack(Material.PHANTOM_MEMBRANE), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> DARK_PORTAL_RECIPE = List.of(
+//            new ItemStack(Material.AIR), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.AIR),
+//            new ItemStack(Material.OBSIDIAN), new ItemStack(Material.DRAGON_BREATH), new ItemStack(Material.OBSIDIAN),
+//            new ItemStack(Material.GHAST_TEAR), new ItemStack(Material.CRYING_OBSIDIAN), new ItemStack(Material.GHAST_TEAR)
+//    );
+//    public static final List<ItemStack> DRUNK_HORSE_TAME_RECIPE = List.of(
+//            new ItemStack(Material.AIR), RANDOM_EFFECT_POTION, new ItemStack(Material.AIR),
+//            RANDOM_EFFECT_POTION, new ItemStack(Material.GOLDEN_APPLE), RANDOM_EFFECT_POTION,
+//            new ItemStack(Material.AIR), RANDOM_EFFECT_POTION, new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> PARTY_BALL_RECIPE = List.of(
+//            new ItemStack(Material.GUNPOWDER), new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GUNPOWDER),
+//            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.SLIME_BALL), new ItemStack(Material.GLOWSTONE_DUST),
+//            new ItemStack(Material.AIR), new ItemStack(Material.FIRE_CHARGE), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> PARTY_ATMOSPHERE_RECIPE = List.of(
+//            new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.GLOWSTONE_DUST),
+//            new ItemStack(Material.HONEY_BOTTLE), new ItemStack(Material.GOLDEN_APPLE), new ItemStack(Material.HONEY_BOTTLE),
+//            new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)
+//    );
+//    public static final List<ItemStack> RANDOM_EFFECT_POTION_RECIPE = List.of(
+//            new ItemStack(Material.RABBIT_FOOT), new ItemStack(Material.GOLDEN_CARROT), new ItemStack(Material.GHAST_TEAR),
+//            new ItemStack(Material.FERMENTED_SPIDER_EYE), new ItemStack(Material.GLASS_BOTTLE), new ItemStack(Material.PHANTOM_MEMBRANE),
+//            new ItemStack(Material.AIR), new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.AIR)
+//    );
     public static final List<ItemStack> SPEED_HORSE_TAME_RECIPE = List.of(
             new ItemStack(Material.AIR), ItemUtils.createPotion(PotionType.SWIFTNESS), new ItemStack(Material.AIR),
             ItemUtils.createPotion(PotionType.SWIFTNESS), new ItemStack(Material.GOLDEN_APPLE), ItemUtils.createPotion(PotionType.SWIFTNESS),
@@ -337,6 +346,15 @@ public class CustomItems {
         BETTER_BONEMEAL_RECIPE = Plugin.getRecipe("BETTER_BONEMEAL");
         GROWTH_POTION_RECIPE = Plugin.getRecipe("GROWTH_POTION");
         RANDOMIZER_RECIPE = Plugin.getRecipe("RANDOMIZER");
+        HOE_OF_HARVEST_RECIPE = Plugin.getRecipe("HOE_OF_THE_HARVEST");
+        FLOWER_HORSE_TAME_RECIPE = Plugin.getRecipe("FLOWER_HORSE_TAME");
+        PARTY_ATMOSPHERE_RECIPE = Plugin.getRecipe("PARTY_ATMOSPHERE");
+        PARTY_BALL_RECIPE = Plugin.getRecipe("PARTY_BALL");
+        RANDOM_EFFECT_POTION_RECIPE = Plugin.getRecipe("RANDOM_EFFECT_POTION");
+        DRUNK_HORSE_TAME_RECIPE = Plugin.getRecipe("DRUNK_HORSE_TAME");
+        DARKNESS_POTION_RECIPE = Plugin.getRecipe("DARKNESS_POTION");
+        DARK_PEARL_RECIPE = Plugin.getRecipe("DARK_PEARL");
+        DARK_PORTAL_RECIPE = Plugin.getRecipe("DARK_PORTAL");
 
         //Demeter Key
         NamespacedKey betterBonemealkey = new NamespacedKey(plugin, "better_bonemeal_recipe");
@@ -376,18 +394,18 @@ public class CustomItems {
         //Demeter
         ShapedRecipe betterBonemealRecipe = createShapedRecipeFromList(BETTER_BONEMEAL, BETTER_BONEMEAL_RECIPE, betterBonemealkey);
         ShapedRecipe growthPotionRecipe = createShapedRecipeFromList(GROWTH_POTION, GROWTH_POTION_RECIPE, growthPotionKey);
-        ShapedRecipe hoeOfHarvestRecipe = createShapedRecipeFromList(HOE_OF_HARVEST, HOE_OF_HARVEST_RECIPE, hoeOfHarvestKey, "GWG", "DND", " E ");
-        ShapedRecipe flowerHorseTameRecipe = createShapedRecipeFromList(FLOWER_HORSE_TAME, FLOWER_HORSE_TAME_RECIPE, flowerHorseTameKey, " S ", "SAS", " S ");
+        ShapedRecipe hoeOfHarvestRecipe = createShapedRecipeFromList(HOE_OF_HARVEST, HOE_OF_HARVEST_RECIPE, hoeOfHarvestKey);
+        ShapedRecipe flowerHorseTameRecipe = createShapedRecipeFromList(FLOWER_HORSE_TAME, FLOWER_HORSE_TAME_RECIPE, flowerHorseTameKey);
         //Hades
         ShapedRecipe zombieHorseTameRecipe = createShapedRecipeFromList(ZOMBIE_HORSE_TAME, ZOMBIE_HORSE_TAME_RECIPE, zombieHorseTameKey, " S ", "SAS", " S ");
-        ShapedRecipe darknessPotionRecipe = createShapedRecipeFromList(DARKNESS_POTION, DARKNESS_POTION_RECIPE, darknessPotionKey, " B ", "WPW", " S ");
-        ShapedRecipe darkPearlRecipe = createShapedRecipeFromList(DARK_PEARL, DARK_PEARL_RECIPE, darkPearlKey, " P ", "PEP", " P ");
-        ShapedRecipe darkPortalRecipe = createShapedRecipeFromList(DARK_PORTAL, DARK_PORTAL_RECIPE, darkPortalKey, " N ", "ODO", "GCG");
+        ShapedRecipe darknessPotionRecipe = createShapedRecipeFromList(DARKNESS_POTION, DARKNESS_POTION_RECIPE, darknessPotionKey);
+        ShapedRecipe darkPearlRecipe = createShapedRecipeFromList(DARK_PEARL, DARK_PEARL_RECIPE, darkPearlKey);
+        ShapedRecipe darkPortalRecipe = createShapedRecipeFromList(DARK_PORTAL, DARK_PORTAL_RECIPE, darkPortalKey);
         //Dionysus
-        ShapedRecipe drunkHorseTameRecipe = createShapedRecipeFromList(DRUNK_HORSE_TAME, DRUNK_HORSE_TAME_RECIPE, drunkHorseTameKey, " P ", "PAP", " P ");
-        ShapedRecipe partyBallRecipe = createShapedRecipeFromList(PARTY_BALL, PARTY_BALL_RECIPE, partyBallKey, "GDG", "DSD", " A ");
-        ShapedRecipe partyAtmosphereRecipe = createShapedRecipeFromList(PARTY_ATMOSPHERE, PARTY_ATMOSPHERE_RECIPE, partyAtmosphereKey, "GFG", "HAH", "   ");
-        ShapedRecipe randomPotionEffectRecipe = createShapedRecipeFromList(RANDOM_EFFECT_POTION, RANDOM_EFFECT_POTION_RECIPE, randomEffectPotionKey, "RGT", "FPM", " A ");
+        ShapedRecipe drunkHorseTameRecipe = createShapedRecipeFromList(DRUNK_HORSE_TAME, DRUNK_HORSE_TAME_RECIPE, drunkHorseTameKey);
+        ShapedRecipe partyBallRecipe = createShapedRecipeFromList(PARTY_BALL, PARTY_BALL_RECIPE, partyBallKey);
+        ShapedRecipe partyAtmosphereRecipe = createShapedRecipeFromList(PARTY_ATMOSPHERE, PARTY_ATMOSPHERE_RECIPE, partyAtmosphereKey);
+        ShapedRecipe randomPotionEffectRecipe = createShapedRecipeFromList(RANDOM_EFFECT_POTION, RANDOM_EFFECT_POTION_RECIPE, randomEffectPotionKey);
         //Hermes
         ShapedRecipe speedHorseTameRecipe = createShapedRecipeFromList(SPEED_HORSE_TAME, SPEED_HORSE_TAME_RECIPE, speedHorseTameKey, " S ", "SGS", "   ");
         ShapedRecipe speedHorseAbilityRecipe = createShapedRecipeFromList(SPEED_HORSE_ABILITY, SPEED_HORSE_ABILITY_RECIPE, speedHorseAbilityKey, "WSW", " G ", "   ");

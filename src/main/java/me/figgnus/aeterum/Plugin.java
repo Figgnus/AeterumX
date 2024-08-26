@@ -18,6 +18,7 @@ import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.TameCommandExecutor;
 import me.figgnus.aeterum.utils.TameCommandTabCompleter;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandExecutor;
@@ -167,6 +168,12 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
     public static String getPotionType(String id) {
         return config.getString("permissions." + id + ".recipe_potion");
     }
+    public static Color getItemColor(String id) {
+        int red = config.getInt("permissions." + id + ".color.red");
+        int green = config.getInt("permissions." + id + ".color.green");
+        int blue = config.getInt("permissions." + id + ".color.blue");
+        return Color.fromRGB(red, green, blue);
+    }
     public static List<ItemStack> getRecipe(String id) {
         List<ItemStack> recipe = new ArrayList<>();
         String pathToRecipe = "permissions." + id + ".recipe";
@@ -205,7 +212,7 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
                                     getItemId(item),
                                     getItemName(item),
                                     getGrayLore(getItemLore(item)),
-                                    null
+                                    getItemColor(item)
                             );
                             recipe.add(customItem);
                             customItemAdded = true;

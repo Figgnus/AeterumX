@@ -2,6 +2,7 @@ package me.figgnus.aeterum.gui;
 
 import me.figgnus.aeterum.Plugin;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.CustomFishing;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
@@ -22,9 +23,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RecipesGUI implements CommandExecutor, Listener {
     private final Plugin plugin;
@@ -38,9 +37,12 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private Inventory zeusInventory;
     private Inventory hermesInventory;
     private Inventory recipeInventory;
+    private Inventory customFishingInventory;
+
+    private Inventory rodsSubInventory;
 
     private final List<Integer> blockedSpots = List.of(0,1,2,6,7,9,11,15,17,18,19,20,24,25,26);
-
+    private final Stack<Inventory> inventoryHistory = new Stack<>();
     private final Map<ItemStack, List<ItemStack>> recipes = new HashMap<>();
 
     private final ItemStack backButton = createGuiItem(Material.BOOK, "Back", null);
@@ -53,6 +55,8 @@ public class RecipesGUI implements CommandExecutor, Listener {
     private final ItemStack poseidonCategoryItem = ItemUtils.createHead("1f716c1a80da85d5e6784c336b2583d61dc76de3d99a1984d3e593721e21327", "Poseidon");
     private final ItemStack zeusCategoryItem = ItemUtils.createHead("dcd9ddf4fb9e25e62d2e98595d5168de2b3367ba78f3697be1c479f35102ad76", "Zeus");
     private final ItemStack breweryCategoryItem = createGuiItem(Material.POTION, "Brewery", Color.fromRGB(55, 209, 122));
+    private final ItemStack customFishingCategoryItem = createGuiItem(Material.FISHING_ROD, "Custom Fishing", null);
+    private final ItemStack rodsSubCategoryItem = createGuiItem(Material.FISHING_ROD, "Pruty", null);
 
 
 
@@ -95,6 +99,9 @@ public class RecipesGUI implements CommandExecutor, Listener {
         recipes.put(CustomItems.BREEDING_ITEM, CustomItems.BREEDING_ITEM_RECIPE);
         recipes.put(CustomItems.WEATHER_CHANGER, CustomItems.WEATHER_CHANGER_RECIPE);
         recipes.put(CustomItems.LIGHTNING_SPEAR, CustomItems.LIGHTNING_SPEAR_RECIPE);
+
+        // Custom Fishing Recipes
+        recipes.put(CustomFishing.BEGINNER_ROD, CustomFishing.BEGINNER_ROD_RECIPE);
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -133,6 +140,9 @@ public class RecipesGUI implements CommandExecutor, Listener {
             if (clickedItem.equals(breweryCategoryItem)){
                 player.sendMessage("Tato funkce bude brzy přidána.");
             }
+            if (clickedItem.equals(customFishingCategoryItem)){
+                openCustomFishingInventory(player);
+            }
             if (clickedItem.equals(demeterCategoryItem)){
                 openDemeterInventory(player);
             }
@@ -154,7 +164,24 @@ public class RecipesGUI implements CommandExecutor, Listener {
             if (clickedItem.equals(backButton)){
                 openMainInventory(player);
             }
+            if (clickedItem.equals(rodsSubCategoryItem)){
+                openRodsInventory(player);
+            }
         }
+    }
+
+    private void openRodsInventory(Player player) {
+        rodsSubInventory = Bukkit.createInventory(null, 9, "Aeterum " + "Rods");
+        rodsSubInventory.setItem(8, backButton);
+        rodsSubInventory.addItem(CustomFishing.BEGINNER_ROD);
+        player.openInventory(rodsSubInventory);
+    }
+
+    private void openCustomFishingInventory(Player player) {
+        customFishingInventory = Bukkit.createInventory(null, 9, "Aeterum " + "Custom Fishing");
+        customFishingInventory.addItem(rodsSubCategoryItem);
+        customFishingInventory.setItem(8, backButton);
+        player.openInventory(customFishingInventory);
     }
 
     private void openZeusInventory(Player player) {
@@ -231,6 +258,7 @@ public class RecipesGUI implements CommandExecutor, Listener {
         mainInventory = Bukkit.createInventory(null, 9, "Aeterum Recepty");
         mainInventory.addItem(toolCategoryItem);
         mainInventory.addItem(breweryCategoryItem);
+        mainInventory.addItem(customFishingCategoryItem);
         if (player.hasPermission(PermissionUtils.demeterGuiPermission)){
             mainInventory.addItem(demeterCategoryItem);
         }

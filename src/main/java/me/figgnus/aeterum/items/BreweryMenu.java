@@ -1,11 +1,9 @@
-package me.figgnus.aeterum.listeners._other;
+package me.figgnus.aeterum.items;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.List;
 
 public class BreweryMenu {
     public static ItemStack cauldron = createBreweryItem("Brewery", Material.CAULDRON);

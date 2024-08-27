@@ -1,6 +1,5 @@
 package me.figgnus.aeterum;
 
-import com.dre.brewery.P;
 import me.figgnus.aeterum.gui.RecipesGUI;
 import me.figgnus.aeterum.listeners._other.CraftingPermissionListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
@@ -30,12 +29,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {

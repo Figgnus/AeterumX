@@ -16,6 +16,10 @@ permissions:
     custom_id: 60002
     material: "POTION"
     recipe_potion: regeneration
+    color:
+      red: 63
+      green: 206
+      blue: 130
     recipe:
       - AIR:BETTER_BONEMEAL:AIR
       - BETTER_BONEMEAL:POTION:BETTER_BONEMEAL
@@ -52,6 +56,10 @@ permissions:
     permission: "aeterum.dionysus.party_atmosphere"
     custom_id: 60013
     material: "POTION"
+    color:
+      red: 255
+      green: 185
+      blue: 54
     recipe:
       - GLOWSTONE_DUST:GLASS_BOTTLE:GLOWSTONE_DUST
       - HONEY_BOTTLE:GOLDEN_APPLE:HONEY_BOTTLE
@@ -85,7 +93,7 @@ permissions:
     lore: "Jablko kterým Dionysus může ochočit svého koňe"
     permission: "aeterum.dionysus.horse_tame"
     custom_id: 60006
-    material: "POTION"
+    material: "GOLDEN_APPLE"
     recipe:
       - AIR:RANDOM_EFFECT_POTION:AIR
       - RANDOM_EFFECT_POTION:GOLDEN_APPLE:RANDOM_EFFECT_POTION
@@ -102,6 +110,10 @@ permissions:
     permission: "aeterum.hades.darkness_potion"
     custom_id: 60016
     material: "POTION"
+    color:
+      red: 255
+      green: 30
+      blue: 1
     recipe:
       - AIR:BLACK_DYE:AIR
       - WITHER_ROSE:PHANTOM_MEMBRANE:WITHER_ROSE
@@ -122,6 +134,10 @@ permissions:
     permission: "aeterum.hades.portal"
     custom_id: 60018
     material: "SPLASH_POTION"
+    color:
+      red: 255
+      green: 30
+      blue: 50
     recipe:
       - AIR:GLASS_BOTTLE:AIR
       - OBSIDIAN:DRAGON_BREATH:OBSIDIAN
@@ -131,6 +147,11 @@ permissions:
     lore: "Jablko kterým Hades může ochočit svého koňe"
     permission: "aeterum.hades.horse_tame"
     custom_id: 60005
+    material: "GOLDEN_APPLE"
+    recipe:
+      - AIR:WITHER_ROSE:AIR
+      - WITHER_ROSE:GOLDEN_APPLE:WITHER_ROSE
+      - AIR:WITHER_ROSE:AIR
   ZOMBIE_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.hades.horse_ability"
@@ -145,26 +166,56 @@ permissions:
     lore: "Málo raketek? Použij toto."
     permission: "aeterum.hermes.flying_item"
     custom_id: 60019
+    material: "STONE_SWORD"
+    recipe:
+      - BLAZE_POWDER:PHANTOM_MEMBRANE:BLAZE_POWDER
+      - END_ROD:STICK:END_ROD
+      - FEATHER:STICK:FEATHER
   MESSENGER_PACK:
     name: "Poštovní Brašna"
     lore: "Bůh zpráv potřebuje pořádnou brašnu"
     permission: "aeterum.hermes.messenger_pack"
     custom_id: 60020
+    material: "BUNDLE"
+    recipe:
+      - LEATHER:STRING:LEATHER
+      - CHEST:GOLDEN_APPLE:CHEST
+      - LEATHER:STRING:LEATHER
   SPEED_BOOTS:
     name: "Rychlé botky"
     lore: "Tyhle botky vypadají rychle. Nezakopni."
     permission: "aeterum.hermes.speed_boots"
     custom_id: 60021
+    material: "IRON_BOOTS"
+    recipe:
+      - LEATHER:AIR:LEATHER
+      - SUGAR:IRON_BOOTS:SUGAR
+      - LEATHER:AIR:LEATHER
   SPEED_HORSE_TAME:
     name: "Rychlé Jablko"
     lore: "Jablko kterým Hermes může ochočit svého koňe"
     permission: "aeterum.hermes.horse_tame"
     custom_id: 60007
+    material: "GOLDEN_APPLE"
+    recipe_potion: swiftness
+    recipe:
+      - AIR:POTION:AIR
+      - POTION:GOLDEN_APPLE:POTION
+      - AIR:AIR:AIR
   SPEED_HORSE_ABILITY:
     name: "Lektvar Rychlích Kopit"
     lore: "Sedni na svého koně, napij se a drž se"
     permission: "aeterum.hermes.horse_ability"
     custom_id: 60008
+    material: "POTION"
+    color:
+      red: 193
+      green: 193
+      blue: 193
+    recipe:
+      - WHEAT:SUGAR:WHEAT
+      - AIR:GLASS_BOTTLE:AIR
+      - AIR:AIR:AIR
   HERMES_GUI:
     name: "GUI"
     permission: "aeterum.hermes.gui"
@@ -173,6 +224,11 @@ permissions:
     lore: "Jablko kterým Poseidon může ochočit svého koňe"
     permission: "aeterum.poseidon.horse_tame"
     custom_id: 60009
+    material: "GOLDEN_APPLE"
+    recipe:
+      - AIR:NAUTILUS_SHELL:AIR
+      - NAUTILUS_SHELL:GOLDEN_APPLE:NAUTILUS_SHELL
+      - AIR:NAUTILUS_SHELL:AIR
   SEA_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.poseidon.horse_ability"
@@ -181,11 +237,21 @@ permissions:
     lore: "Pomáhá dýchat pod vodou."
     permission: "aeterum.poseidon.crown"
     custom_id: 60023
+    material: "TURTLE_HELMET"
+    recipe:
+      - NAUTILUS_SHELL:NAUTILUS_SHELL:NAUTILUS_SHELL
+      - NAUTILUS_SHELL:TURTLE_HELMET:NAUTILUS_SHELL
+      - AIR:AIR:AIR
   BETTER_TRIDENT:
     name: "Královský Trojzubec"
     lore: "Zbraň hodná krále moří"
     permission: "aeterum.poseidon.trident"
     custom_id: 60022
+    material: "TRIDENT"
+    recipe:
+      - AIR:HEART_OF_THE_SEA:AIR
+      - NAUTILUS_SHELL:TRIDENT:NAUTILUS_SHELL
+      - NAUTILUS_SHELL:BOOK:NAUTILUS_SHELL
   POSEIDON_COMMAND:
     name: "Dolphingrace"
     permission: "aeterum.poseidon.command"
@@ -197,26 +263,59 @@ permissions:
     lore: "Jablko kterým Zeus může ochočit svého koňe"
     permission: "aeterum.zeus.horse_tame"
     custom_id: 60010
+    material: "GOLDEN_APPLE"
+    recipe:
+      - AIR:WIND_CHARGE:AIR
+      - WIND_CHARGE:GOLDEN_APPLE:WIND_CHARGE
+      - AIR:WIND_CHARGE:AIR
   PEGASUS_HORSE_ABILITY:
     name: "Lektvar Levitujících Kopit"
     lore: "Napij se když si na svém koni"
     permission: "aeterum.zeus.horse_ability"
     custom_id: 60011
+    material: "POTION"
+    color:
+      red: 204
+      green: 205
+      blue: 208
+    recipe:
+      - AIR:FEATHER:AIR
+      - FEATHER:GLASS_BOTTLE:FEATHER
+      - AIR:FEATHER:AIR
   BREEDING_ITEM:
     name: "Afrodisiakum"
     lore: "Nakrm zvíře"
     permission: "aeterum.zeus.breeding_item"
     custom_id: 60024
+    material: "SLIME_BALL"
+    recipe:
+      - AIR:CARROT:AIR
+      - BEETROOT:SLIME_BALL:WHEAT
+      - AIR:POTATO:AIR
   LIGHTNING_SPEAR:
     name: "Blesk"
     lore: "Zbraň hodná hrále Olympu"
     permission: "aeterum.zeus.lightning_spear"
     custom_id: 60025
+    material: "TRIDENT"
+    recipe:
+      - IRON_INGOT:AIR:IRON_INGOT
+      - STICK:TRIDENT:STICK
+      - AIR:LIGHTNING_ROD:AIR
   WEATHER_CHANGER:
     name: "Lektvar Bouře"
     lore: "Moc slunečno? Tohle by mohlo být řešení"
     permission: "aeterum.zeus.weather_changer"
     custom_id: 60026
+    material: "POTION"
+    color:
+      red: 165
+      green: 161
+      blue: 215
+    recipe:
+      - AIR:NETHER_STAR:AIR
+      - DIAMOND:REDSTONE:DIAMOND
+      - IRON_INGOT:BLAZE_ROD:IRON_INGOT
   ZEUS_GUI:
     name: "GUI"
     permission: "aeterum.zeus.gui"
@@ -225,6 +324,7 @@ permissions:
     lore: "Položí náhodný block z hotbaru"
     permission: "aeterum.trowel.use"
     custom_id: 60015
+    material: "IRON_SHOVEL"
     recipe:
       - REDSTONE:ENDER_PEARL:REDSTONE
       - IRON_INGOT:ELYTRA:IRON_INGOT

@@ -13,14 +13,12 @@ import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
 import me.figgnus.aeterum.listeners.zeus.*;
+import me.figgnus.aeterum.utils.AeterumCommandExecutor;
 import me.figgnus.aeterum.utils.ItemUtils;
-import me.figgnus.aeterum.utils.TameCommandExecutor;
-import me.figgnus.aeterum.utils.TameCommandTabCompleter;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
@@ -35,7 +33,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Plugin extends JavaPlugin implements CommandExecutor, Listener {
+public final class Plugin extends JavaPlugin implements Listener {
 
     private static FileConfiguration config;
 
@@ -81,11 +79,9 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
     @Override
     public void onEnable() {
-
         loadConfig();
         //Register custom items and recipes
-        new CustomItems(this);
-
+        new CustomItems();
 
         //Listeners
         betterBonemeal = new BetterBonemealListener(this);
@@ -129,9 +125,9 @@ public final class Plugin extends JavaPlugin implements CommandExecutor, Listene
 
         getCommand("dolphingrace").setExecutor(dolphinGrace);
         getCommand("nightvision").setExecutor(nightVision);
-        getCommand("recepty").setExecutor(recipesGUI);
-        getCommand("tame").setExecutor(new TameCommandExecutor(this));
-        getCommand("tame").setTabCompleter(new TameCommandTabCompleter());
+        getCommand("aeterum").setExecutor(new AeterumCommandExecutor(this));
+
+        getCommand("aeterum").setTabCompleter(new AeterumCommandExecutor(this));
 
         getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
 

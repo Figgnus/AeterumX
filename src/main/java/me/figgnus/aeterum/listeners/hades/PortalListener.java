@@ -26,7 +26,9 @@ public class PortalListener implements Listener {
 
     @EventHandler
     public void onPotionSplash(ProjectileHitEvent event) {
-
+        if (!(event.getEntity() instanceof ThrownPotion)){
+            return;
+        }
         ThrownPotion potion = (ThrownPotion) event.getEntity();
         if (!(potion.getShooter() instanceof Player)) return;
 

@@ -2,6 +2,7 @@ name: Aeterum-No_Slimefun
 version: '${project.version}'
 main: me.figgnus.aeterum.Plugin
 api-version: '1.21'
+depend: [NBTAPI]
 softdepend:
   - Brewery
   - CustomFishing
@@ -20,6 +21,6 @@ commands:
   dolphingrace:
     description: "Gives player dolphin's grace"
     usage: /dolphingrace
-  testgive:
-    description: "Gives player item"
-    usage: /testgive
+  aeterum:
+    description: "Contains all Aeterum commands"
+    usage: /aeterum

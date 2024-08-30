@@ -168,9 +168,9 @@ permissions:
     custom_id: 60019
     material: "STONE_SWORD"
     recipe:
-      - BLAZE_POWDER:PHANTOM_MEMBRANE:BLAZE_POWDER
-      - END_ROD:STICK:END_ROD
-      - FEATHER:STICK:FEATHER
+      - REDSTONE:ENDER_PEARL:REDSTONE
+      - IRON_INGOT:ELYTRA:IRON_INGOT
+      - IRON_INGOT:REDSTONE:IRON_INGOT
   MESSENGER_PACK:
     name: "Poštovní Brašna"
     lore: "Bůh zpráv potřebuje pořádnou brašnu"
@@ -326,6 +326,6 @@ permissions:
     custom_id: 60015
     material: "IRON_SHOVEL"
     recipe:
-      - REDSTONE:ENDER_PEARL:REDSTONE
-      - IRON_INGOT:ELYTRA:IRON_INGOT
-      - IRON_INGOT:REDSTONE:IRON_INGOT
+      - BLAZE_POWDER:PHANTOM_MEMBRANE:BLAZE_POWDER
+      - END_ROD:STICK:END_ROD
+      - FEATHER:STICK:FEATHER

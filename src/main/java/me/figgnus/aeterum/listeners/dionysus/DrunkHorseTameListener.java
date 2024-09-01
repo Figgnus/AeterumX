@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -17,12 +17,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class DrunkHorseTameListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final String METADATA_KEY = "DionysusFeed";
     public static final String DRUNK_KEY = "DrunkAura";
     Random random = new Random();
 
-    public DrunkHorseTameListener(Plugin plugin) {
+    public DrunkHorseTameListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
 import com.dre.brewery.BPlayer;
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomEffectPotionListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final List effects = List.of(PotionEffectType.SPEED,
             PotionEffectType.JUMP_BOOST,
             PotionEffectType.RESISTANCE,
@@ -29,7 +29,7 @@ public class RandomEffectPotionListener implements Listener {
             PotionEffectType.HASTE,
             PotionEffectType.LUCK);
 
-    public RandomEffectPotionListener(Plugin plugin) {
+    public RandomEffectPotionListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -48,7 +48,7 @@ public class RandomEffectPotionListener implements Listener {
                 bPlayer = new BPlayer(player.getUniqueId().toString());
             }
             int drunkenness = bPlayer.getDrunkeness() + 5;
-            String command = "brew " + player.getName() + " " + drunkenness;
+            String command = "brew set " + player.getName() + " " + drunkenness;
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
             applyRandomEffect(player);
         }

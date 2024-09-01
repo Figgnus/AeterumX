@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.zeus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -13,9 +13,9 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class LightningSpearListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public LightningSpearListener(Plugin plugin) {
+    public LightningSpearListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.utils;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.gui.RecipesGUI;
 import me.figgnus.aeterum.listeners.demeter.FlowerHorseTameListener;
 import me.figgnus.aeterum.listeners.dionysus.DrunkHorseTameListener;
@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Random;
 
 public class AeterumCommandExecutor implements CommandExecutor, TabCompleter {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     Random random = new Random();
 
-    public AeterumCommandExecutor(Plugin plugin) {
+    public AeterumCommandExecutor(AeterumX plugin) {
         this.plugin = plugin;
     }
 

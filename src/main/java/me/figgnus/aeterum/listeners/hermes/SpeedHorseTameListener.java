@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hermes;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -17,12 +17,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class SpeedHorseTameListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final String METADATA_KEY = "HermesFeed";
     public static final String SPEED_KEY = "Speed";
     Random random = new Random();
 
-    public SpeedHorseTameListener(Plugin plugin) {
+    public SpeedHorseTameListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

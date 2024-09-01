@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.zeus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -12,10 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class WeatherChangerListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private int ticks = 1200; // 1200 is 1 minute
 
-    public WeatherChangerListener(Plugin plugin) {
+    public WeatherChangerListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

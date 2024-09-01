@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.zeus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -20,11 +20,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class BreedingItemListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final HashMap<UUID, Long> cooldown = new HashMap<>();
     private static final long COOLDOWN_TIME = 1000; // Cooldown time in milliseconds (1 second)
 
-    public BreedingItemListener(Plugin plugin) {
+    public BreedingItemListener(AeterumX plugin) {
         this.plugin = plugin;
 
 

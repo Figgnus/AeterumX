@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.demeter;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -17,12 +17,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class FlowerHorseTameListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final String METADATA_KEY = "DemeterFeed";
     public static final String SEED_KEY = "Seed";
     Random random = new Random();
 
-    public FlowerHorseTameListener(Plugin plugin) {
+    public FlowerHorseTameListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

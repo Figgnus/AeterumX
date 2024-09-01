@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hermes;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -16,11 +16,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class SpeedBootsListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private static final HashMap<UUID, Long> messageCooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 5000;
 
-    public SpeedBootsListener(Plugin plugin) {
+    public SpeedBootsListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

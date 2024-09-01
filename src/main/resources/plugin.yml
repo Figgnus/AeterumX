@@ -1,11 +1,7 @@
-name: Aeterum-No_Slimefun
+name: AeterumX
 version: '${project.version}'
-main: me.figgnus.aeterum.Plugin
+main: me.figgnus.aeterum.AeterumX
 api-version: '1.21'
-depend: [NBTAPI]
-softdepend:
-  - Brewery
-  - CustomFishing
 commands:
   recepty:
     description: "Opens recepty GUI"

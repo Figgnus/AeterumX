@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.poseidon;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -17,12 +17,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class SeaHorseTameListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final String METADATA_KEY = "PoseidonFeed";
     public static final String FROST_WALKER_KEY = "FrostWalker";
     Random random = new Random();
 
-    public SeaHorseTameListener(Plugin plugin) {
+    public SeaHorseTameListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

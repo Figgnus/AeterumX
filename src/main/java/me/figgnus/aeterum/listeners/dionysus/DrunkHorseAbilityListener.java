@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
 import com.dre.brewery.BPlayer;
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DrunkHorseAbilityListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final Map<UUID, BukkitRunnable> horseTasks = new HashMap<>();
 
-    public DrunkHorseAbilityListener(Plugin plugin) {
+    public DrunkHorseAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
         startPeriodicTask();
 

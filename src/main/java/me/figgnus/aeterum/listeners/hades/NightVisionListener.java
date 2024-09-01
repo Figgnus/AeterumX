@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hades;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -20,10 +20,10 @@ import java.util.UUID;
 import static org.bukkit.Bukkit.getLogger;
 
 public class NightVisionListener implements Listener, CommandExecutor {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     public HashSet<UUID> enabledPlayers = new HashSet<>();
 
-    public NightVisionListener(Plugin plugin) {
+    public NightVisionListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

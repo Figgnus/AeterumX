@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.demeter;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -18,11 +18,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class BetterBonemealListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
     private static final int COOLDOWN_TIME = 100;
 
-    public BetterBonemealListener(Plugin pligin) {
+    public BetterBonemealListener(AeterumX pligin) {
         this.plugin = pligin;
 
         pligin.getServer().getPluginManager().registerEvents(this, pligin);

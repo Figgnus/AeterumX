@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hades;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,9 +14,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ZombieHorseAbilityListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public ZombieHorseAbilityListener(Plugin plugin) {
+    public ZombieHorseAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

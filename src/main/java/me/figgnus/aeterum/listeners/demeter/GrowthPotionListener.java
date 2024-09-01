@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.demeter;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -15,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GrowthPotionListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public GrowthPotionListener(Plugin plugin) {
+    public GrowthPotionListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -44,13 +44,13 @@ public class GrowthPotionListener implements Listener {
     }
     private static class GrowthTask extends BukkitRunnable {
 
-        private final Plugin plugin;
+        private final AeterumX plugin;
         private final Player player;
         private final int totalStages;
         private int counter = 0;
         private int radius = 10;
 
-        public GrowthTask(Plugin plugin, Player player, int totalStages){
+        public GrowthTask(AeterumX plugin, Player player, int totalStages){
             this.plugin = plugin;
             this.player = player;
             this.totalStages = totalStages;

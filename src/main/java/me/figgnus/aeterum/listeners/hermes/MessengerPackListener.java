@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hermes;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -21,11 +21,11 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MessengerPackListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final Map<UUID, Inventory> playerInventories = new HashMap<>();
     private final File inventoryFolder;
 
-    public MessengerPackListener(Plugin plugin) {
+    public MessengerPackListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

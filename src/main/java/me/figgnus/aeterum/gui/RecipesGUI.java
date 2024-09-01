@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.gui;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.*;
 
 public class RecipesGUI implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     public static List<ItemStack> items = List.of(
             CustomItems.RANDOMIZER,
         CustomItems.FLOWER_HORSE_TAME,
@@ -43,7 +43,7 @@ public class RecipesGUI implements Listener {
     );
     private Inventory mainInventory;
 
-    public RecipesGUI(Plugin plugin) {
+    public RecipesGUI(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

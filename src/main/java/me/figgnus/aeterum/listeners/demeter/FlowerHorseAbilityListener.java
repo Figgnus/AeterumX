@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.demeter;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,9 +23,9 @@ public class FlowerHorseAbilityListener  implements Listener {
             Material.CARROT,
             Material.BEETROOT_SEEDS
     );
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public FlowerHorseAbilityListener(Plugin plugin) {
+    public FlowerHorseAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -38,7 +38,7 @@ public class FlowerHorseAbilityListener  implements Listener {
         // Check if the player is riding a horse
         if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
             Horse horse = (Horse) player.getVehicle();
-            String metadataValue = plugin.getEntityMetadata(horse, FlowerHorseTameListener.SEED_KEY);
+            String metadataValue = plugin.getEntityMetadata(horse, DemeterWhistleListener.HORSE_KEY);
 
             // Check if the horse has the Seed  ability
             if ("true".equals(metadataValue)) {

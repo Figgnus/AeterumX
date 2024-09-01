@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -16,10 +16,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 public class PartyBallListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private NamespacedKey throwableKey;
 
-    public PartyBallListener(Plugin plugin) {
+    public PartyBallListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

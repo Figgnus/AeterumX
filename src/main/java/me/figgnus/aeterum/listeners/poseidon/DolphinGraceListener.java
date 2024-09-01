@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.poseidon;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,9 +21,9 @@ import static org.bukkit.Bukkit.getLogger;
 
 public class DolphinGraceListener implements Listener, CommandExecutor {
     public HashSet<UUID> enabledPlayers = new HashSet<>();
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public DolphinGraceListener(Plugin plugin) {
+    public DolphinGraceListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

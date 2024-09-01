@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.zeus;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -20,9 +20,9 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PegasusAbilityListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
-    public PegasusAbilityListener(Plugin plugin) {
+    public PegasusAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

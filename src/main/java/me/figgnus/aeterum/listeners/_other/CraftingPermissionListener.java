@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners._other;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,11 +10,11 @@ import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
 public class CraftingPermissionListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
     private String message = "§cNemáš oprávnění vytvořit tento předmět!";
 
-    public CraftingPermissionListener(Plugin plugin) {
+    public CraftingPermissionListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this , plugin);

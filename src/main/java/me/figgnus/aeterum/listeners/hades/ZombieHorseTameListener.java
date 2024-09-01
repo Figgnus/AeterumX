@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hades;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -24,10 +24,10 @@ import java.util.Random;
 public class ZombieHorseTameListener implements Listener {
     private final String METADATA_KEY = "HadesFeed";
     public static final String LAVA_WALKER = "LavaWalker";
-    private final Plugin plugin;
+    private final AeterumX plugin;
     Random random = new Random();
 
-    public ZombieHorseTameListener(Plugin plugin) {
+    public ZombieHorseTameListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

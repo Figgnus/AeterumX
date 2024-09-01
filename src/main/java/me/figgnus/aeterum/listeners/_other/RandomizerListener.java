@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners._other;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.PermissionUtils;
@@ -24,10 +24,10 @@ import org.bukkit.inventory.PlayerInventory;
 import java.util.*;
 
 public class RandomizerListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
 
-    public RandomizerListener(Plugin plugin) {
+    public RandomizerListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -127,7 +127,8 @@ public class RandomizerListener implements Listener {
         if (world == null){
             return false;
         }
-        List<Entity> entities = (List<Entity>) world.getNearbyEntities(location, 0.7,0.7,0.7);
+
+        List<Entity> entities = (List<Entity>) world.getNearbyEntities(location, 0.5,0.5,0.5);
         for (Entity entity : entities){
             if(!(entity instanceof Item) && !(entity instanceof ExperienceOrb)){
                 //found entity that is not an item or experience orb

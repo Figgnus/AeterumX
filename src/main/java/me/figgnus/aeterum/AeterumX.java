@@ -11,9 +11,9 @@ import me.figgnus.aeterum.listeners.hades.*;
 import me.figgnus.aeterum.listeners.hermes.*;
 import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
-import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
 import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.AeterumCommandExecutor;
+import me.figgnus.aeterum.utils.HorseDataManager;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -33,42 +33,36 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Plugin extends JavaPlugin implements Listener {
+public final class AeterumX extends JavaPlugin implements Listener {
 
     private static FileConfiguration config;
-
     private RecipesGUI recipesGUI;
+    private HorseDataManager horseDataManager;
 
     private BetterBonemealListener betterBonemeal;
     private GrowthPotionListener growthPotion;
     private HoeOfHarvestListener hoeOfHarvest;
-    private FlowerHorseTameListener flowerHorseTame;
     private FlowerHorseAbilityListener flowerHorseAbility;
 
-    private ZombieHorseTameListener zombieHorseTame;
     private ZombieHorseAbilityListener zombieHorseAbility;
     private DarknessPotionListener darknessPotion;
     private DarkPearlListener darkPearl;
     private PortalListener portal;
     private NightVisionListener nightVision;
 
-    private DrunkHorseTameListener drunkHorseTame;
     private DrunkHorseAbilityListener drunkHorseAbility;
     private PartyBallListener partyBall;
     private PartyAtmosphereListener partyAtmosphere;
     private RandomEffectPotionListener randomEffectPotion;
 
-    private SpeedHorseTameListener speedHorseTame;
     private SpeedHorseAbilityListener speedHorseAbility;
     private FlyingItemListener flyingItem;
     private MessengerPackListener messengerPack;
     private SpeedBootsListener speedBoots;
 
-    private SeaHorseTameListener seaHorseTame;
     private SeaHorseAbilityListener seaHorseAbility;
     private DolphinGraceListener dolphinGrace;
 
-    private PegasusTameListener pegasusTame;
     private PegasusAbilityListener pegasusAbility;
     private BreedingItemListener breedingItem;
     private LightningSpearListener lightningSpear;
@@ -80,40 +74,40 @@ public final class Plugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         loadConfig();
-        //Register custom items and recipes
+        //Register custom items
         new CustomItems();
+        // Initialize the HorseDataManager and load data
+        horseDataManager = new HorseDataManager(getDataFolder());
+        horseDataManager.loadHorses();
+        // Initialize HorseManager with the data manager
+        DemeterWhistleListener demeterWhistleListener = new DemeterWhistleListener(horseDataManager, this);
+        getServer().getPluginManager().registerEvents(demeterWhistleListener, this);
 
         //Listeners
         betterBonemeal = new BetterBonemealListener(this);
         growthPotion = new GrowthPotionListener(this);
         hoeOfHarvest = new HoeOfHarvestListener(this);
-        flowerHorseTame = new FlowerHorseTameListener(this);
         flowerHorseAbility = new FlowerHorseAbilityListener(this);
 
-        zombieHorseTame = new ZombieHorseTameListener(this);
         zombieHorseAbility = new ZombieHorseAbilityListener(this);
         darknessPotion = new DarknessPotionListener(this);
         darkPearl = new DarkPearlListener(this);
         portal = new PortalListener(this);
         nightVision = new NightVisionListener(this);
 
-        drunkHorseTame = new DrunkHorseTameListener(this);
         drunkHorseAbility = new DrunkHorseAbilityListener(this);
         partyBall = new PartyBallListener(this);
         partyAtmosphere = new PartyAtmosphereListener(this);
         randomEffectPotion = new RandomEffectPotionListener(this);
 
-        speedHorseTame = new SpeedHorseTameListener(this);
         speedHorseAbility = new SpeedHorseAbilityListener(this);
         flyingItem = new FlyingItemListener(this);
         messengerPack = new MessengerPackListener(this);
         speedBoots = new SpeedBootsListener(this);
 
-        seaHorseTame = new SeaHorseTameListener(this);
         seaHorseAbility = new SeaHorseAbilityListener(this);
         dolphinGrace = new DolphinGraceListener(this);
 
-        pegasusTame = new PegasusTameListener(this);
         pegasusAbility = new PegasusAbilityListener(this);
         breedingItem = new BreedingItemListener(this);
         lightningSpear = new LightningSpearListener(this);
@@ -240,6 +234,7 @@ public final class Plugin extends JavaPlugin implements Listener {
         if (messengerPack != null) {
             messengerPack.saveAllInventories();
         }
+        horseDataManager.saveHorses();
     }
     //methods for making metadata of entities persistent
     public void setEntityMetadata(Entity entity, String key, String value){

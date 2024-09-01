@@ -1,7 +1,7 @@
 package me.figgnus.aeterum.listeners.dionysus;
 
 import com.dre.brewery.BPlayer;
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -19,10 +19,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 
 public class PartyAtmosphereListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
 
 
-    public PartyAtmosphereListener(Plugin plugin) {
+    public PartyAtmosphereListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -51,7 +51,7 @@ public class PartyAtmosphereListener implements Listener {
 
         for (Player nearbyPlayer : player.getWorld().getPlayers()) {
             if (nearbyPlayer.getLocation().distance(player.getLocation()) <= radius) {
-                String command = "brew " + nearbyPlayer.getName() + " " + drunkenness;
+                String command = "brew set " + nearbyPlayer.getName() + " " + drunkenness;
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
             }
         }

@@ -1,6 +1,6 @@
 package me.figgnus.aeterum.listeners.hades;
 
-import me.figgnus.aeterum.Plugin;
+import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -21,10 +21,10 @@ import java.util.Set;
 import java.util.UUID;
 
 public class DarkPearlListener implements Listener {
-    private final Plugin plugin;
+    private final AeterumX plugin;
     private final Set<UUID> invulnerablePlayers = new HashSet<>();
 
-    public DarkPearlListener(Plugin plugin) {
+    public DarkPearlListener(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

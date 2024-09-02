@@ -1,9 +1,8 @@
-package me.figgnus.aeterum.listeners.demeter;
+package me.figgnus.aeterum.listeners.dionysus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.HorseDataManager;
-import me.figgnus.aeterum.utils.HorseUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -21,17 +20,16 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.UUID;
 
-public class DemeterWhistleListener implements Listener {
+public class DionysusWhistleListener implements Listener {
     private final HorseDataManager horseDataManager;
     private final AeterumX plugin;
-    public static final String HORSE_KEY = "Demeter";
-    private String demeter_tag = "demeter_tag";
+    public static final String HORSE_KEY = "Dionysus";
+    private String dionysus_tag = "dionysus_tag";
 
-    public DemeterWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
+    public DionysusWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
         this.horseDataManager = horseDataManager;
         this.plugin = plugin;
     }
-
     @EventHandler
     public void onWhistleUse(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -40,7 +38,7 @@ public class DemeterWhistleListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME.getItemMeta().getCustomModelData())) {
+        if (ItemUtils.isCustomItem(item, CustomItems.DRUNK_HORSE_TAME.getItemMeta().getCustomModelData())) {
             ItemMeta meta = item.getItemMeta();
             int customModelData = meta.getCustomModelData();
             // Ensure the player uses the item in the main hand
@@ -64,7 +62,7 @@ public class DemeterWhistleListener implements Listener {
         }
     }
     public void findAndTeleportHorse(Player player, String playerUniqueId) {
-        NamespacedKey key = new NamespacedKey(plugin, demeter_tag);
+        NamespacedKey key = new NamespacedKey(plugin, dionysus_tag);
 
         // Iterate through all worlds in the server
         for (World world : Bukkit.getWorlds()) {
@@ -107,14 +105,14 @@ public class DemeterWhistleListener implements Listener {
         horse.setOwner(player);
         horse.setCustomName(player.getName() + "'s Horse ");
         horse.setCustomNameVisible(true);
-        horse.setColor(Horse.Color.GRAY);
+        horse.setColor(Horse.Color.CHESTNUT);
         horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
         horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
         horse.setMaxHealth(30);
         horse.setHealth(30);
         horse.setInvulnerable(true);
 
-        NamespacedKey key = new NamespacedKey(plugin, demeter_tag);
+        NamespacedKey key = new NamespacedKey(plugin, dionysus_tag);
         horse.getPersistentDataContainer().set(key, PersistentDataType.STRING, player.getUniqueId().toString());
         plugin.setEntityMetadata(horse, HORSE_KEY, "true");
         // Save horse UUID to config

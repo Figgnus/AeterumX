@@ -80,8 +80,8 @@ public final class AeterumX extends JavaPlugin implements Listener {
         horseDataManager = new HorseDataManager(getDataFolder());
         horseDataManager.loadHorses();
         // Initialize HorseManager with the data manager
-        DemeterWhistleListener demeterWhistleListener = new DemeterWhistleListener(horseDataManager, this);
-        getServer().getPluginManager().registerEvents(demeterWhistleListener, this);
+        getServer().getPluginManager().registerEvents(new DemeterWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
 
         //Listeners
         betterBonemeal = new BetterBonemealListener(this);

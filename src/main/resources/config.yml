@@ -35,11 +35,11 @@ permissions:
       - DIAMOND:NETHERITE_HOE:DIAMOND
       - AIR:EMERALD:AIR
   FLOWER_HORSE_TAME:
-    name: "Sladké Jablko"
-    lore: "Jablko kterým Demeter může ochočit svého koňe"
+    name: "Démétéřin Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.demeter.horse_tame"
     custom_id: 60004
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe:
       - AIR:OXEYE_DAISY:AIR
       - OXEYE_DAISY:GOLDEN_APPLE:OXEYE_DAISY
@@ -89,11 +89,11 @@ permissions:
       - FERMENTED_SPIDER_EYE:GLASS_BOTTLE:PHANTOM_MEMBRANE
       - AIR:GLOWSTONE_DUST:AIR
   DRUNK_HORSE_TAME:
-    name: "Fermentované Jablko"
-    lore: "Jablko kterým Dionysus může ochočit svého koňe"
+    name: "Dionýsův Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.dionysus.horse_tame"
     custom_id: 60006
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe:
       - AIR:RANDOM_EFFECT_POTION:AIR
       - RANDOM_EFFECT_POTION:GOLDEN_APPLE:RANDOM_EFFECT_POTION

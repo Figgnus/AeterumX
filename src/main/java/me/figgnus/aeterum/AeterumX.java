@@ -78,7 +78,7 @@ public final class AeterumX extends JavaPlugin implements Listener {
         horseLocationUpdater.start();
         // Initialize HorseManager with the data manager
         getServer().getPluginManager().registerEvents(new DemeterWhistleListener(horseDataManager, this), this);
-//        getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
 //        getServer().getPluginManager().registerEvents(new HadesWhistleListener(horseDataManager, this), this);
 //        getServer().getPluginManager().registerEvents(new HermesWhistleListener(horseDataManager, this), this);
 

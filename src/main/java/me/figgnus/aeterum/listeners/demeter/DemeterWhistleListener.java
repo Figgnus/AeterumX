@@ -16,7 +16,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.UUID;
 
@@ -24,7 +23,6 @@ public class DemeterWhistleListener implements Listener {
     private final HorseDataManager horseDataManager;
     private final AeterumX plugin;
     public static final String HORSE_KEY = "Demeter";
-    private String demeter_tag = "demeter_tag";
 
     public DemeterWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
         this.horseDataManager = horseDataManager;

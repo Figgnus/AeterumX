@@ -36,7 +36,7 @@ public class DrunkHorseAbilityListener implements Listener {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
                         Horse horse = (Horse) player.getVehicle();
-                        String metadataValue = plugin.getEntityMetadata(horse, DionysusWhistleListener.HORSE_KEY);
+                        String metadataValue = plugin.getEntityMetadata(horse, DrunkHorseTameListener.DRUNK_KEY);
                         if ("true".equals(metadataValue)) {
                             if (!player.hasPermission(PermissionUtils.dionysusHorseAbility)) {
                                 player.sendMessage(PermissionUtils.permissionItemMessage);

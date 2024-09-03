@@ -14,8 +14,7 @@ import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.AeterumCommandExecutor;
 import me.figgnus.aeterum.utils.HorseDataManager;
-import me.figgnus.aeterum.utils.ItemUtils;
-import org.bukkit.ChatColor;
+import me.figgnus.aeterum.utils.HorseLocationUpdater;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -23,15 +22,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionType;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class AeterumX extends JavaPlugin implements Listener {
 
@@ -79,9 +74,13 @@ public final class AeterumX extends JavaPlugin implements Listener {
         // Initialize the HorseDataManager and load data
         horseDataManager = new HorseDataManager(getDataFolder());
         horseDataManager.loadHorses();
+        HorseLocationUpdater horseLocationUpdater = new HorseLocationUpdater(horseDataManager, this, 100L);
+        horseLocationUpdater.start();
         // Initialize HorseManager with the data manager
         getServer().getPluginManager().registerEvents(new DemeterWhistleListener(horseDataManager, this), this);
-        getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
+//        getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
+//        getServer().getPluginManager().registerEvents(new HadesWhistleListener(horseDataManager, this), this);
+//        getServer().getPluginManager().registerEvents(new HermesWhistleListener(horseDataManager, this), this);
 
         //Listeners
         betterBonemeal = new BetterBonemealListener(this);
@@ -139,9 +138,6 @@ public final class AeterumX extends JavaPlugin implements Listener {
     public static String getPermission(String id) {
         return config.getString("permissions." + id + ".permission");
     }
-    public static Integer getItemId(String id) {
-        return config.getInt("permissions." + id + ".custom_id");
-    }
     public static String getItemName(String id) {
         return config.getString("permissions." +id + ".name");
     }
@@ -152,82 +148,12 @@ public final class AeterumX extends JavaPlugin implements Listener {
         String nameOfMaterial = config.getString("permissions." + id + ".material");
         return Material.getMaterial(nameOfMaterial);
     }
-    public static String getPotionType(String id) {
-        return config.getString("permissions." + id + ".recipe_potion");
-    }
     public static Color getItemColor(String id) {
         int red = config.getInt("permissions." + id + ".color.red");
         int green = config.getInt("permissions." + id + ".color.green");
         int blue = config.getInt("permissions." + id + ".color.blue");
         return Color.fromRGB(red, green, blue);
     }
-    public static List<ItemStack> getRecipe(String id) {
-        List<ItemStack> recipe = new ArrayList<>();
-        String pathToRecipe = "permissions." + id + ".recipe";
-        List<String> recipeConfig = config.getStringList(pathToRecipe);
-
-        for (String row : recipeConfig) {
-            String[] ingredients = row.split(":");
-
-            for (String ingredient : ingredients) {
-                Material material = Material.getMaterial(ingredient);
-
-                if (material != null) {
-                    if (material == Material.POTION || material == Material.SPLASH_POTION || material == Material.LINGERING_POTION) {
-                        String potionTypeString = getPotionType(id);
-                        try {
-                            ItemStack potion = ItemUtils.createPotion(PotionType.valueOf(potionTypeString));
-                            recipe.add(potion);
-                        } catch (IllegalArgumentException e) {
-                            // Invalid potion type, use default water potion
-                            System.out.println("Invalid potion type: " + potionTypeString + ". Using WATER instead.");
-                            ItemStack potion = ItemUtils.createPotion(PotionType.WATER);
-                            recipe.add(potion);
-                        }
-                    } else {
-                        recipe.add(new ItemStack(material));
-                    }
-                } else {
-                    // Check if the ingredient matches a custom item identifier
-                    boolean customItemAdded = false;
-
-                    for (String item : config.getConfigurationSection("permissions").getKeys(false)) {
-                        if (ingredient.equals(item)) {
-                            // Create custom item and add it to the recipe list
-                            ItemStack customItem = CustomItems.createCustomItem(
-                                    getItemMaterial(item),
-                                    getItemId(item),
-                                    getItemName(item),
-                                    getGrayLore(getItemLore(item)),
-                                    getItemColor(item)
-                            );
-                            recipe.add(customItem);
-                            customItemAdded = true;
-                            break;
-                        }
-                    }
-
-                    // If no custom item was found, add AIR to maintain the recipe structure
-                    if (!customItemAdded) {
-                        recipe.add(new ItemStack(Material.AIR));
-                    }
-                }
-            }
-        }
-        return recipe;
-    }
-    private static List<String> getGrayLore(String lore) {
-        List<String> grayLore = new ArrayList<>();
-        if (lore != null && !lore.isEmpty()) {
-            // Split the lore into lines and apply gray color to each line
-            String[] lines = lore.split("\n");
-            for (String line : lines) {
-                grayLore.add(ChatColor.GRAY + line);
-            }
-        }
-        return grayLore;
-    }
-
     @Override
     public void onDisable() {
         // Plugin shutdown logic

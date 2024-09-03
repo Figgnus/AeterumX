@@ -1,4 +1,4 @@
-//package me.figgnus.aeterum.listeners.dionysus;
+//package me.figgnus.aeterum.listeners.hermes;
 //
 //import me.figgnus.aeterum.AeterumX;
 //import me.figgnus.aeterum.items.CustomItems;
@@ -21,16 +21,15 @@
 //
 //import java.util.UUID;
 //
-//public class DionysusWhistleListener implements Listener {
-//
-//    private final HorseDataManager horseDataManager;
+//public class HermesWhistleListener implements Listener {
 //    private final AeterumX plugin;
-//    public static final String HORSE_KEY = "Dionysus";
-//    private String dionysus_tag = "dionysus_tag";
+//    private final HorseDataManager horseDataManager;
+//    public static final String HORSE_KEY = "Hermes";
+//    private String hermes_tag = "hermes_tag";
 //
-//    public DionysusWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
-//        this.horseDataManager = horseDataManager;
+//    public HermesWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
 //        this.plugin = plugin;
+//        this.horseDataManager = horseDataManager;
 //    }
 //    @EventHandler
 //    public void onWhistleUse(PlayerInteractEvent event) {
@@ -40,8 +39,8 @@
 //        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
 //            return;
 //        }
-//        if (ItemUtils.isCustomItem(item, CustomItems.DRUNK_HORSE_TAME.getItemMeta().getCustomModelData())) {
-//            if (!(player.hasPermission(PermissionUtils.dionysusHorseTame))) {
+//        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_TAME.getItemMeta().getCustomModelData())) {
+//            if (!(player.hasPermission(PermissionUtils.hermesHorseTame))) {
 //                player.sendMessage(PermissionUtils.permissionItemMessage);
 //                return;
 //            }
@@ -50,7 +49,6 @@
 //                return;
 //            }
 //            player.setCooldown(item.getType(), 140);
-//
 //            ItemMeta meta = item.getItemMeta();
 //            int customModelData = meta.getCustomModelData();
 //            // Ensure the player uses the item in the main hand
@@ -74,7 +72,7 @@
 //        }
 //    }
 //    public void findAndTeleportHorse(Player player, String playerUniqueId) {
-//        NamespacedKey key = new NamespacedKey(plugin, dionysus_tag);
+//        NamespacedKey key = new NamespacedKey(plugin, hermes_tag);
 //
 //        // Iterate through all worlds in the server
 //        for (World world : Bukkit.getWorlds()) {
@@ -116,14 +114,14 @@
 //        horse.setOwner(player);
 //        horse.setCustomName(player.getName() + "'s Horse ");
 //        horse.setCustomNameVisible(true);
-//        horse.setColor(Horse.Color.CHESTNUT);
+//        horse.setColor(Horse.Color.CREAMY);
 //        horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
 //        horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
 //        horse.setMaxHealth(30);
 //        horse.setHealth(30);
 //        horse.setInvulnerable(true);
 //
-//        NamespacedKey key = new NamespacedKey(plugin, dionysus_tag);
+//        NamespacedKey key = new NamespacedKey(plugin, hermes_tag);
 //        horse.getPersistentDataContainer().set(key, PersistentDataType.STRING, player.getUniqueId().toString());
 //        plugin.setEntityMetadata(horse, HORSE_KEY, "true");
 //        // Save horse UUID to config

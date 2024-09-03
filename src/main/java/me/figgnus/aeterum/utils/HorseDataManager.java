@@ -1,5 +1,7 @@
 package me.figgnus.aeterum.utils;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -7,12 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class HorseDataManager {
-    private  final File file;
-    private  FileConfiguration config;
-    private  final Map<UUID, Map<Integer, UUID>> playerHorses;
+    private final File file;
+    private FileConfiguration config;
+    private final Map<UUID, Map<Integer, HorseData>> playerHorses;
 
     public HorseDataManager(File dataFolder) {
         this.file = new File(dataFolder, "horses.yml");
@@ -31,11 +34,14 @@ public class HorseDataManager {
     public void loadHorses() {
         for (String playerKey : config.getKeys(false)) {
             UUID playerUUID = UUID.fromString(playerKey);
-            Map<Integer, UUID> horses = new HashMap<>();
+            Map<Integer, HorseData> horses = new HashMap<>();
             for (String customModelDataKey : config.getConfigurationSection(playerKey).getKeys(false)) {
                 int customModelData = Integer.parseInt(customModelDataKey);
-                UUID horseUUID = UUID.fromString(config.getString(playerKey + "." + customModelDataKey));
-                horses.put(customModelData, horseUUID);
+                String basePath = playerKey + "." + customModelDataKey;
+                UUID horseUUID = UUID.fromString(config.getString(basePath + ".horseUUID"));
+                String horseWorld = config.getString(basePath + ".horseWorld");
+                Location horseLocation = config.getLocation(basePath + ".horseLocation");
+                horses.put(customModelData, new HorseData(horseUUID, horseWorld, horseLocation));
             }
             playerHorses.put(playerUUID, horses);
         }
@@ -43,29 +49,42 @@ public class HorseDataManager {
 
     public void saveHorses() {
         for (UUID playerUUID : playerHorses.keySet()) {
-            Map<Integer, UUID> horses = playerHorses.get(playerUUID);
+            Map<Integer, HorseData> horses = playerHorses.get(playerUUID);
             for (Integer customModelData : horses.keySet()) {
-                config.set(playerUUID.toString() + "." + customModelData, horses.get(customModelData).toString());
+                HorseData horseData = horses.get(customModelData);
+                String basePath = playerUUID.toString() + "." + customModelData;
+                config.set(basePath + ".horseUUID", horseData.getHorseUUID().toString());
+                config.set(basePath + ".horseWorld", horseData.getHorseWorld());
+                config.set(basePath + ".horseLocation", horseData.getHorseLocation());
             }
         }
         try {
             config.save(file);
+            Bukkit.getLogger().info("AeterumX | Saved horses to config");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public Set<UUID> getAllPlayerUUIDs() {
+        return playerHorses.keySet();
+    }
 
-    public UUID getHorseUUID(UUID playerUUID, int customModelData) {
-        Map<Integer, UUID> horses = playerHorses.get(playerUUID);
+    public Map<Integer, HorseData> getPlayerHorses(UUID playerUUID) {
+        return playerHorses.get(playerUUID);
+    }
+
+    public HorseData getHorseData(UUID playerUUID, int customModelData) {
+        Map<Integer, HorseData> horses = playerHorses.get(playerUUID);
         return (horses != null) ? horses.get(customModelData) : null;
     }
 
-    public void setHorseUUID(UUID playerUUID, int customModelData, UUID horseUUID) {
-        playerHorses.computeIfAbsent(playerUUID, k -> new HashMap<>()).put(customModelData, horseUUID);
+    public void setHorseData(UUID playerUUID, int customModelData, UUID horseUUID, String horseWorld, Location horseLocation) {
+        HorseData horseData = new HorseData(horseUUID, horseWorld, horseLocation);
+        playerHorses.computeIfAbsent(playerUUID, k -> new HashMap<>()).put(customModelData, horseData);
     }
 
     public void removeHorse(UUID playerUUID, int customModelData) {
-        Map<Integer, UUID> horses = playerHorses.get(playerUUID);
+        Map<Integer, HorseData> horses = playerHorses.get(playerUUID);
         if (horses != null) {
             horses.remove(customModelData);
             if (horses.isEmpty()) {

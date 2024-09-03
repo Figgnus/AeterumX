@@ -143,11 +143,11 @@ permissions:
       - OBSIDIAN:DRAGON_BREATH:OBSIDIAN
       - GHAST_TEAR:CRYING_OBSIDIAN:GHAST_TEAR
   ZOMBIE_HORSE_TAME:
-    name: "Otrávené Jablko"
-    lore: "Jablko kterým Hades může ochočit svého koňe"
+    name: "Hádesův Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.hades.horse_tame"
     custom_id: 60005
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe:
       - AIR:WITHER_ROSE:AIR
       - WITHER_ROSE:GOLDEN_APPLE:WITHER_ROSE
@@ -192,11 +192,11 @@ permissions:
       - SUGAR:IRON_BOOTS:SUGAR
       - LEATHER:AIR:LEATHER
   SPEED_HORSE_TAME:
-    name: "Rychlé Jablko"
-    lore: "Jablko kterým Hermes může ochočit svého koňe"
+    name: "Hermesův Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.hermes.horse_tame"
     custom_id: 60007
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe_potion: swiftness
     recipe:
       - AIR:POTION:AIR
@@ -220,11 +220,11 @@ permissions:
     name: "GUI"
     permission: "aeterum.hermes.gui"
   SEA_HORSE_TAME:
-    name: "Slané Jablko"
-    lore: "Jablko kterým Poseidon může ochočit svého koňe"
+    name: "Poseidonův Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.poseidon.horse_tame"
     custom_id: 60009
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe:
       - AIR:NAUTILUS_SHELL:AIR
       - NAUTILUS_SHELL:GOLDEN_APPLE:NAUTILUS_SHELL
@@ -259,11 +259,11 @@ permissions:
     name: "GUI"
     permission: "aeterum.poseidon.gui"
   PEGASUS_HORSE_TAME:
-    name: "Levitující Jablko"
-    lore: "Jablko kterým Zeus může ochočit svého koňe"
+    name: "Diův Roh"
+    lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.zeus.horse_tame"
     custom_id: 60010
-    material: "GOLDEN_APPLE"
+    material: "GOAT_HORN"
     recipe:
       - AIR:WIND_CHARGE:AIR
       - WIND_CHARGE:GOLDEN_APPLE:WIND_CHARGE

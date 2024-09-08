@@ -28,7 +28,7 @@ public class SeaHorseAbilityListener implements Listener {
         // Check if the player is riding a horse
         if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
             Horse horse = (Horse) player.getVehicle();
-            String metadataValue = plugin.getEntityMetadata(horse, SeaHorseTameListener.FROST_WALKER_KEY);
+            String metadataValue = plugin.getEntityMetadata(horse, PoseidonWhistleListener.HORSE_KEY);
 
             // Check if the horse has the Frost Walker ability
             if ("true".equals(metadataValue)) {
@@ -48,7 +48,7 @@ public class SeaHorseAbilityListener implements Listener {
                     // Check if the block under the horse is water
                     if (blockUnder.getType() == Material.WATER) {
                         if (!player.hasPermission(PermissionUtils.poseidonHorseAbility)) {
-                            player.sendMessage(PermissionUtils.permissionItemMessage);
+                            player.sendMessage(PermissionUtils.ridingPermissionMessage);
                             return;
                         }
                         // Convert water to ice

@@ -6,8 +6,7 @@ import org.bukkit.ChatColor;
 public class PermissionUtils {
     public static final String permissionItemMessage = ChatColor.RED + "Nemáš oprávnění použít tento předmět.";
     public static final String permissionCommandMessage = ChatColor.RED + "Nemáš oprávnění použít tento příkaz";
-    public static final String horseTameMessage = ChatColor.GOLD + "Nakrmil/a jsi koně. Nyní můžeš koně ochočit.";
-    public static final String horseTransformMessage = ChatColor.GOLD + "Tvůj kůň se proměnil.";
+    public static final String ridingPermissionMessage = ChatColor.RED + "Nemáš oprávnění jezdit na tomto koni.";
 
     public static final String demeterBetterBonemeal = AeterumX.getPermission("BETTER_BONEMEAL");
     public static final String demeterHorseTame = AeterumX.getPermission("FLOWER_HORSE_TAME");
@@ -47,12 +46,6 @@ public class PermissionUtils {
     public static final String hadesTogglePermission = AeterumX.getPermission("HADES_COMMAND");
     public static final String poseidonTogglePermission = AeterumX.getPermission("POSEIDON_COMMAND");
 
-    public static final String demeterGuiPermission = AeterumX.getPermission("DEMETER_GUI");
-    public static final String dionysusGuiPermission = AeterumX.getPermission("DIONYSUS_GUI");
-    public static final String hadesGuiPermission = AeterumX.getPermission("HADES_GUI");
-    public static final String hermesGuiPermission = AeterumX.getPermission("HERMES_GUI");
-    public static final String poseidonGuiPermission = AeterumX.getPermission("POSEIDON_GUI");
-    public static final String zeusGuiPermission = AeterumX.getPermission("ZEUS_GUI");
 
     public static final String randomizerPermission = AeterumX.getPermission("RANDOMIZER");
 }

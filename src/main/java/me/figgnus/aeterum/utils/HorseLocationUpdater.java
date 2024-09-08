@@ -34,10 +34,11 @@ public class HorseLocationUpdater implements Runnable{
                 int customModelData = entry.getKey();
                 HorseData horseData = entry.getValue();
                 Horse horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+                boolean isAlive = horseData.isHorseAlive();
 
                 if (horse != null && horse.isValid()) {
                     Location horseLocation = horse.getLocation();
-                    horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseLocation.getWorld().getName(), horseLocation);
+                    horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseLocation.getWorld().getName(), horseLocation, isAlive);
                 }
             }
         }

@@ -1,4 +1,4 @@
-package me.figgnus.aeterum.listeners.demeter;
+package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
@@ -21,12 +21,12 @@ import org.bukkit.util.Vector;
 
 import java.util.UUID;
 
-public class DemeterWhistleListener implements Listener {
+public class ZeusWhistleListener implements Listener {
     private final HorseDataManager horseDataManager;
     private final AeterumX plugin;
     public static final String HORSE_KEY = "Demeter";
 
-    public DemeterWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
+    public ZeusWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
         this.horseDataManager = horseDataManager;
         this.plugin = plugin;
     }
@@ -39,8 +39,8 @@ public class DemeterWhistleListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME.getItemMeta().getCustomModelData())) {
-            if (!(player.hasPermission(PermissionUtils.demeterHorseTame))) {
+        if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_TAME.getItemMeta().getCustomModelData())) {
+            if (!(player.hasPermission(PermissionUtils.zeusHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }
@@ -174,7 +174,7 @@ public class DemeterWhistleListener implements Listener {
         horse.setOwner(player);
         horse.setCustomName(player.getName() + "'s Horse");
         horse.setCustomNameVisible(true);
-        horse.setColor(Horse.Color.GRAY);
+        horse.setColor(Horse.Color.WHITE);
         horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
         horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
         horse.setMaxHealth(30);

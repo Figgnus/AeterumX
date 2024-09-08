@@ -21,6 +21,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class PegasusAbilityListener implements Listener {
     private final AeterumX plugin;
+    private int duration = 300;
 
     public PegasusAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
@@ -33,19 +34,19 @@ public class PegasusAbilityListener implements Listener {
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.zeusHorseAbility)){
-                player.sendMessage(PermissionUtils.permissionItemMessage);
+                player.sendMessage(PermissionUtils.ridingPermissionMessage);
                 return;
             }
             Horse horse = (Horse) player.getVehicle();
-            String metadataValue = plugin.getEntityMetadata(horse, PegasusTameListener.LEVITATE_KEY);
+            String metadataValue = plugin.getEntityMetadata(horse, ZeusWhistleListener.HORSE_KEY);
             if ("true".equals(metadataValue)){
                 if (player.getGameMode() == GameMode.SURVIVAL){
                     item.setAmount(item.getAmount() - 1);
                 }
                 // Apply levitation effect to the horse
-                horse.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 180, 1)); // 100 ticks = 5 seconds
-                player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 180, 1)); // 100 ticks = 5 seconds
-                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 180, 5));
+                horse.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration, 1)); // 100 ticks = 5 seconds
+                player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration, 1)); // 100 ticks = 5 seconds
+                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 6));
 
                 // Schedule a task to apply fall damage immunity after Levitation ends
                 new BukkitRunnable() {

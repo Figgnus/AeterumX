@@ -39,7 +39,7 @@ public class DrunkHorseAbilityListener implements Listener {
                         String metadataValue = plugin.getEntityMetadata(horse, DionysusWhistleListener.HORSE_KEY);
                         if ("true".equals(metadataValue)) {
                             if (!player.hasPermission(PermissionUtils.dionysusHorseAbility)) {
-                                player.sendMessage(PermissionUtils.permissionItemMessage);
+                                player.sendMessage(PermissionUtils.ridingPermissionMessage);
                                 return;
                             }
                             startAuraTask(player, horse);

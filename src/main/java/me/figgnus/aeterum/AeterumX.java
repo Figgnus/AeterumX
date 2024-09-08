@@ -10,10 +10,12 @@ import me.figgnus.aeterum.listeners.dionysus.*;
 import me.figgnus.aeterum.listeners.hades.*;
 import me.figgnus.aeterum.listeners.hermes.*;
 import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
+import me.figgnus.aeterum.listeners.poseidon.PoseidonWhistleListener;
 import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
 import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.AeterumCommandExecutor;
 import me.figgnus.aeterum.utils.HorseDataManager;
+import me.figgnus.aeterum.utils.HorseDeathListener;
 import me.figgnus.aeterum.utils.HorseLocationUpdater;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -31,40 +33,10 @@ import java.io.File;
 public final class AeterumX extends JavaPlugin implements Listener {
 
     private static FileConfiguration config;
-    private RecipesGUI recipesGUI;
     private HorseDataManager horseDataManager;
-
-    private BetterBonemealListener betterBonemeal;
-    private GrowthPotionListener growthPotion;
-    private HoeOfHarvestListener hoeOfHarvest;
-    private FlowerHorseAbilityListener flowerHorseAbility;
-
-    private ZombieHorseAbilityListener zombieHorseAbility;
-    private DarknessPotionListener darknessPotion;
-    private DarkPearlListener darkPearl;
-    private PortalListener portal;
     private NightVisionListener nightVision;
-
-    private DrunkHorseAbilityListener drunkHorseAbility;
-    private PartyBallListener partyBall;
-    private PartyAtmosphereListener partyAtmosphere;
-    private RandomEffectPotionListener randomEffectPotion;
-
-    private SpeedHorseAbilityListener speedHorseAbility;
-    private FlyingItemListener flyingItem;
     private MessengerPackListener messengerPack;
-    private SpeedBootsListener speedBoots;
-
-    private SeaHorseAbilityListener seaHorseAbility;
     private DolphinGraceListener dolphinGrace;
-
-    private PegasusAbilityListener pegasusAbility;
-    private BreedingItemListener breedingItem;
-    private LightningSpearListener lightningSpear;
-    private WeatherChangerListener weatherChanger;
-
-    private RandomizerListener randomizer;
-
 
     @Override
     public void onEnable() {
@@ -79,42 +51,47 @@ public final class AeterumX extends JavaPlugin implements Listener {
         // Initialize HorseManager with the data manager
         getServer().getPluginManager().registerEvents(new DemeterWhistleListener(horseDataManager, this), this);
         getServer().getPluginManager().registerEvents(new DionysusWhistleListener(horseDataManager, this), this);
-//        getServer().getPluginManager().registerEvents(new HadesWhistleListener(horseDataManager, this), this);
-//        getServer().getPluginManager().registerEvents(new HermesWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new HadesWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new HermesWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new PoseidonWhistleListener(horseDataManager, this), this);
+        getServer().getPluginManager().registerEvents(new ZeusWhistleListener(horseDataManager, this), this);
+
+        getServer().getPluginManager().registerEvents(new HorseDeathListener(horseDataManager), this);
+
 
         //Listeners
-        betterBonemeal = new BetterBonemealListener(this);
-        growthPotion = new GrowthPotionListener(this);
-        hoeOfHarvest = new HoeOfHarvestListener(this);
-        flowerHorseAbility = new FlowerHorseAbilityListener(this);
+        new BetterBonemealListener(this);
+        new GrowthPotionListener(this);
+        new HoeOfHarvestListener(this);
+        new FlowerHorseAbilityListener(this);
 
-        zombieHorseAbility = new ZombieHorseAbilityListener(this);
-        darknessPotion = new DarknessPotionListener(this);
-        darkPearl = new DarkPearlListener(this);
-        portal = new PortalListener(this);
+        new ZombieHorseAbilityListener(this);
+        new DarknessPotionListener(this);
+        new DarkPearlListener(this);
+        new PortalListener(this);
         nightVision = new NightVisionListener(this);
 
-        drunkHorseAbility = new DrunkHorseAbilityListener(this);
-        partyBall = new PartyBallListener(this);
-        partyAtmosphere = new PartyAtmosphereListener(this);
-        randomEffectPotion = new RandomEffectPotionListener(this);
+        new DrunkHorseAbilityListener(this);
+        new PartyBallListener(this);
+        new PartyAtmosphereListener(this);
+        new RandomEffectPotionListener(this);
 
-        speedHorseAbility = new SpeedHorseAbilityListener(this);
-        flyingItem = new FlyingItemListener(this);
+        new SpeedHorseAbilityListener(this);
+        new FlyingItemListener(this);
         messengerPack = new MessengerPackListener(this);
-        speedBoots = new SpeedBootsListener(this);
+        new SpeedBootsListener(this);
 
-        seaHorseAbility = new SeaHorseAbilityListener(this);
+        new SeaHorseAbilityListener(this);
         dolphinGrace = new DolphinGraceListener(this);
 
-        pegasusAbility = new PegasusAbilityListener(this);
-        breedingItem = new BreedingItemListener(this);
-        lightningSpear = new LightningSpearListener(this);
-        weatherChanger = new WeatherChangerListener(this);
+        new PegasusAbilityListener(this);
+        new BreedingItemListener(this);
+        new LightningSpearListener(this);
+        new WeatherChangerListener(this);
 
-        randomizer = new RandomizerListener(this);
+        new RandomizerListener(this);
 
-        recipesGUI = new RecipesGUI(this);
+        new RecipesGUI(this);
 
         getCommand("dolphingrace").setExecutor(dolphinGrace);
         getCommand("nightvision").setExecutor(nightVision);

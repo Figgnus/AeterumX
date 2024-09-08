@@ -41,7 +41,8 @@ public class HorseDataManager {
                 UUID horseUUID = UUID.fromString(config.getString(basePath + ".horseUUID"));
                 String horseWorld = config.getString(basePath + ".horseWorld");
                 Location horseLocation = config.getLocation(basePath + ".horseLocation");
-                horses.put(customModelData, new HorseData(horseUUID, horseWorld, horseLocation));
+                boolean horseAlive = config.getBoolean(basePath + ".horseAlive", true);
+                horses.put(customModelData, new HorseData(horseUUID, horseWorld, horseLocation, horseAlive));
             }
             playerHorses.put(playerUUID, horses);
         }
@@ -56,6 +57,7 @@ public class HorseDataManager {
                 config.set(basePath + ".horseUUID", horseData.getHorseUUID().toString());
                 config.set(basePath + ".horseWorld", horseData.getHorseWorld());
                 config.set(basePath + ".horseLocation", horseData.getHorseLocation());
+                config.set(basePath + ".horseAlive", horseData.isHorseAlive());  // Save alive status
             }
         }
         try {
@@ -63,6 +65,16 @@ public class HorseDataManager {
             Bukkit.getLogger().info("AeterumX | Saved horses to config");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public boolean isHorseAlive(UUID playerUUID, int customModelData) {
+        HorseData horseData = getHorseData(playerUUID, customModelData);
+        return horseData != null && horseData.isHorseAlive();
+    }
+    public void setHorseAlive(UUID playerUUID, int customModelData, boolean isAlive) {
+        HorseData horseData = getHorseData(playerUUID, customModelData);
+        if (horseData != null) {
+            horseData.setHorseAlive(isAlive);
         }
     }
     public Set<UUID> getAllPlayerUUIDs() {
@@ -78,8 +90,8 @@ public class HorseDataManager {
         return (horses != null) ? horses.get(customModelData) : null;
     }
 
-    public void setHorseData(UUID playerUUID, int customModelData, UUID horseUUID, String horseWorld, Location horseLocation) {
-        HorseData horseData = new HorseData(horseUUID, horseWorld, horseLocation);
+    public void setHorseData(UUID playerUUID, int customModelData, UUID horseUUID, String horseWorld, Location horseLocation, boolean isAlive) {
+        HorseData horseData = new HorseData(horseUUID, horseWorld, horseLocation, isAlive);
         playerHorses.computeIfAbsent(playerUUID, k -> new HashMap<>()).put(customModelData, horseData);
     }
 

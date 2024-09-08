@@ -3,14 +3,6 @@ version: '${project.version}'
 main: me.figgnus.aeterum.AeterumX
 api-version: '1.21'
 commands:
-  recepty:
-    description: "Opens recepty GUI"
-    usage: /recepty
-  tame:
-    description: "Spawns specific horse"
-    usage: /tame <god>
-    permission: aeterum.tame.admin
-    permission-message: "You don't have permission to use this command."
   nightvision:
     description: "Gives player nightvision"
     usage: /nightvision

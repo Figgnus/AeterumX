@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ZombieHorse;
 import org.bukkit.event.EventHandler;
@@ -26,9 +27,9 @@ public class ZombieHorseAbilityListener implements Listener {
         Player player = event.getPlayer();
 
         // Check if the player is riding a horse
-        if (player.isInsideVehicle() && player.getVehicle() instanceof ZombieHorse) {
-            ZombieHorse zombieHorse = (ZombieHorse) player.getVehicle();
-            String metadataValue = plugin.getEntityMetadata(zombieHorse, ZombieHorseTameListener.LAVA_WALKER);
+        if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
+            Horse zombieHorse = (Horse) player.getVehicle();
+            String metadataValue = plugin.getEntityMetadata(zombieHorse, HadesWhistleListener.HORSE_KEY);
 
             // Check if the horse has the Frost Walker ability
             if ("true".equals(metadataValue)) {
@@ -48,7 +49,7 @@ public class ZombieHorseAbilityListener implements Listener {
                     // Check if the block under the horse is lava
                     if (blockUnder.getType() == Material.LAVA) {
                         if (!player.hasPermission(PermissionUtils.hadesHorseAbility)) {
-                            player.sendMessage(PermissionUtils.permissionItemMessage);
+                            player.sendMessage(PermissionUtils.ridingPermissionMessage);
                             return;
                         }
                         // Convert water to basalt

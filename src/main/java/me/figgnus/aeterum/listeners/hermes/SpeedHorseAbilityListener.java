@@ -18,6 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class SpeedHorseAbilityListener implements Listener {
     private final AeterumX plugin;
+    private int duration = 300;
 
     public SpeedHorseAbilityListener(AeterumX plugin) {
         this.plugin = plugin;
@@ -31,18 +32,18 @@ public class SpeedHorseAbilityListener implements Listener {
 
         if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_ABILITY.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.hermesHorseAbility)){
-                player.sendMessage(PermissionUtils.permissionItemMessage);
+                player.sendMessage(PermissionUtils.ridingPermissionMessage);
                 return;
             }
             Horse horse = (Horse) player.getVehicle();
-            String metadataValue = plugin.getEntityMetadata(horse, SpeedHorseTameListener.SPEED_KEY);
+            String metadataValue = plugin.getEntityMetadata(horse, HermesWhistleListener.HORSE_KEY);
             if ("true".equals(metadataValue)){
                 if (player.getGameMode() == GameMode.SURVIVAL){
                     item.setAmount(item.getAmount() - 1);
                 }
                 // Apply levitation effect to the horse
-                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 3)); // 100 ticks = 5 seconds
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 3)); // 100 ticks = 5 seconds
+                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 3)); // 100 ticks = 5 seconds
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 3)); // 100 ticks = 5 seconds
                 new BukkitRunnable() {
                     @Override
                     public void run() {

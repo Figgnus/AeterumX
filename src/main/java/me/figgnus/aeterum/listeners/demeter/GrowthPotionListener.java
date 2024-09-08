@@ -38,7 +38,7 @@ public class GrowthPotionListener implements Listener {
         }
     }
     private void applyGrowthEffect(Player player) {
-        int totalStages = 6;
+        int totalStages = 7;
         // Apply custom effect to grow plants around the player
         new GrowthTask(plugin, player, totalStages).runTaskTimer(plugin, 0, 20); // Runs every second for 5 seconds
     }

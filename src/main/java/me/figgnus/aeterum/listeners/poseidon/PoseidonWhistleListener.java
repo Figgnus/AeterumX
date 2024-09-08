@@ -1,4 +1,4 @@
-package me.figgnus.aeterum.listeners.demeter;
+package me.figgnus.aeterum.listeners.poseidon;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
@@ -21,12 +21,12 @@ import org.bukkit.util.Vector;
 
 import java.util.UUID;
 
-public class DemeterWhistleListener implements Listener {
+public class PoseidonWhistleListener implements Listener {
     private final HorseDataManager horseDataManager;
     private final AeterumX plugin;
-    public static final String HORSE_KEY = "Demeter";
+    public static final String HORSE_KEY = "Poseidon";
 
-    public DemeterWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
+    public PoseidonWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
         this.horseDataManager = horseDataManager;
         this.plugin = plugin;
     }
@@ -39,8 +39,8 @@ public class DemeterWhistleListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME.getItemMeta().getCustomModelData())) {
-            if (!(player.hasPermission(PermissionUtils.demeterHorseTame))) {
+        if (ItemUtils.isCustomItem(item, CustomItems.SEA_HORSE_TAME.getItemMeta().getCustomModelData())) {
+            if (!(player.hasPermission(PermissionUtils.poseidonHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
             }

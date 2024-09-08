@@ -42,19 +42,20 @@ public class FlowerHorseAbilityListener  implements Listener {
 
             // Check if the horse has the Seed  ability
             if ("true".equals(metadataValue)) {
+
                 // Get the block under the horse
                 Block centerBlock = horse.getLocation().getBlock().getRelative(0, 0, 0);
 
                 // Iterate through the 3x3 area under the horse
-                for (int dx = -1; dx <= 1; dx++) {
-                    for (int dz = -1; dz <= 1; dz++) {
+                for (int dx = -2; dx <= 2; dx++) {
+                    for (int dz = -2; dz <= 2; dz++) {
                         Block blockBelow = centerBlock.getRelative(dx, -1, dz);
                         Block blockBelowSave = centerBlock.getRelative(dx, 0, dz);
 
                         // Check if the block below is farmland
                         if (blockBelow.getType() == Material.FARMLAND || blockBelowSave.getType() == Material.FARMLAND) {
                             if (!player.hasPermission(PermissionUtils.demeterHorseAbility)) {
-                                player.sendMessage(PermissionUtils.permissionItemMessage);
+                                player.sendMessage(PermissionUtils.ridingPermissionMessage);
                                 return;
                             }
                             // Check if the player has seeds in their inventory

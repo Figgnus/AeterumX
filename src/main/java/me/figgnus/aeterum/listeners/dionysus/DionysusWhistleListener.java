@@ -8,6 +8,7 @@ import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.UUID;
 
@@ -64,6 +66,12 @@ public class DionysusWhistleListener implements Listener {
     public void findAndTeleportHorse(Player player, String playerUniqueId, Integer customModelData) {
         UUID playerUUID = UUID.fromString(playerUniqueId);
 
+        // Check if the horse is alive
+        if (!horseDataManager.isHorseAlive(playerUUID, customModelData)) {
+            player.sendMessage(ChatColor.GOLD + "Tvůj kůň zemřel. Na jeho místo příchází nový.");
+            assignHorse(player, customModelData);
+        }
+
         // Retrieve the last known horse data
         HorseData horseData = horseDataManager.getHorseData(playerUUID, customModelData);
 
@@ -86,7 +94,11 @@ public class DionysusWhistleListener implements Listener {
             if (horse != null) {
                 // Teleport the horse to the player
                 Location playerLocation = player.getLocation();
-                horse.teleport(playerLocation);
+                Location safeLocation = getSafeLocationBehindPlayer(player);
+                if (safeLocation == null){
+                    safeLocation = playerLocation;
+                }
+                horse.teleport(safeLocation);
                 player.sendMessage(ChatColor.GREEN + "Whoosh!");
 
                 // Unload the chunk after teleporting the horse
@@ -110,7 +122,11 @@ public class DionysusWhistleListener implements Listener {
                     if (horse != null) {
                         // Teleport the horse to the player
                         Location playerLocation = player.getLocation();
-                        horse.teleport(playerLocation);
+                        Location safeLocation = getSafeLocationBehindPlayer(player);
+                        if (safeLocation == null){
+                            safeLocation = playerLocation;
+                        }
+                        horse.teleport(safeLocation);
                         player.sendMessage(ChatColor.GREEN + "Whoosh!");
                         horseFound = true;
                     }
@@ -166,11 +182,41 @@ public class DionysusWhistleListener implements Listener {
         horse.setHealth(30);
         horse.setInvulnerable(true);
 
+        Location safeLocation = getSafeLocationBehindPlayer(player);
+        if (safeLocation == null) {
+            safeLocation = player.getLocation();
+        }
+
+        horse.teleport(safeLocation);
+
         // Optional: Set additional metadata if needed
         plugin.setEntityMetadata(horse, HORSE_KEY, "true");
 
         // Save the horse data (UUID, world, and horse location) to the data manager
-        horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseWorld.getName(), horseLocation);
+        horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseWorld.getName(), horseLocation, true);
         horseDataManager.saveHorses();
+    }
+    private Location getSafeLocationBehindPlayer(Player player) {
+        Location playerLocation = player.getLocation();
+        Vector direction = playerLocation.getDirection().normalize(); // Players location
+        Location behindPlayer = playerLocation.subtract(direction.multiply(5)); // 5 blocks behind the player
+
+        // Check for safe location
+        for (int i = 0; i < 5; i++) { // Check range of distances behind the player
+            Location checkLocation = behindPlayer.clone().add(direction.multiply(i));
+            // Verify if the location is safe (not lava, not solid blocks, etc.)
+            if (isSafeLocation(checkLocation)) {
+                return checkLocation; // Return the first safe location found
+            }
+        }
+        return null;
+    }
+
+    private boolean isSafeLocation(Location checkLocation) {
+        Block block = checkLocation.getBlock();
+        Block blockBelow = checkLocation.clone().add(0, -1, 0).getBlock();
+
+        // Check if the block and block below are safe
+        return block.isPassable() && block.getType() != Material.LAVA && blockBelow.getType().isSolid();
     }
 }

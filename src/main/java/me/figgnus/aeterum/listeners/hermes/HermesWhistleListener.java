@@ -1,130 +1,225 @@
-//package me.figgnus.aeterum.listeners.hermes;
-//
-//import me.figgnus.aeterum.AeterumX;
-//import me.figgnus.aeterum.items.CustomItems;
-//import me.figgnus.aeterum.utils.HorseDataManager;
-//import me.figgnus.aeterum.utils.ItemUtils;
-//import me.figgnus.aeterum.utils.PermissionUtils;
-//import org.bukkit.*;
-//import org.bukkit.attribute.Attribute;
-//import org.bukkit.entity.Entity;
-//import org.bukkit.entity.Horse;
-//import org.bukkit.entity.Player;
-//import org.bukkit.event.EventHandler;
-//import org.bukkit.event.Listener;
-//import org.bukkit.event.block.Action;
-//import org.bukkit.event.player.PlayerInteractEvent;
-//import org.bukkit.inventory.EquipmentSlot;
-//import org.bukkit.inventory.ItemStack;
-//import org.bukkit.inventory.meta.ItemMeta;
-//import org.bukkit.persistence.PersistentDataType;
-//
-//import java.util.UUID;
-//
-//public class HermesWhistleListener implements Listener {
-//    private final AeterumX plugin;
-//    private final HorseDataManager horseDataManager;
-//    public static final String HORSE_KEY = "Hermes";
-//    private String hermes_tag = "hermes_tag";
-//
-//    public HermesWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
-//        this.plugin = plugin;
-//        this.horseDataManager = horseDataManager;
-//    }
-//    @EventHandler
-//    public void onWhistleUse(PlayerInteractEvent event) {
-//        Player player = event.getPlayer();
-//        ItemStack item = event.getItem();
-//        // Check if the action is a right-click action
-//        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-//            return;
-//        }
-//        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_TAME.getItemMeta().getCustomModelData())) {
-//            if (!(player.hasPermission(PermissionUtils.hermesHorseTame))) {
-//                player.sendMessage(PermissionUtils.permissionItemMessage);
-//                return;
-//            }
-//            if (player.hasCooldown(item.getType())) {
-//                player.sendMessage(ChatColor.YELLOW + "Nemáš dost dechu pro zatroubení. Počkej chvilku.");
-//                return;
-//            }
-//            player.setCooldown(item.getType(), 140);
-//            ItemMeta meta = item.getItemMeta();
-//            int customModelData = meta.getCustomModelData();
-//            // Ensure the player uses the item in the main hand
-//            if (event.getHand() != EquipmentSlot.HAND) return;
-//
-//            UUID horseUUID = horseDataManager.getHorseUUID(player.getUniqueId(), customModelData);
-//
-//            if (horseUUID == null) {
-//                player.sendMessage(ChatColor.GOLD + "Nový nejlepší přítel.");
-//                assignHorse(player, customModelData);
-//                horseUUID = horseDataManager.getHorseUUID(player.getUniqueId(), customModelData);
-//            }
-//
-//            Horse horse = (Horse) Bukkit.getEntity(horseUUID);
-//            if (horse != null) {
-//                findAndTeleportHorse(player, player.getUniqueId().toString());
-//            }else{
-//                player.sendMessage(ChatColor.GOLD + "Tvůj kůň se zatoulal. Na jeho místo přichází nový.");
-//                assignHorse(player, customModelData);
-//            }
-//        }
-//    }
-//    public void findAndTeleportHorse(Player player, String playerUniqueId) {
-//        NamespacedKey key = new NamespacedKey(plugin, hermes_tag);
-//
-//        // Iterate through all worlds in the server
-//        for (World world : Bukkit.getWorlds()) {
-//            // Iterate through all entities in the world
-//            for (Entity entity : world.getEntities()) {
-//                if (entity instanceof Horse) {
-//                    Horse horse = (Horse) entity;
-//
-//                    // Check if the horse has the tag
-//                    if (horse.getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
-//                        String value = horse.getPersistentDataContainer().get(key, PersistentDataType.STRING);
-//                        if (value != null && value.equals(playerUniqueId)) {
-//                            // Teleport the horse to the player's location, even across dimensions
-//                            Location playerLocation = player.getLocation();
-//                            horse.teleport(playerLocation);
-//                            player.sendMessage(ChatColor.GREEN + "Whoosh");
-//                            return; // Exit after finding and teleporting the first match
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        player.sendMessage(ChatColor.RED + "Tvůj kůň se ztratil.");
-//    }
-//    public void assignHorse(Player player, int customModelData) {
-//        UUID horseUUID = horseDataManager.getHorseUUID(player.getUniqueId(), customModelData);
-//        Horse horse = horseUUID != null ? (Horse) Bukkit.getEntity(horseUUID) : null;
-//
-//        if (horse != null && horse.isValid()) {
-//            return;
-//        }
-//        // Remove old horse data if it exists
-//        if (horseUUID != null) {
-//            horseDataManager.removeHorse(player.getUniqueId(), customModelData);
-//        }
-//        // Create a new horse
-//        Location loc = player.getLocation();
-//        horse = loc.getWorld().spawn(loc, Horse.class);
-//        horse.setOwner(player);
-//        horse.setCustomName(player.getName() + "'s Horse ");
-//        horse.setCustomNameVisible(true);
-//        horse.setColor(Horse.Color.CREAMY);
-//        horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
-//        horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
-//        horse.setMaxHealth(30);
-//        horse.setHealth(30);
-//        horse.setInvulnerable(true);
-//
-//        NamespacedKey key = new NamespacedKey(plugin, hermes_tag);
-//        horse.getPersistentDataContainer().set(key, PersistentDataType.STRING, player.getUniqueId().toString());
-//        plugin.setEntityMetadata(horse, HORSE_KEY, "true");
-//        // Save horse UUID to config
-//        horseDataManager.setHorseUUID(player.getUniqueId(), customModelData, horse.getUniqueId());
-//    }
-//}
+package me.figgnus.aeterum.listeners.hermes;
+
+import me.figgnus.aeterum.AeterumX;
+import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.utils.HorseData;
+import me.figgnus.aeterum.utils.HorseDataManager;
+import me.figgnus.aeterum.utils.ItemUtils;
+import me.figgnus.aeterum.utils.PermissionUtils;
+import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
+
+import java.util.UUID;
+
+public class HermesWhistleListener implements Listener {
+    private final HorseDataManager horseDataManager;
+    private final AeterumX plugin;
+    public static final String HORSE_KEY = "Hermes";
+
+    public HermesWhistleListener(HorseDataManager horseDataManager, AeterumX plugin) {
+        this.horseDataManager = horseDataManager;
+        this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onWhistleUse(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        ItemStack item = event.getItem();
+        // Check if the action is a right-click action
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_TAME.getItemMeta().getCustomModelData())) {
+            if (!(player.hasPermission(PermissionUtils.hermesHorseTame))) {
+                player.sendMessage(PermissionUtils.permissionItemMessage);
+                return;
+            }
+            if (player.hasCooldown(item.getType())) {
+                player.sendMessage(ChatColor.YELLOW + "Nemáš dost dechu pro zatroubení. Počkej chvilku.");
+                return;
+            }
+            player.setCooldown(item.getType(), 140);
+            // Ensure the player uses the item in the main hand
+            if (event.getHand() != EquipmentSlot.HAND) return;
+
+            UUID playerUUID = player.getUniqueId();
+            int customModelData = item.getItemMeta().getCustomModelData();
+            HorseData horseData = horseDataManager.getHorseData(playerUUID, customModelData);
+
+            if (horseData == null) {
+                player.sendMessage(ChatColor.GOLD + "Nový nejlepší přítel.");
+                assignHorse(player, customModelData);
+            }
+            findAndTeleportHorse(player, playerUUID.toString(), customModelData);
+        }
+    }
+    public void findAndTeleportHorse(Player player, String playerUniqueId, Integer customModelData) {
+        UUID playerUUID = UUID.fromString(playerUniqueId);
+
+        // Check if the horse is alive
+        if (!horseDataManager.isHorseAlive(playerUUID, customModelData)) {
+            player.sendMessage(ChatColor.GOLD + "Tvůj kůň zemřel. Na jeho místo příchází nový.");
+            assignHorse(player, customModelData);
+        }
+
+        // Retrieve the last known horse data
+        HorseData horseData = horseDataManager.getHorseData(playerUUID, customModelData);
+
+        if (horseData != null) {
+            World world = Bukkit.getWorld(horseData.getHorseWorld());
+            if (world == null) {
+                player.sendMessage(ChatColor.RED + "Horse world not found.");
+                return;
+            }
+
+            Location horseLocation = horseData.getHorseLocation();
+            Chunk originalChunk = horseLocation.getChunk();
+
+            // Force-load the original chunk where the horse was last known to be
+            originalChunk.load(true);
+
+            // Attempt to find the horse in the original chunk
+            Horse horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+
+            if (horse != null) {
+                // Teleport the horse to the player
+                Location playerLocation = getSafeLocationBehindPlayer(player);
+                if (playerLocation == null) {
+                    playerLocation = player.getLocation();
+                }
+                horse.teleport(playerLocation);
+                player.sendMessage(ChatColor.GREEN + "Whoosh!");
+
+                // Unload the chunk after teleporting the horse
+                Bukkit.getScheduler().runTaskLater(plugin, () -> originalChunk.unload(), 20L); // Unload after 1 second
+                return; // Exit if horse is found in the original chunk
+            }
+
+            // If the horse is not found in the original chunk, check the surrounding 3x3 chunks
+            boolean horseFound = false;
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    if (horseFound) break; // Exit loop if horse is found
+
+                    // Load the surrounding chunk at (x + dx, z + dz)
+                    Chunk currentChunk = world.getChunkAt(originalChunk.getX() + dx, originalChunk.getZ() + dz);
+                    currentChunk.load(true);
+
+                    // Try to find the horse in this chunk
+                    horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+
+                    if (horse != null) {
+                        // Teleport the horse to the player
+                        Location playerLocation = getSafeLocationBehindPlayer(player);
+
+                        if (playerLocation == null) {
+                            playerLocation = player.getLocation();
+                        }
+                        horse.teleport(playerLocation);
+                        player.sendMessage(ChatColor.GREEN + "Whoosh!");
+                        horseFound = true;
+                    }
+
+                    // Unload the chunk after checking
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> currentChunk.unload(), 20L); // Unload after 1 second
+                }
+            }
+
+            if (!horseFound) {
+                player.sendMessage(ChatColor.RED + "Nepodařilo se najít tvého koně. Poslední lokace: " + horseData.getHorseLocation());
+            }
+        } else {
+            player.sendMessage(ChatColor.RED + "Nepodařilo se najít tvého koně.");
+        }
+    }
+
+    public void assignHorse(Player player, int customModelData) {
+        UUID playerUUID = player.getUniqueId();
+
+        // Retrieve existing horse data if it exists
+        HorseData horseData = horseDataManager.getHorseData(playerUUID, customModelData);
+        Horse horse = null;
+
+        // Check if the horse already exists in the world
+        if (horseData != null) {
+            horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+        }
+
+        // If the horse exists and is valid, no need to create a new one
+        if (horse != null && horse.isValid()) {
+            return;
+        }
+
+        // Remove old horse data if the horse was invalid or non-existent
+        if (horseData != null) {
+            horseDataManager.removeHorse(playerUUID, customModelData);
+        }
+
+        // Create a new horse at the player's location
+        horse = player.getWorld().spawn(player.getLocation(), Horse.class);
+        Location horseLocation = horse.getLocation(); // Get the current location of the player for the new horse
+        World horseWorld = horseLocation.getWorld();
+
+        // Set horse properties
+        horse.setOwner(player);
+        horse.setCustomName(player.getName() + "'s Horse");
+        horse.setCustomNameVisible(true);
+        horse.setColor(Horse.Color.CREAMY);
+        horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
+        horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
+        horse.setMaxHealth(30);
+        horse.setHealth(30);
+        horse.setInvulnerable(true);
+
+        // Optional: Set additional metadata if needed
+        plugin.setEntityMetadata(horse, HORSE_KEY, "true");
+
+        // Teleport the horse behind the player
+        Location safeLocation = getSafeLocationBehindPlayer(player);
+
+        // If safe location is not found teleport the horse to the player
+        if (safeLocation == null) {
+            safeLocation = player.getLocation();
+        }
+
+        horse.teleport(safeLocation);
+
+        // Save the horse data (UUID, world, and horse location) to the data manager
+        horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseWorld.getName(), horseLocation, true);
+        horseDataManager.saveHorses();
+    }
+
+    private Location getSafeLocationBehindPlayer(Player player) {
+        Location playerLocation = player.getLocation();
+        Vector direction = playerLocation.getDirection().normalize(); // Players location
+        Location behindPlayer = playerLocation.subtract(direction.multiply(5)); // 5 blocks behind the player
+
+        // Check for safe location
+        for (int i = 0; i < 5; i++) { // Check range of distances behind the player
+            Location checkLocation = behindPlayer.clone().add(direction.multiply(i));
+            // Verify if the location is safe (not lava, not solid blocks, etc.)
+            if (isSafeLocation(checkLocation)) {
+                return checkLocation; // Return the first safe location found
+            }
+        }
+        return null;
+    }
+
+    private boolean isSafeLocation(Location checkLocation) {
+        Block block = checkLocation.getBlock();
+        Block blockBelow = checkLocation.clone().add(0, -1, 0).getBlock();
+
+        // Check if the block and block below are safe
+        return block.isPassable() && block.getType() != Material.LAVA && blockBelow.getType().isSolid();
+    }
+}

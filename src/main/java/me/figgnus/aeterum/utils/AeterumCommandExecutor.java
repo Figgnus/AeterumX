@@ -2,12 +2,6 @@ package me.figgnus.aeterum.utils;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.gui.RecipesGUI;
-import me.figgnus.aeterum.listeners.demeter.FlowerHorseTameListener;
-import me.figgnus.aeterum.listeners.dionysus.DrunkHorseTameListener;
-import me.figgnus.aeterum.listeners.hades.ZombieHorseTameListener;
-import me.figgnus.aeterum.listeners.hermes.SpeedHorseTameListener;
-import me.figgnus.aeterum.listeners.poseidon.SeaHorseTameListener;
-import me.figgnus.aeterum.listeners.zeus.PegasusTameListener;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -49,36 +43,6 @@ public class AeterumCommandExecutor implements CommandExecutor, TabCompleter {
         String action1 = args[0].toLowerCase();
 
         switch (action1) {
-            case "tame":
-                if (args.length < 2) {
-                    player.sendMessage("Usage : /aeterum tame <action>");
-                    return true;
-                }
-                String actoin2 = args[1].toLowerCase();
-                switch (actoin2){
-                    case "demeter":
-                        spawnHorse(player, EntityType.HORSE, FlowerHorseTameListener.SEED_KEY, Horse.Color.GRAY);
-                        break;
-                    case "dionysus":
-                        spawnHorse(player, EntityType.HORSE, DrunkHorseTameListener.DRUNK_KEY, Horse.Color.CHESTNUT);
-                        break;
-                    case "hades":
-                        spawnHorse(player, EntityType.ZOMBIE_HORSE, ZombieHorseTameListener.LAVA_WALKER, null);
-                        break;
-                    case "hermes":
-                        spawnHorse(player, EntityType.HORSE, SpeedHorseTameListener.SPEED_KEY, Horse.Color.CREAMY);
-                        break;
-                    case "poseidon":
-                        spawnHorse(player, EntityType.HORSE, SeaHorseTameListener.FROST_WALKER_KEY, Horse.Color.BLACK);
-                        break;
-                    case "zeus":
-                        spawnHorse(player, EntityType.HORSE, PegasusTameListener.LEVITATE_KEY, Horse.Color.WHITE);
-                        break;
-                    default:
-                        player.sendMessage("Unknown horse type: " + actoin2);
-                        break;
-                }
-                break;
             case "items":
                 openMainInventory(player);
                 break;

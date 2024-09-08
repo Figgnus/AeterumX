@@ -38,7 +38,7 @@ public class ItemUtils {
         return potion;
     }
     // Methods for creating head item stack
-    private static PlayerProfile getProfile(String url) {
+    public static PlayerProfile getProfile(String url) {
         PlayerProfile profile = Bukkit.createPlayerProfile(RANDOM_UUID); // Get a new player profile
         PlayerTextures textures = profile.getTextures();
         URL urlObject;

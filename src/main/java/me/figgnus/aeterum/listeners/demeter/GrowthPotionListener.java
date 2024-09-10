@@ -58,7 +58,7 @@ public class GrowthPotionListener implements Listener {
 
         @Override
         public void run() {
-            if (counter >= 5) {
+            if (counter >= totalStages) {
                 this.cancel();
                 return;
             }

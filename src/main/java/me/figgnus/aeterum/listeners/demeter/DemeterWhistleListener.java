@@ -180,6 +180,7 @@ public class DemeterWhistleListener implements Listener {
         horse.setMaxHealth(30);
         horse.setHealth(30);
         horse.setInvulnerable(true);
+        horse.getAttribute(Attribute.GENERIC_STEP_HEIGHT).setBaseValue(2.0);
 
         // Optional: Set additional metadata if needed
         plugin.setEntityMetadata(horse, HORSE_KEY, "true");

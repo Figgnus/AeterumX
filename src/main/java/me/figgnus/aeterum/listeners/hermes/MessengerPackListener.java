@@ -5,16 +5,20 @@ import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.FoodComponent;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,6 +46,11 @@ public class MessengerPackListener implements Listener {
         // Schedule periodic inventory saves every 5 minutes (6000 ticks)
         plugin.getServer().getScheduler().runTaskTimer(plugin, this::saveAllInventories, 6000L, 6000L);
     }
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        getPlayerInventory(player);
+    }
 
 
     @EventHandler
@@ -54,6 +63,12 @@ public class MessengerPackListener implements Listener {
                 return;
             }
             player.openInventory(getPlayerInventory(player));
+        }
+    }
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event){
+        if (ItemUtils.isCustomItem(event.getItemInHand(), CustomItems.MESSENGER_PACK.getItemMeta().getCustomModelData())) {
+            event.setCancelled(true);
         }
     }
     private void startHungerCheckTask() {
@@ -75,7 +90,7 @@ public class MessengerPackListener implements Listener {
             Inventory inventory = getPlayerInventory(player);
 
             // Define when to consume food
-            boolean shouldConsumeFood = (health < player.getMaxHealth() && hunger <= 18) || hunger <= 12;
+            boolean shouldConsumeFood = health < player.getMaxHealth() || hunger <= 12;
 
             if (shouldConsumeFood) {
                 consumeFoodFromInventory(player, inventory);
@@ -84,33 +99,158 @@ public class MessengerPackListener implements Listener {
     }
     // Method to consume food from the custom inventory
     private void consumeFoodFromInventory(Player player, Inventory inventory) {
-        for (int i = 0; i < inventory.getSize(); i++) {
-            ItemStack item = inventory.getItem(i);
-            if (item != null && item.getType().isEdible()) {
-                Material material = item.getType();
-                int foodValue = getFoodValue(material); // Get hunger value
-                float saturation = getSaturationValue(material); // Get saturation value
-
-                // Calculate how much hunger to restore
-                int hungerRestored = Math.min(20 - player.getFoodLevel(), foodValue);
-                player.setFoodLevel(player.getFoodLevel() + hungerRestored);
-                player.setSaturation(player.getSaturation() + saturation);
-
-                player.sendMessage(ChatColor.GREEN + "Consumed " + material.name());
-
-                // Reduce the amount of the food in the inventory slot
-                if (item.getAmount() > 1) {
-                    item.setAmount(item.getAmount() - 1);
-                } else {
-                    inventory.setItem(i, null);
-                }
-
-                return; // Stop after consuming one food item
-            }
+        if (!player.getInventory().contains(CustomItems.MESSENGER_PACK)) {
+            return;
         }
 
-        // If no food was found, send a message to the player
-        player.sendMessage(ChatColor.RED + "No food found in your inventory.");
+        for (int i = 0; i < inventory.getSize(); i++) {
+            ItemStack item = inventory.getItem(i);
+            if (item != null) {
+                // First, get the item meta
+                ItemMeta meta = item.getItemMeta();
+                int foodValue = 0;
+                float saturation = 0;
+
+                if (meta != null && meta.hasFood()) {
+                    // Get the food component (if it's a custom food)
+                    FoodComponent foodComponent = meta.getFood();
+                    foodValue = foodComponent.getNutrition();
+                    saturation = foodComponent.getSaturation();
+                }
+
+                // If foodValue and saturation are still 0, use vanilla food values
+                if (foodValue == 0 && saturation == 0) {
+                    Material material = item.getType();
+                    foodValue = getFoodValue(material);
+                    saturation = getSaturationValue(material);
+                }
+
+                // Only consume if foodValue and saturation are valid
+                if (foodValue > 0 && saturation > 0) {
+                    // Calculate how much hunger to restore
+                    int hungerRestored = Math.min(20 - player.getFoodLevel(), foodValue);
+                    player.setFoodLevel(player.getFoodLevel() + hungerRestored);
+                    player.setSaturation(player.getSaturation() + saturation);
+
+                    player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1, 1);
+
+                    // Reduce the amount of the food in the inventory slot
+                    if (item.getAmount() > 1) {
+                        item.setAmount(item.getAmount() - 1);
+                    } else {
+                        inventory.setItem(i, null);
+                    }
+
+                    return; // Stop after consuming one food item
+                }
+            }
+        }
+    }
+
+    private int getFoodValue(Material material) {
+        switch (material) {
+            case APPLE:
+                return 4;
+            case BAKED_POTATO:
+                return 6;
+            case BEETROOT:
+                return 1;
+            case BEETROOT_SOUP:
+                return 6;
+            case BREAD:
+                return 5;
+            case CARROT:
+                return 3;
+            case COOKED_CHICKEN:
+                return 6;
+            case COOKED_COD:
+                return 5;
+            case COOKED_MUTTON:
+                return 6;
+            case COOKED_PORKCHOP:
+                return 8;
+            case COOKED_RABBIT:
+                return 5;
+            case COOKED_SALMON:
+                return 6;
+            case COOKIE:
+                return 2;
+            case DRIED_KELP:
+                return 1;
+            case GLOW_BERRIES:
+                return 2;
+            case GOLDEN_CARROT:
+                return 6;
+            case HONEY_BOTTLE:
+                return 6;
+            case MELON_SLICE:
+                return 2;
+            case MUSHROOM_STEW:
+                return 6;
+            case PUMPKIN_PIE:
+                return 8;
+            case RABBIT_STEW:
+                return 10;
+            case COOKED_BEEF:
+                return 8;
+            case SWEET_BERRIES:
+                return 2;
+            default:
+                return 0; // For non-food items
+        }
+    }
+
+    private float getSaturationValue(Material material) {
+        switch (material) {
+            case APPLE:
+                return 2.4f;
+            case BAKED_POTATO:
+                return 6f;
+            case BEETROOT:
+                return 1.2f;
+            case BEETROOT_SOUP:
+                return 7.2f;
+            case BREAD:
+                return 6f;
+            case CARROT:
+                return 3.6f;
+            case COOKED_CHICKEN:
+                return 7.2f;
+            case COOKED_COD:
+                return 6f;
+            case COOKED_MUTTON:
+                return 9.6f;
+            case COOKED_PORKCHOP:
+                return 12.8f;
+            case COOKED_RABBIT:
+                return 6f;
+            case COOKED_SALMON:
+                return 9.6f;
+            case COOKIE:
+                return 0.4f;
+            case DRIED_KELP:
+                return 0.6f;
+            case GLOW_BERRIES:
+                return 0.4f;
+            case GOLDEN_CARROT:
+                return 14.4f;
+            case HONEY_BOTTLE:
+                return 1.2f;
+            case MELON_SLICE:
+                return 1.2f;
+            case MUSHROOM_STEW:
+                return 7.2f;
+            case PUMPKIN_PIE:
+                return 4.8f;
+            case RABBIT_STEW:
+                return 12f;
+            case COOKED_BEEF:
+                return 12.8f;
+            case SWEET_BERRIES:
+                return 0.4f;
+            default:
+                return 0; // For non-food items
+        }
     }
 
     public Inventory getPlayerInventory(Player player) {
@@ -138,45 +278,6 @@ public class MessengerPackListener implements Listener {
             e.printStackTrace();
         }
     }
-    private int getFoodValue(Material material) {
-        switch (material) {
-            case BREAD:
-                return 5;
-            case COOKED_BEEF:
-                return 8;
-            case COOKED_CHICKEN:
-                return 6;
-            case APPLE:
-                return 4;
-            case GOLDEN_CARROT:
-                return 6;
-            case CARROT:
-                return 3;
-            // Add more food items as needed
-            default:
-                return 0; // For non-food items
-        }
-    }
-
-    private float getSaturationValue(Material material) {
-        switch (material) {
-            case BREAD:
-                return 0.6f;
-            case COOKED_BEEF:
-                return 12.8f;
-            case COOKED_CHICKEN:
-                return 0.6f;
-            case APPLE:
-                return 0.3f;
-            case GOLDEN_CARROT:
-                return 1.2f;
-            case CARROT:
-                return 0.6f;
-            // Add more food items as needed
-            default:
-                return 0.0f;
-        }
-    }
 
     public Inventory loadInventory(UUID playerUUID) {
         Inventory inventory = Bukkit.createInventory(null, 54, "Poštovní Brašna");
@@ -195,5 +296,6 @@ public class MessengerPackListener implements Listener {
         for (UUID playerUUID : playerInventories.keySet()) {
             saveInventory(playerUUID);
         }
+        Bukkit.getLogger().info("AeterumX | Saved player inventories");
     }
 }

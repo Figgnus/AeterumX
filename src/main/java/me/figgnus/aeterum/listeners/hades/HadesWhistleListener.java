@@ -180,6 +180,8 @@ public class HadesWhistleListener implements Listener {
         horse.setMaxHealth(30);
         horse.setHealth(30);
         horse.setInvulnerable(true);
+        horse.getAttribute(Attribute.GENERIC_STEP_HEIGHT).setBaseValue(2.0);
+
 
         Location safeLocation = getSafeLocationBehindPlayer(player);
         if (safeLocation == null) {

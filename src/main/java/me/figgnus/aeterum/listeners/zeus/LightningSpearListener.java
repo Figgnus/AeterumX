@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 public class LightningSpearListener implements Listener {
     private final AeterumX plugin;
@@ -30,10 +31,16 @@ public class LightningSpearListener implements Listener {
                         player.sendMessage(PermissionUtils.permissionItemMessage);
                         return;
                     }
-                    if (event.getHitEntity() != null){
+                    // Check if it hits an entity first
+                    if (event.getHitEntity() != null) {
                         Entity hitEntity = event.getHitEntity();
                         hitEntity.getWorld().strikeLightning(hitEntity.getLocation());
-                    } else if (event.getHitBlock() != null) {
+
+                        // Add metadata to prevent lightning strike on block hit
+                        trident.setMetadata("lightning_summoned", new FixedMetadataValue(plugin, true));
+                    }
+                    // If it hits a block, check if lightning was already summoned
+                    else if (event.getHitBlock() != null && !trident.hasMetadata("lightning_summoned")) {
                         trident.getWorld().strikeLightning(event.getHitBlock().getLocation());
                     }
                 }

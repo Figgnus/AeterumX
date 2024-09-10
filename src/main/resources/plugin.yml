@@ -12,3 +12,5 @@ commands:
   aeterum:
     description: "Contains all Aeterum commands"
     usage: /aeterum
+    permission: aeterum.admin
+    permission-message: "You don't have permission to use this command"

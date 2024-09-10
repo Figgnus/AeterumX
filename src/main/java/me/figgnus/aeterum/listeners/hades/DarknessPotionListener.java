@@ -32,6 +32,7 @@ public class DarknessPotionListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.DARKNESS_POTION.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.hadesDarknessPotion)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             applyEffect(player);

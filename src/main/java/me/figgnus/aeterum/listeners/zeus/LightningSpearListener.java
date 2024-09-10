@@ -10,6 +10,7 @@ import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -22,6 +23,16 @@ public class LightningSpearListener implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler
+    public void onItemUse(PlayerInteractEvent event){
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.LIGHTNING_SPEAR.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.zeusLightningSpear)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
     public void onEntityHit(ProjectileHitEvent event){
         if (event.getEntity() instanceof Trident trident){
             if (trident.getShooter() instanceof Player player){
@@ -29,6 +40,7 @@ public class LightningSpearListener implements Listener {
                 if (ItemUtils.isCustomItem(item, CustomItems.LIGHTNING_SPEAR.getItemMeta().getCustomModelData())){
                     if (!player.hasPermission(PermissionUtils.zeusLightningSpear)){
                         player.sendMessage(PermissionUtils.permissionItemMessage);
+                        event.setCancelled(true);
                         return;
                     }
                     // Check if it hits an entity first

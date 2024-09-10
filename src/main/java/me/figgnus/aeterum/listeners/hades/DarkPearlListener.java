@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -30,8 +31,14 @@ public class DarkPearlListener implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler
-    public void onProjectileLaunch(ProjectileLaunchEvent event){
-
+    public void onProjectileLaunch(PlayerInteractEvent event){
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PEARL.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.hadesDarkPearl)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
     }
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event){

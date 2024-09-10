@@ -10,6 +10,7 @@ import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -24,6 +25,16 @@ public class SpeedHorseAbilityListener implements Listener {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_ABILITY.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.hermesHorseAbility)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
     }
     @EventHandler
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {

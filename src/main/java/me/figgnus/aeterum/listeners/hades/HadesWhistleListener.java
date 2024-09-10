@@ -41,6 +41,7 @@ public class HadesWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.ZOMBIE_HORSE_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.hadesHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

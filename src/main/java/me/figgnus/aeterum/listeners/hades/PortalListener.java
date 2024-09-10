@@ -23,6 +23,17 @@ public class PortalListener implements Listener {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
+    @EventHandler
+    public void onPlayerUse(PlayerInteractEvent event) {
+     ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())) {
+            if (!event.getPlayer().hasPermission(PermissionUtils.hadesPortal)) {
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
+    }
+
 
     @EventHandler
     public void onPotionSplash(ProjectileHitEvent event) {

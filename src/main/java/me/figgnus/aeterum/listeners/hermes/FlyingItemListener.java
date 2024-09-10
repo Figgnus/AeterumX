@@ -30,6 +30,7 @@ public class FlyingItemListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.FLYING_ITEM.getItemMeta().getCustomModelData())){
             if (!(player.hasPermission(PermissionUtils.hermesFlyingItem))){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (event.getAction() == Action.RIGHT_CLICK_AIR){

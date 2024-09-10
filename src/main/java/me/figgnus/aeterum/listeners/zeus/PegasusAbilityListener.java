@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -29,12 +30,23 @@ public class PegasusAbilityListener implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler
+    public void onItemUse(PlayerInteractEvent event) {
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.zeusHorseAbility)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.zeusHorseAbility)){
                 player.sendMessage(PermissionUtils.ridingPermissionMessage);
+                event.setCancelled(true);
                 return;
             }
             Horse horse = (Horse) player.getVehicle();

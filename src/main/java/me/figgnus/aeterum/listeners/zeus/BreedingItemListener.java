@@ -38,6 +38,7 @@ public class BreedingItemListener implements Listener {
         if (ItemUtils.isCustomItem(itemInHand, CustomItems.BREEDING_ITEM.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.zeusBreedingItem)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             // Check cooldown

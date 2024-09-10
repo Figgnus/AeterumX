@@ -1,7 +1,6 @@
 package me.figgnus.aeterum;
 
 import me.figgnus.aeterum.gui.RecipesGUI;
-import me.figgnus.aeterum.listeners._other.CraftingPermissionListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
 import me.figgnus.aeterum.listeners.demeter.*;
@@ -9,9 +8,7 @@ import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.listeners.dionysus.*;
 import me.figgnus.aeterum.listeners.hades.*;
 import me.figgnus.aeterum.listeners.hermes.*;
-import me.figgnus.aeterum.listeners.poseidon.DolphinGraceListener;
-import me.figgnus.aeterum.listeners.poseidon.PoseidonWhistleListener;
-import me.figgnus.aeterum.listeners.poseidon.SeaHorseAbilityListener;
+import me.figgnus.aeterum.listeners.poseidon.*;
 import me.figgnus.aeterum.listeners.zeus.*;
 import me.figgnus.aeterum.utils.AeterumCommandExecutor;
 import me.figgnus.aeterum.utils.HorseDataManager;
@@ -83,6 +80,8 @@ public final class AeterumX extends JavaPlugin implements Listener {
 
         new SeaHorseAbilityListener(this);
         dolphinGrace = new DolphinGraceListener(this);
+        new BetterTridentListener(this);
+        new SeaCrownListener(this);
 
         new PegasusAbilityListener(this);
         new BreedingItemListener(this);
@@ -100,9 +99,6 @@ public final class AeterumX extends JavaPlugin implements Listener {
         getCommand("aeterum").setTabCompleter(new AeterumCommandExecutor(this));
 
         getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
-
-        new CraftingPermissionListener(this);
-
     }
 
     private void loadConfig() {

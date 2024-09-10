@@ -42,6 +42,7 @@ public class ZeusWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.zeusHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

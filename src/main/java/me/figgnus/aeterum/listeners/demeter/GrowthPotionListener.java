@@ -29,6 +29,7 @@ public class GrowthPotionListener implements Listener {
         if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION.getItemMeta().getCustomModelData())) {
             if (!player.hasPermission(PermissionUtils.demeterGrowthPotion)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.getGameMode() == GameMode.SURVIVAL){

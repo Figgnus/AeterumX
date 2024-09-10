@@ -42,6 +42,7 @@ public class PoseidonWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.SEA_HORSE_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.poseidonHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

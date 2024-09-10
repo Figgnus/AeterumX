@@ -42,6 +42,7 @@ public class DionysusWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.DRUNK_HORSE_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.dionysusHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

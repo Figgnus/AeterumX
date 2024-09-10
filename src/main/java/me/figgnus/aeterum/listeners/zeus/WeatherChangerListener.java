@@ -7,6 +7,7 @@ import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,6 +20,16 @@ public class WeatherChangerListener implements Listener {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    @EventHandler
+    public void onItemUse(PlayerInteractEvent event){
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.WEATHER_CHANGER.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.zeusWeatherChanger)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
     }
     @EventHandler
     public void onPlayerConsume(PlayerItemConsumeEvent event){

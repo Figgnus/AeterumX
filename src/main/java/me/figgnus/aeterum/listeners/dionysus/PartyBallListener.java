@@ -12,6 +12,8 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
@@ -23,6 +25,16 @@ public class PartyBallListener implements Listener {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    @EventHandler
+    public void onItemUse(PlayerInteractEvent event){
+        ItemStack item = event.getItem();
+        if (ItemUtils.isCustomItem(item, CustomItems.PARTY_BALL.getItemMeta().getCustomModelData())){
+            if (!event.getPlayer().hasPermission(PermissionUtils.dionysusPartyBall)){
+                event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
+            }
+        }
     }
     @EventHandler
     public void onEntityHit(ProjectileHitEvent event){

@@ -34,6 +34,7 @@ public class PartyAtmosphereListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.dionysusPartyAtmosphere)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             applyEffect(player);

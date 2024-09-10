@@ -38,6 +38,7 @@ public class HoeOfHarvestListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.HOE_OF_HARVEST.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.demeterHoe)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {

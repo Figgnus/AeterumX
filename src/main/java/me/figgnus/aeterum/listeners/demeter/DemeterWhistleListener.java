@@ -42,6 +42,7 @@ public class DemeterWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.FLOWER_HORSE_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.demeterHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

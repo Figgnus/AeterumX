@@ -34,6 +34,7 @@ public class BetterBonemealListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.demeterBetterBonemeal)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             long currentTime = System.currentTimeMillis();

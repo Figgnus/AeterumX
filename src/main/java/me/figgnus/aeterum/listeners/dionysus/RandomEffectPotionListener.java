@@ -41,6 +41,7 @@ public class RandomEffectPotionListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.RANDOM_EFFECT_POTION.getItemMeta().getCustomModelData())){
             if (!player.hasPermission(PermissionUtils.dionysusRandomEffectPotion)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             BPlayer bPlayer = BPlayer.get(player);

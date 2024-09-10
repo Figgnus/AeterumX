@@ -42,6 +42,7 @@ public class HermesWhistleListener implements Listener {
         if (ItemUtils.isCustomItem(item, CustomItems.SPEED_HORSE_TAME.getItemMeta().getCustomModelData())) {
             if (!(player.hasPermission(PermissionUtils.hermesHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                event.setCancelled(true);
                 return;
             }
             if (player.hasCooldown(item.getType())) {

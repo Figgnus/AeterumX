@@ -13,40 +13,39 @@ import java.util.*;
 
 public class RecipesGUI implements Listener {
     private final AeterumX plugin;
-    public static List<ItemStack> items = List.of(
-            CustomItems.RANDOMIZER,
-        CustomItems.FLOWER_HORSE_TAME,
-        CustomItems.BETTER_BONEMEAL,
-        CustomItems.GROWTH_POTION,
-        CustomItems.HOE_OF_HARVEST,
-        CustomItems.DRUNK_HORSE_TAME,
-        CustomItems.PARTY_ATMOSPHERE,
-        CustomItems.PARTY_BALL,
-        CustomItems.RANDOM_EFFECT_POTION,
-        CustomItems.ZOMBIE_HORSE_TAME,
-        CustomItems.DARKNESS_POTION,
-        CustomItems.DARK_PEARL,
-        CustomItems.DARK_PORTAL,
-        CustomItems.SPEED_HORSE_TAME,
-        CustomItems.SPEED_HORSE_ABILITY,
-        CustomItems.FLYING_ITEM,
-        CustomItems.MESSENGER_PACK,
-        CustomItems.SPEED_BOOTS,
-        CustomItems.SEA_HORSE_TAME,
-        CustomItems.WATER_BREATHING_CROWN,
-        CustomItems.BETTER_TRIDENT,
-        CustomItems.PEGASUS_TAME,
-        CustomItems.PEGASUS_ABILITY,
-        CustomItems.BREEDING_ITEM,
-        CustomItems.WEATHER_CHANGER,
-        CustomItems.LIGHTNING_SPEAR
-    );
+    public static List<ItemStack> items = new ArrayList<>();
     private Inventory mainInventory;
 
     public RecipesGUI(AeterumX plugin) {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
+        items.add(CustomItems.RANDOMIZER);
+        items.add(CustomItems.FLOWER_HORSE_TAME);
+        items.add(CustomItems.BETTER_BONEMEAL);
+        items.add(CustomItems.GROWTH_POTION);
+        items.add(CustomItems.HOE_OF_HARVEST);
+        items.add(CustomItems.DRUNK_HORSE_TAME);
+        items.add(CustomItems.PARTY_ATMOSPHERE);
+        items.add(CustomItems.PARTY_BALL);
+        items.add(CustomItems.RANDOM_EFFECT_POTION);
+        items.add(CustomItems.ZOMBIE_HORSE_TAME);
+        items.add(CustomItems.DARKNESS_POTION);
+        items.add(CustomItems.DARK_PEARL);
+        items.add(CustomItems.DARK_PORTAL);
+        items.add(CustomItems.SPEED_HORSE_TAME);
+        items.add(CustomItems.SPEED_HORSE_ABILITY);
+        items.add(CustomItems.MESSENGER_PACK);
+        items.add(CustomItems.SPEED_BOOTS);
+        items.add(CustomItems.SEA_HORSE_TAME);
+        items.add(CustomItems.WATER_BREATHING_CROWN);
+        items.add(CustomItems.BETTER_TRIDENT);
+        items.add(CustomItems.PEGASUS_TAME);
+        items.add(CustomItems.PEGASUS_ABILITY);
+        items.add(CustomItems.BREEDING_ITEM);
+        items.add(CustomItems.WEATHER_CHANGER);
+        items.add(CustomItems.LIGHTNING_SPEAR);
     }
 
     @EventHandler

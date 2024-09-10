@@ -14,6 +14,7 @@ import me.figgnus.aeterum.utils.AeterumCommandExecutor;
 import me.figgnus.aeterum.utils.HorseDataManager;
 import me.figgnus.aeterum.utils.HorseDeathListener;
 import me.figgnus.aeterum.utils.HorseLocationUpdater;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -99,6 +100,8 @@ public final class AeterumX extends JavaPlugin implements Listener {
         getCommand("aeterum").setTabCompleter(new AeterumCommandExecutor(this));
 
         getServer().getPluginManager().registerEvents(new SnowBallDemageListener(), this);
+
+        Bukkit.getLogger().info("AeterumX | Loaded");
     }
 
     private void loadConfig() {

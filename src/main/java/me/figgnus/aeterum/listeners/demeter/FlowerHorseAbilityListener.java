@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FlowerHorseAbilityListener  implements Listener {
-    private final List<Material> plantableMaterials = Arrays.asList(
+    private  List<Material> plantableMaterials = Arrays.asList(
             Material.WHEAT_SEEDS,
             Material.POTATO,
             Material.CARROT,

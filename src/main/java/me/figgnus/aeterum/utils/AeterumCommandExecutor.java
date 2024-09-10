@@ -46,6 +46,14 @@ public class AeterumCommandExecutor implements CommandExecutor, TabCompleter {
             case "items":
                 openMainInventory(player);
                 break;
+            case "reload":
+                plugin.getServer().getPluginManager().disablePlugin(plugin);
+                plugin.reloadConfig();
+                RecipesGUI.items.clear();
+                plugin.getServer().getPluginManager().enablePlugin(plugin);
+
+                player.sendMessage("Reloaded");
+                break;
             default:
                 player.sendMessage("Unknown action: " + action1);
                 break;
@@ -68,7 +76,7 @@ public class AeterumCommandExecutor implements CommandExecutor, TabCompleter {
             return null;
         }
         if (args.length == 1){
-            return Arrays.asList("items");
+            return Arrays.asList("items", "reload");
         }
         return new ArrayList<>();
     }

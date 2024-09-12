@@ -76,7 +76,7 @@ public class AeterumCommandExecutor implements CommandExecutor, TabCompleter {
             return null;
         }
         if (args.length == 1){
-            return Arrays.asList("items", "reload");
+            return Arrays.asList("items");
         }
         return new ArrayList<>();
     }

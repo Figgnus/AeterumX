@@ -58,7 +58,7 @@ public class PegasusAbilityListener implements Listener {
                 // Apply levitation effect to the horse
                 horse.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration, 1)); // 100 ticks = 5 seconds
                 player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration, 1)); // 100 ticks = 5 seconds
-                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 6));
+                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, duration, 25));
 
                 // Schedule a task to apply fall damage immunity after Levitation ends
                 new BukkitRunnable() {

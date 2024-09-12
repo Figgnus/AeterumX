@@ -30,6 +30,7 @@ public class RandomizerListener implements Listener {
             // Check if the player has the randomizer item in their offhand
             ItemStack offHandItem = player.getInventory().getItemInOffHand();
             if (ItemUtils.isCustomItem(offHandItem, CustomItems.RANDOMIZER.getItemMeta().getCustomModelData())) {
+
                 if (!player.hasPermission(PermissionUtils.randomizerPermission)) {
                     player.sendMessage(PermissionUtils.permissionItemMessage);
                     return;

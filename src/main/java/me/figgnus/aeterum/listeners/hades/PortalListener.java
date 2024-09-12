@@ -61,7 +61,7 @@ public class PortalListener implements Listener {
         ItemStack item = event.getItem();
         if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())){
 
-            if (player.getWorld().getName().equals("world_the_end")){
+            if (player.getWorld().getName().equals("newgen_world_the_end")){
                 player.sendMessage(ChatColor.RED + "Tento předmět nemůže být použit v Endu.");
                 event.setCancelled(true);
             }
@@ -104,12 +104,12 @@ public class PortalListener implements Listener {
                     if (isPlayerInPortal(player, loc)) {
                         Location targetLocation;
 
-                        if (world.getName().equals("world")) {
+                        if (world.getName().equals("newgen_world")) {
                             // If in Overworld, teleport to Nether
-                            targetLocation = findSafeNetherLocation(new Location(Bukkit.getWorld("world_nether"), loc.getX() / 8, loc.getY(), loc.getZ() / 8));
-                        } else if (world.getName().equals("world_nether")) {
+                            targetLocation = findSafeNetherLocation(new Location(Bukkit.getWorld("newgen_world_nether"), loc.getX() / 8, loc.getY(), loc.getZ() / 8));
+                        } else if (world.getName().equals("newgen_world_nether")) {
                             // If in Nether, teleport to Overworld
-                            targetLocation = findSafeOverworldLocation(new Location(Bukkit.getWorld("world"), loc.getX() * 8, loc.getY(), loc.getZ() * 8));
+                            targetLocation = findSafeOverworldLocation(new Location(Bukkit.getWorld("newgen_world"), loc.getX() * 8, loc.getY(), loc.getZ() * 8));
                         } else {
                             continue; // Not in Overworld or Nether, skip teleportation
                         }

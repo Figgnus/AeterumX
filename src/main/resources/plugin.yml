@@ -2,6 +2,8 @@ name: AeterumX
 version: '${project.version}'
 main: me.figgnus.aeterum.AeterumX
 api-version: '1.21'
+softdepend:
+  - BreweryX
 commands:
   nightvision:
     description: "Gives player nightvision"

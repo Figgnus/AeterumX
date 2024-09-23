@@ -62,7 +62,6 @@ public class HorseDataManager {
         }
         try {
             config.save(file);
-            Bukkit.getLogger().info("AeterumX | Saved horses to config");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,8 @@
 package me.figgnus.aeterum;
 
 import me.figgnus.aeterum.gui.RecipesGUI;
+import me.figgnus.aeterum.listeners._other.CustomTnTListener;
+import me.figgnus.aeterum.listeners._other.EnchantmentListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
 import me.figgnus.aeterum.listeners.demeter.*;
@@ -35,7 +37,6 @@ public final class AeterumX extends JavaPlugin implements Listener {
     private NightVisionListener nightVision;
     private MessengerPackListener messengerPack;
     private DolphinGraceListener dolphinGrace;
-
     @Override
     public void onEnable() {
         loadConfig();
@@ -90,6 +91,8 @@ public final class AeterumX extends JavaPlugin implements Listener {
         new WeatherChangerListener(this);
 
         new RandomizerListener(this);
+//        new CustomTnTListener(this);
+        new EnchantmentListener(this);
 
         new RecipesGUI(this);
 

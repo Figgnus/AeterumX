@@ -10,7 +10,7 @@ permissions:
     lore: "Lektvar který urychlý růst rostlin v okolí hráče"
     permission: "aeterum.demeter.growth_potion"
     custom_id: 60002
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     recipe_potion: regeneration
     color:
       red: 63
@@ -39,7 +39,7 @@ permissions:
     lore: Let's Party!!!
     permission: "aeterum.dionysus.party_atmosphere"
     custom_id: 60013
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 255
       green: 185
@@ -55,7 +55,7 @@ permissions:
     lore: "Kdo vý co se může stát"
     permission: "aeterum.dionysus.random_effect_potion"
     custom_id: 60014
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 43
       green: 158
@@ -77,7 +77,7 @@ permissions:
     lore: "Oslep své nepřátele"
     permission: "aeterum.hades.darkness_potion"
     custom_id: 60016
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 16
       green: 41
@@ -143,7 +143,7 @@ permissions:
     lore: "Sedni na svého koně, napij se a drž se"
     permission: "aeterum.hermes.horse_ability"
     custom_id: 60008
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 193
       green: 193
@@ -189,7 +189,7 @@ permissions:
     lore: "Napij se když si na svém koni"
     permission: "aeterum.zeus.horse_ability"
     custom_id: 60011
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 204
       green: 205
@@ -211,7 +211,7 @@ permissions:
     lore: "Moc slunečno? Tohle by mohlo být řešení"
     permission: "aeterum.zeus.weather_changer"
     custom_id: 60026
-    material: "POTION"
+    material: "HONEY_BOTTLE"
     color:
       red: 165
       green: 161

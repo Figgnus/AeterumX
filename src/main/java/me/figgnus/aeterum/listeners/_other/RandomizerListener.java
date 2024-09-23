@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
@@ -43,15 +44,19 @@ public class RandomizerListener implements Listener {
                         blockSlots.add(i);
                     }
                 }
-
                 if (!blockSlots.isEmpty()) {
-                    // Pick a random slot from the list of block slots
-                    Random random = new Random();
-                    int randomIndex = random.nextInt(blockSlots.size());
-                    int selectedSlot = blockSlots.get(randomIndex);
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            // Pick a random slot from the list of block slots
+                            Random random = new Random();
+                            int randomIndex = random.nextInt(blockSlots.size());
+                            int selectedSlot = blockSlots.get(randomIndex);
 
-                    // Set the selected hotbar slot
-                    player.getInventory().setHeldItemSlot(selectedSlot);
+                            // Set the selected hotbar slot
+                            player.getInventory().setHeldItemSlot(selectedSlot);
+                        }
+                    }.runTaskLater(plugin, 1L);
                 }
             }
         }

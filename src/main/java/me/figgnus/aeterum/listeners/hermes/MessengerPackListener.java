@@ -296,6 +296,5 @@ public class MessengerPackListener implements Listener {
         for (UUID playerUUID : playerInventories.keySet()) {
             saveInventory(playerUUID);
         }
-        Bukkit.getLogger().info("AeterumX | Saved player inventories");
     }
 }

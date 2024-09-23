@@ -51,8 +51,9 @@ public class PortalListener implements Listener {
                 return;
             }
             Location hitLocation = event.getHitBlock() != null ? event.getHitBlock().getLocation() : event.getHitEntity().getLocation();
-            createPortal(hitLocation);
-            player.getWorld().playSound(hitLocation, Sound.BLOCK_PORTAL_AMBIENT, 1.0F, 1.0F);
+            Location portalLocation = hitLocation.clone().add(0, 1, 0);
+            createPortal(portalLocation);
+            player.getWorld().playSound(portalLocation, Sound.BLOCK_PORTAL_AMBIENT, 1.0F, 1.0F);
         }
     }
     @EventHandler
@@ -71,33 +72,8 @@ public class PortalListener implements Listener {
     public void createPortal(Location loc) {
         World world = loc.getWorld();
 
-        // Create the rectangular portal (2 blocks wide, 3 blocks tall)
-        new BukkitRunnable() {
-            int ticks = 0;
-
-            @Override
-            public void run() {
-                if (ticks >= 200) { // 10 seconds (20 ticks per second)
-                    cancel();
-                    return;
-                }
-
-                // Generate the portal frame particles
-                for (int y = 0; y <= 2; y++) {
-                    for (int x = -1; x <= 1; x++) {
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, 0), 10);
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, -1), 10);
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, 0), 10);
-                        world.spawnParticle(Particle.PORTAL, loc.clone().add(x, y + 1, -1), 10);
-                    }
-                }
-
-                ticks++;
-            }
-        }.runTaskTimer(plugin, 0, 1);
-
-        // Teleport players who enter the portal
-        new BukkitRunnable() {
+        // Store the reference to the teleportation task so we can cancel it later
+        BukkitRunnable teleportTask = new BukkitRunnable() {
             @Override
             public void run() {
                 for (Player player : world.getPlayers()) {
@@ -124,16 +100,66 @@ public class PortalListener implements Listener {
                     }
                 }
             }
-        }.runTaskTimer(plugin, 0, 1); // Check every tick
+        };
+
+        // Run teleportation task every tick
+        teleportTask.runTaskTimer(plugin, 0, 1);
+
+        // Create the rectangular portal (2 blocks wide, 3 blocks tall)
+        new BukkitRunnable() {
+            int ticks = 0;
+            double angle = 0;
+
+            @Override
+            public void run() {
+                if (ticks >= 200) { // 10 seconds (20 ticks per second)
+                    // Cancel the teleportation task when the portal expires
+                    teleportTask.cancel();
+                    cancel(); // Stop particle task
+                    return;
+                }
+
+                // Adjust angle and increment over time to rotate particles
+                angle += Math.PI / 16; // Adjust angle increment for speed of the vortex
+                double radius = 1.5;   // Radius of the vortex
+
+                // Vortex 1: rotating clockwise
+                for (int y = 0; y < 3; y++) {  // Control the height of the vortex
+                    // Calculate particle positions using polar coordinates (circular motion)
+                    double x1 = radius * Math.cos(angle + y);  // X position rotates
+                    double z1 = radius * Math.sin(angle + y);  // Z position rotates
+                    Location vortexLocation1 = loc.clone().add(x1, y, z1);  // Y controls height
+
+                    // Spawn particles at calculated location for Vortex 1
+                    spawnParticleAt(world, vortexLocation1);
+                }
+
+                // Vortex 2: rotating counterclockwise (by reversing the angle)
+                for (int y = 0; y < 3; y++) {  // Control the height of the vortex
+                    // Reverse the angle for the second vortex to spin the opposite way
+                    double x2 = radius * Math.cos(-angle + y);  // X position rotates in reverse
+                    double z2 = radius * Math.sin(-angle + y);  // Z position rotates in reverse
+                    Location vortexLocation2 = loc.clone().add(x2, y, z2);  // Y controls height
+
+                    // Spawn particles at calculated location for Vortex 2
+                    spawnParticleAt(world, vortexLocation2);
+                }
+
+                ticks++;
+            }
+        }.runTaskTimer(plugin, 0, 1);
 
         // Remove portal and stop teleporting after 10 seconds
         new BukkitRunnable() {
             @Override
             public void run() {
-                // Cancel the portal creation task
-                this.cancel();
+                // Cancel the teleportation task when the portal disappears
+                teleportTask.cancel();
             }
         }.runTaskLater(plugin, 200); // 10 seconds (20 ticks per second * 10)
+    }
+    private void spawnParticleAt(World world, Location location) {
+        world.spawnParticle(Particle.PORTAL, location, 10, 0, 0, 0, 0);
     }
 
     private boolean isPlayerInPortal(Player player, Location loc) {

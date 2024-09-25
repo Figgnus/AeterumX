@@ -1,17 +1,14 @@
 package me.figgnus.aeterum.listeners._other;
 
 import me.figgnus.aeterum.AeterumX;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Map;
 
@@ -69,10 +66,12 @@ public class EnchantmentListener implements Listener {
     }
     @EventHandler
     public void onPrepareAnvil(PrepareAnvilEvent event) {
-        ItemStack first = event.getInventory().getItem(0);
-        ItemStack second = event.getInventory().getItem(1);
-        ItemStack result = event.getResult();
 
+        ItemStack first = event.getInventory().getItem(0); // Slot 0
+        ItemStack second = event.getInventory().getItem(1); // Slot 1
+        ItemStack result = event.getResult(); // The result of combining
+
+        // Ensure both items and result exist
         if (first == null || second == null || result == null) {
             return;
         }
@@ -80,23 +79,89 @@ public class EnchantmentListener implements Listener {
             return;
         }
 
-        ItemMeta resultMeta = result.getItemMeta();
-        result.getEnchantments().forEach((ench, level) -> {
-           int maxLevel = ench.getMaxLevel();
-           if (level >= maxLevel) {
-               resultMeta.removeEnchant(ench);
-               resultMeta.addEnchant(ench, maxLevel, true);
-           }
 
-        });
-        result.setItemMeta(resultMeta);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                event.setResult(result);
+        // Get the result item's meta
+        ItemMeta resultMeta = result.getItemMeta();
+
+        // Check all enchantments from both items
+        for (Map.Entry<Enchantment, Integer> entry : first.getEnchantments().entrySet()) {
+            Enchantment enchantment = entry.getKey();
+            int level = entry.getValue();
+            int maxLevel = enchantment.getMaxLevel();
+
+            // If the enchantment level is higher than the max, keep it
+            if (level > maxLevel) {
+                resultMeta.addEnchant(enchantment, level, true);
+            } else {
+                resultMeta.addEnchant(enchantment, maxLevel, true);
             }
-        }.runTaskLater(plugin, 1);
+        }
+
+        for (Map.Entry<Enchantment, Integer> entry : second.getEnchantments().entrySet()) {
+            Enchantment enchantment = entry.getKey();
+            int level = entry.getValue();
+            int maxLevel = enchantment.getMaxLevel();
+
+            // Check if result already contains this enchantment
+            if (resultMeta.hasEnchant(enchantment)) {
+                int existingLevel = resultMeta.getEnchantLevel(enchantment);
+                // Keep the higher level between the two items
+                if (level > existingLevel) {
+                    resultMeta.removeEnchant(enchantment);
+                    resultMeta.addEnchant(enchantment, level > maxLevel ? level : maxLevel, true);
+                }
+            } else {
+                // Add the enchantment if it's not already in the result
+                resultMeta.addEnchant(enchantment, level > maxLevel ? level : maxLevel, true);
+            }
+        }
+
+        // Set the updated meta back to the result item
+        result.setItemMeta(resultMeta);
+
+        // Set the modified result in the event
+        event.setResult(result);
     }
+//    @EventHandler
+//    public void onPrepareAnvil(PrepareAnvilEvent event) {
+//        ItemStack first = event.getInventory().getItem(0);
+//        ItemStack second = event.getInventory().getItem(1);
+//        ItemStack result = event.getResult();
+//
+//        if (first == null || second == null || result == null) {
+//            return;
+//        }
+//        if (!isToolOrArmor(first) || !isToolOrArmor(second)) {
+//            return;
+//        }
+//
+//        ItemMeta resultMeta = result.getItemMeta();
+//        result.getEnchantments().forEach((ench, level) -> {
+//           int maxLevel = ench.getMaxLevel();
+//           if (level >= maxLevel) {
+//               first.getEnchantments().forEach((ench2, level2) -> {
+//                   int maxLevel2 = ench2.getMaxLevel();
+//                   if (level2 > maxLevel2) {
+//                       resultMeta.removeEnchant(ench2);
+//                       resultMeta.addEnchant(ench2, level2, true);
+//                   }
+//               });
+//               second.getEnchantments().forEach((ench2, level2) -> {
+//                   int maxLevel2 = ench2.getMaxLevel();
+//                   if (level2 > maxLevel2) {
+//                       resultMeta.removeEnchant(ench2);
+//                       resultMeta.addEnchant(ench2, level2, true);
+//                   }
+//               });
+//               resultMeta.removeEnchant(ench);
+//               resultMeta.addEnchant(ench, maxLevel, true);
+//           }
+//
+//        });
+//        result.setItemMeta(resultMeta);
+//        event.setResult(null);
+//        event.setResult(result);
+//    }
     private boolean isToolOrArmor(ItemStack item) {
         Material type = item.getType();
         return type.name().endsWith("HELMET") || type.name().endsWith("SHELL") ||

@@ -10,16 +10,30 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class EnchantmentListener implements Listener {
+//    public class ItemCopyUtil {
+//
+//        // Method to clone an ItemStack using NMS
+//        public static BukkitItemStack copyItem(BukkitItemStack original) {
+//            // Convert Bukkit ItemStack to NMS ItemStack
+//            ItemStack nmsOriginal = CraftItemStack.asNMSCopy(original);
+//
+//            // Clone the NMS ItemStack
+//            ItemStack nmsCopy = nmsOriginal.cloneItemStack();
+//
+//            // Convert the cloned NMS ItemStack back to a Bukkit ItemStack
+//            return CraftItemStack.asBukkitCopy(nmsCopy);
+//        }
+//    }
     private final AeterumX plugin;
 
     public EnchantmentListener(AeterumX plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
-
 
     @EventHandler
     public void onPrepareAnvilBook(PrepareAnvilEvent event) {
@@ -69,99 +83,75 @@ public class EnchantmentListener implements Listener {
 
         ItemStack first = event.getInventory().getItem(0); // Slot 0
         ItemStack second = event.getInventory().getItem(1); // Slot 1
-        ItemStack result = event.getResult(); // The result of combining
 
-        // Ensure both items and result exist
-        if (first == null || second == null || result == null) {
+        // Ensure both items exist
+        if (first == null || second == null) {
             return;
         }
+
+        // Ensure both items are the same type (pickaxe/pickaxe, shovel/shovel, etc.)
+        if (first.getType() != second.getType()) {
+            return; // Exit if items are not the same type
+        }
+
+        // Ensure both items are tools or armor
         if (!isToolOrArmor(first) || !isToolOrArmor(second)) {
             return;
         }
 
+        // Create the result ItemStack (based on the first item)
+        ItemStack resultItem = new ItemStack(first.getType());
+        ItemMeta resultMeta = resultItem.getItemMeta();
 
-        // Get the result item's meta
-        ItemMeta resultMeta = result.getItemMeta();
+        // Apply all enchantments from the first item to the result item
+        Map<Enchantment, Integer> combinedEnchantments = new HashMap<>(first.getEnchantments());
 
-        // Check all enchantments from both items
-        for (Map.Entry<Enchantment, Integer> entry : first.getEnchantments().entrySet()) {
+        // Try to apply enchantments from the second item
+        for (Map.Entry<Enchantment, Integer> entry : second.getEnchantments().entrySet()) {
             Enchantment enchantment = entry.getKey();
-            int level = entry.getValue();
-            int maxLevel = enchantment.getMaxLevel();
+            int secondLevel = entry.getValue();
 
-            // If the enchantment level is higher than the max, keep it
-            if (level > maxLevel) {
-                resultMeta.addEnchant(enchantment, level, true);
+            // Check if the result already has this enchantment from the first item
+            if (combinedEnchantments.containsKey(enchantment)) {
+                int firstLevel = combinedEnchantments.get(enchantment);
+                // Combine logic: If levels are equal, increase by 1, otherwise take the highest
+                int resultLevel = (firstLevel == secondLevel) ? firstLevel + 1 : Math.max(firstLevel, secondLevel);
+                resultLevel = Math.min(resultLevel, enchantment.getMaxLevel()); // Cap at max level
+                combinedEnchantments.put(enchantment, resultLevel);
             } else {
-                resultMeta.addEnchant(enchantment, maxLevel, true);
+                // Only apply the second item's enchantment if it does not conflict with the already applied ones
+                boolean conflicts = false;
+                for (Enchantment existingEnch : combinedEnchantments.keySet()) {
+                    if (enchantment.conflictsWith(existingEnch)) {
+                        conflicts = true;
+                        break;
+                    }
+                }
+                // If no conflict, add the enchantment from the second item
+                if (!conflicts) {
+                    combinedEnchantments.put(enchantment, secondLevel);
+                }
             }
         }
 
-        for (Map.Entry<Enchantment, Integer> entry : second.getEnchantments().entrySet()) {
-            Enchantment enchantment = entry.getKey();
-            int level = entry.getValue();
-            int maxLevel = enchantment.getMaxLevel();
+        // Apply the combined enchantments to the result item
+        for (Map.Entry<Enchantment, Integer> entry : combinedEnchantments.entrySet()) {
+            resultMeta.addEnchant(entry.getKey(), entry.getValue(), true);
+        }
 
-            // Check if result already contains this enchantment
-            if (resultMeta.hasEnchant(enchantment)) {
-                int existingLevel = resultMeta.getEnchantLevel(enchantment);
-                // Keep the higher level between the two items
-                if (level > existingLevel) {
-                    resultMeta.removeEnchant(enchantment);
-                    resultMeta.addEnchant(enchantment, level > maxLevel ? level : maxLevel, true);
-                }
-            } else {
-                // Add the enchantment if it's not already in the result
-                resultMeta.addEnchant(enchantment, level > maxLevel ? level : maxLevel, true);
-            }
+        // Set the item's display name if renamed
+        String renameText = event.getView().getRenameText();
+        if (renameText != null && !renameText.isEmpty()) {
+            resultMeta.setDisplayName(renameText);
         }
 
         // Set the updated meta back to the result item
-        result.setItemMeta(resultMeta);
+        resultItem.setItemMeta(resultMeta);
 
         // Set the modified result in the event
-        event.setResult(result);
+        event.setResult(resultItem);
     }
-//    @EventHandler
-//    public void onPrepareAnvil(PrepareAnvilEvent event) {
-//        ItemStack first = event.getInventory().getItem(0);
-//        ItemStack second = event.getInventory().getItem(1);
-//        ItemStack result = event.getResult();
-//
-//        if (first == null || second == null || result == null) {
-//            return;
-//        }
-//        if (!isToolOrArmor(first) || !isToolOrArmor(second)) {
-//            return;
-//        }
-//
-//        ItemMeta resultMeta = result.getItemMeta();
-//        result.getEnchantments().forEach((ench, level) -> {
-//           int maxLevel = ench.getMaxLevel();
-//           if (level >= maxLevel) {
-//               first.getEnchantments().forEach((ench2, level2) -> {
-//                   int maxLevel2 = ench2.getMaxLevel();
-//                   if (level2 > maxLevel2) {
-//                       resultMeta.removeEnchant(ench2);
-//                       resultMeta.addEnchant(ench2, level2, true);
-//                   }
-//               });
-//               second.getEnchantments().forEach((ench2, level2) -> {
-//                   int maxLevel2 = ench2.getMaxLevel();
-//                   if (level2 > maxLevel2) {
-//                       resultMeta.removeEnchant(ench2);
-//                       resultMeta.addEnchant(ench2, level2, true);
-//                   }
-//               });
-//               resultMeta.removeEnchant(ench);
-//               resultMeta.addEnchant(ench, maxLevel, true);
-//           }
-//
-//        });
-//        result.setItemMeta(resultMeta);
-//        event.setResult(null);
-//        event.setResult(result);
-//    }
+
     private boolean isToolOrArmor(ItemStack item) {
         Material type = item.getType();
         return type.name().endsWith("HELMET") || type.name().endsWith("SHELL") ||

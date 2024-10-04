@@ -11,6 +11,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SkeletonHorse;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -89,7 +90,7 @@ public class HadesWhistleListener implements Listener {
             originalChunk.load(true);
 
             // Attempt to find the horse in the original chunk
-            Horse horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+            SkeletonHorse horse = (SkeletonHorse) Bukkit.getEntity(horseData.getHorseUUID());
 
             if (horse != null) {
                 // Teleport the horse to the player
@@ -117,7 +118,7 @@ public class HadesWhistleListener implements Listener {
                     currentChunk.load(true);
 
                     // Try to find the horse in this chunk
-                    horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+                    horse = (SkeletonHorse) Bukkit.getEntity(horseData.getHorseUUID());
 
                     if (horse != null) {
                         // Teleport the horse to the player
@@ -149,11 +150,11 @@ public class HadesWhistleListener implements Listener {
 
         // Retrieve existing horse data if it exists
         HorseData horseData = horseDataManager.getHorseData(playerUUID, customModelData);
-        Horse horse = null;
+        SkeletonHorse horse = null;
 
         // Check if the horse already exists in the world
         if (horseData != null) {
-            horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+            horse = (SkeletonHorse) Bukkit.getEntity(horseData.getHorseUUID());
         }
 
         // If the horse exists and is valid, no need to create a new one
@@ -167,7 +168,7 @@ public class HadesWhistleListener implements Listener {
         }
 
         // Create a new horse at the player's location
-        horse = player.getWorld().spawn(player.getLocation(), Horse.class);
+        horse = player.getWorld().spawn(player.getLocation(), SkeletonHorse.class);
         Location horseLocation = horse.getLocation(); // Get the current location of the player for the new horse
         World horseWorld = horseLocation.getWorld();
 
@@ -175,7 +176,6 @@ public class HadesWhistleListener implements Listener {
         horse.setOwner(player);
         horse.setCustomName(player.getName() + "'s Horse");
         horse.setCustomNameVisible(true);
-        horse.setColor(Horse.Color.BLACK);
         horse.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.32);
         horse.getAttribute(Attribute.GENERIC_JUMP_STRENGTH).setBaseValue(1.0);
         horse.setMaxHealth(30);

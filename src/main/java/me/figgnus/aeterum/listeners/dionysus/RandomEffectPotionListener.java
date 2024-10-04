@@ -19,15 +19,29 @@ import java.util.Random;
 
 public class RandomEffectPotionListener implements Listener {
     private final AeterumX plugin;
-    private final List effects = List.of(PotionEffectType.SPEED,
-            PotionEffectType.JUMP_BOOST,
-            PotionEffectType.RESISTANCE,
-            PotionEffectType.STRENGTH,
-            PotionEffectType.POISON,
-            PotionEffectType.NIGHT_VISION,
-            PotionEffectType.BLINDNESS,
+    private final List<PotionEffectType> goodEffects = List.of(PotionEffectType.SPEED,
             PotionEffectType.HASTE,
+            PotionEffectType.STRENGTH,
+            PotionEffectType.JUMP_BOOST,
+            PotionEffectType.REGENERATION,
+            PotionEffectType.RESISTANCE,
+            PotionEffectType.FIRE_RESISTANCE,PotionEffectType.WATER_BREATHING,
+            PotionEffectType.INVISIBILITY,
+            PotionEffectType.NIGHT_VISION,
+            PotionEffectType.SATURATION,
+            PotionEffectType.GLOWING,
+            PotionEffectType.LEVITATION,
             PotionEffectType.LUCK);
+    private final List<PotionEffectType> badEffects = List.of(PotionEffectType.SLOWNESS,
+            PotionEffectType.MINING_FATIGUE,
+            PotionEffectType.NAUSEA,
+            PotionEffectType.BLINDNESS,
+            PotionEffectType.HUNGER,
+            PotionEffectType.WEAKNESS,
+            PotionEffectType.POISON,
+            PotionEffectType.UNLUCK);
+    private final int goodEffectChance = 10;
+    private final int badEffectChance = 5;
 
     public RandomEffectPotionListener(AeterumX plugin) {
         this.plugin = plugin;
@@ -57,9 +71,27 @@ public class RandomEffectPotionListener implements Listener {
 
     private void applyRandomEffect(Player player) {
         Random random = new Random();
-        int index = random.nextInt(0, effects.size());
+        int roll = random.nextInt(0, goodEffectChance + badEffectChance);
+        if (roll < goodEffectChance) {
+            applyGoodEffect(player);
+        } else {
+            applyBadEffect(player);
+        }
+    }
+
+    private void applyBadEffect(Player player) {
+        Random random = new Random();
+        int index = random.nextInt(0, badEffects.size());
         int duration = random.nextInt(200, 2400);
         int amplifier = random.nextInt(1, 3);
-        player.addPotionEffect(new PotionEffect((PotionEffectType) effects.get(index), duration, amplifier, false));
+        player.addPotionEffect(new PotionEffect(badEffects.get(index), duration, amplifier, false));
+    }
+
+    private void applyGoodEffect(Player player) {
+        Random random = new Random();
+        int index = random.nextInt(0, goodEffects.size());
+        int duration = random.nextInt(200, 2400);
+        int amplifier = random.nextInt(1, 5);
+        player.addPotionEffect(new PotionEffect(goodEffects.get(index), duration, amplifier, false));
     }
 }

@@ -34,6 +34,8 @@ public class SeaHorseAbilityListener implements Listener {
             if ("true".equals(metadataValue)) {
                 // Get the horse's location
                 Location horseLocation = horse.getLocation();
+                horseLocation.getWorld().spawnParticle(Particle.SNOWFLAKE, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+                horseLocation.getWorld().spawnParticle(Particle.CLOUD, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
                 // Define a 2x2 area around the horse
                 int[][] offsets = {
                         {0, 0},

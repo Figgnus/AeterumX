@@ -2,9 +2,11 @@ package me.figgnus.aeterum.listeners.hermes;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.listeners.demeter.DemeterWhistleListener;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
@@ -12,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,6 +28,24 @@ public class SpeedHorseAbilityListener implements Listener {
         this.plugin = plugin;
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+
+        // Check if the player is riding a horse
+        if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
+            Horse horse = (Horse) player.getVehicle();
+            String metadataValue = plugin.getEntityMetadata(horse, HermesWhistleListener.HORSE_KEY);
+
+            // Check if the horse has the Seed  ability
+            if ("true".equals(metadataValue)) {
+
+                Location horseLocation = horse.getLocation();
+                horseLocation.getWorld().spawnParticle(Particle.FIREWORK, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+                horseLocation.getWorld().spawnParticle(Particle.CLOUD, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+            }
+        }
     }
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {

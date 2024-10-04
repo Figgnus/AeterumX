@@ -180,7 +180,7 @@ public class PortalListener implements Listener {
         // Iterate over radius values starting from initialRadius
         for (int radius = initialRadius; radius <= maxRadius; radius++) {
             // Loop to find a safe location by checking y-coordinates first
-            for (int y = 0; y <= 127; y++) { // Check from y=0 to y=127
+            for (int y = 32; y <= 127; y++) { // Check from y=0 to y=127
                 for (int x = startX - radius; x <= startX + radius; x++) {
                     for (int z = startZ - radius; z <= startZ + radius; z++) {
                         Location candidateLocation = new Location(nether, x, y, z);

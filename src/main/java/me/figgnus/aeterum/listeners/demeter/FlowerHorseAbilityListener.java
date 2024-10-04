@@ -46,6 +46,11 @@ public class FlowerHorseAbilityListener  implements Listener {
                 // Get the block under the horse
                 Block centerBlock = horse.getLocation().getBlock().getRelative(0, 0, 0);
 
+                Location horseLocation = horse.getLocation();
+                horseLocation.getWorld().spawnParticle(Particle.SPORE_BLOSSOM_AIR, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+                horseLocation.getWorld().spawnParticle(Particle.GLOW_SQUID_INK, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+
+
                 // Iterate through the 3x3 area under the horse
                 for (int dx = -2; dx <= 2; dx++) {
                     for (int dz = -2; dz <= 2; dz++) {

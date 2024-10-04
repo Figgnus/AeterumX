@@ -2,15 +2,19 @@ package me.figgnus.aeterum.listeners.dionysus;
 
 import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.AeterumX;
+import me.figgnus.aeterum.listeners.demeter.DemeterWhistleListener;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -27,6 +31,25 @@ public class DrunkHorseAbilityListener implements Listener {
         startPeriodicTask();
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+
+        // Check if the player is riding a horse
+        if (player.isInsideVehicle() && player.getVehicle() instanceof Horse) {
+            Horse horse = (Horse) player.getVehicle();
+            String metadataValue = plugin.getEntityMetadata(horse, DionysusWhistleListener.HORSE_KEY);
+
+            // Check if the horse has the Seed  ability
+            if ("true".equals(metadataValue)) {
+
+                Location horseLocation = horse.getLocation();
+                horseLocation.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+                horseLocation.getWorld().spawnParticle(Particle.CLOUD, horseLocation.clone().add(0, 0.5, 0), 1, 0.2, 0.05, 0.2, 0.01);
+            }
+        }
     }
 
     private void startPeriodicTask() {

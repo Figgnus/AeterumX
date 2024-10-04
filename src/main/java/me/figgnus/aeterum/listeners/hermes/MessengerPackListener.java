@@ -19,10 +19,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -110,12 +113,16 @@ public class MessengerPackListener implements Listener {
                 ItemMeta meta = item.getItemMeta();
                 int foodValue = 0;
                 float saturation = 0;
+                List<FoodComponent.FoodEffect> effects = null;
 
                 if (meta != null && meta.hasFood()) {
                     // Get the food component (if it's a custom food)
                     FoodComponent foodComponent = meta.getFood();
                     foodValue = foodComponent.getNutrition();
                     saturation = foodComponent.getSaturation();
+                    if (foodComponent.getEffects() != null) {
+                        effects = foodComponent.getEffects();
+                    }
                 }
 
                 // If foodValue and saturation are still 0, use vanilla food values
@@ -132,6 +139,22 @@ public class MessengerPackListener implements Listener {
                     player.setFoodLevel(player.getFoodLevel() + hungerRestored);
                     player.setSaturation(player.getSaturation() + saturation);
 
+                    // Apply food effects, if any, considering the probability
+                    if (effects != null && !effects.isEmpty()) {
+                        for (FoodComponent.FoodEffect effect : effects) {
+                            // Check the probability of the effect being applied
+                            float effectProbability = effect.getProbability();
+                            if (Math.random() <= effectProbability) {
+                                PotionEffectType effectType = effect.getEffect().getType();
+                                int effectDuration = effect.getEffect().getDuration();
+                                int effectAmplifier = effect.getEffect().getAmplifier();
+
+                                // Apply the effect to the player
+                                PotionEffect potionEffect = new PotionEffect(effectType, effectDuration, effectAmplifier);
+                                player.addPotionEffect(potionEffect);
+                            }
+                        }
+                    }
                     player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_EAT, 1, 1);
 
                     // Reduce the amount of the food in the inventory slot

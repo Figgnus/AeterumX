@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SkeletonHorse;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -25,6 +26,30 @@ public class HorseDeathListener implements Listener {
         // Check it he dead entity is a horse
         if (entity instanceof Horse){
             Horse horse = (Horse) entity;
+
+            // Get horse's owner
+            if (horse.getOwner() != null && horse.getOwner() instanceof Player){
+                Player owner = (Player) horse.getOwner();
+                UUID ownerUUID = owner.getUniqueId();
+
+                // Find the horse data based on its UUID
+                Map<Integer, HorseData> playerHorses = horseDataManager.getPlayerHorses(ownerUUID);
+                if (playerHorses != null){
+                    for (Map.Entry<Integer, HorseData> entry : playerHorses.entrySet()){
+                        HorseData horseData = entry.getValue();
+                        if (horseData.getHorseUUID().equals(horse.getUniqueId())){
+                            // Mark the horse as dead in HorseData
+                            horseDataManager.setHorseAlive(ownerUUID, entry.getKey(), false);
+                            horseDataManager.saveHorses();
+                            owner.sendMessage(ChatColor.RED + "Tvůj kůň zemřel :( Zatrub na roh a přide nový.");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if (entity instanceof SkeletonHorse){
+            SkeletonHorse horse = (SkeletonHorse) entity;
 
             // Get horse's owner
             if (horse.getOwner() != null && horse.getOwner() instanceof Player){

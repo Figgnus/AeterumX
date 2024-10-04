@@ -3,7 +3,9 @@ package me.figgnus.aeterum.utils;
 import me.figgnus.aeterum.AeterumX;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.SkeletonHorse;
 
 import java.util.Map;
 import java.util.UUID;
@@ -33,15 +35,25 @@ public class HorseLocationUpdater implements Runnable{
             for (Map.Entry<Integer, HorseData> entry : horses.entrySet()) {
                 int customModelData = entry.getKey();
                 HorseData horseData = entry.getValue();
-                Horse horse = (Horse) Bukkit.getEntity(horseData.getHorseUUID());
+                Entity horseEntity = Bukkit.getEntity(horseData.getHorseUUID()); // Get the entity first
                 boolean isAlive = horseData.isHorseAlive();
 
-                if (horse != null && horse.isValid()) {
+                // Check if the horse entity is valid
+                if (horseEntity == null) {
+                    continue; // Skip to the next horse
+                }
+
+                // Check if the horse entity is an instance of Horse (including SkeletonHorse)
+                if (horseEntity instanceof Horse horse) {
                     Location horseLocation = horse.getLocation();
                     horseDataManager.setHorseData(playerUUID, customModelData, horse.getUniqueId(), horseLocation.getWorld().getName(), horseLocation, isAlive);
+                } else if (horseEntity instanceof SkeletonHorse skeletonHorse) {
+                    Location skeletonHorseLocation = skeletonHorse.getLocation();
+                    horseDataManager.setHorseData(playerUUID, customModelData, skeletonHorse.getUniqueId(), skeletonHorseLocation.getWorld().getName(), skeletonHorseLocation, isAlive);
                 }
             }
         }
+
         // Increment the counter
         counter++;
 

@@ -37,6 +37,7 @@ public class RecipesGUI implements Listener {
         items.add(CustomItems.DARK_PORTAL);
         items.add(CustomItems.SPEED_HORSE_TAME);
         items.add(CustomItems.SPEED_HORSE_ABILITY);
+        items.add(CustomItems.FLYING_ITEM);
         items.add(CustomItems.MESSENGER_PACK);
         items.add(CustomItems.SPEED_BOOTS);
         items.add(CustomItems.SEA_HORSE_TAME);

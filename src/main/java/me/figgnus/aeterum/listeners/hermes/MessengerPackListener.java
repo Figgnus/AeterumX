@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -49,6 +50,7 @@ public class MessengerPackListener implements Listener {
         // Schedule periodic inventory saves every 5 minutes (6000 ticks)
         plugin.getServer().getScheduler().runTaskTimer(plugin, this::saveAllInventories, 6000L, 6000L);
     }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -60,9 +62,13 @@ public class MessengerPackListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
+
         if (ItemUtils.isCustomItem(item, CustomItems.MESSENGER_PACK.getItemMeta().getCustomModelData())) {
             if (!player.hasPermission(PermissionUtils.hermesMessengerPack)) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
+                return;
+            }
+            if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
                 return;
             }
             player.openInventory(getPlayerInventory(player));

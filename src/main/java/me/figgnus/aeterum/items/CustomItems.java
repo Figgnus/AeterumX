@@ -101,6 +101,7 @@ public class CustomItems {
     public static ItemStack WEATHER_CHANGER;
 
 
+
     // Lists of enchantments for items
     List<Map.Entry<Enchantment, Integer>> betterTridentEnchantments = new ArrayList<>();
     List<Map.Entry<Enchantment, Integer>> waterBreathingCrownEnchantments = new ArrayList<>();
@@ -150,6 +151,7 @@ public class CustomItems {
         itemStack.setItemMeta(meta);
         return itemStack;
     }
+
     public static void reloadItems() {
         BETTER_BONEMEAL_NAME = AeterumX.getItemName("BETTER_BONEMEAL");
         GROWTH_POTION_NAME = AeterumX.getItemName("GROWTH_POTION");

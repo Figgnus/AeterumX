@@ -24,6 +24,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,7 +43,7 @@ public final class AeterumX extends JavaPlugin implements Listener {
     public void onEnable() {
         loadConfig();
         //Register custom items
-        new CustomItems();
+        new CustomItems(this);
         // Initialize the HorseDataManager and load data
         horseDataManager = new HorseDataManager(getDataFolder());
         horseDataManager.loadHorses();
@@ -154,5 +156,38 @@ public final class AeterumX extends JavaPlugin implements Listener {
             return dataContainer.get(namespacedKey, PersistentDataType.STRING);
         }
         return null;
+    }
+    public void setCustomData(ItemStack item, String key, String value) {
+        // Get the ItemMeta for the item
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null) {
+            // Access the PersistentDataContainer from the meta
+            PersistentDataContainer dataContainer = meta.getPersistentDataContainer();
+
+            // Create a NamespacedKey for your plugin and the custom data key
+            NamespacedKey dataKey = new NamespacedKey(this, key);
+
+            // Set the custom data (e.g., a string in this case)
+            dataContainer.set(dataKey, PersistentDataType.STRING, value);
+
+            // Set the modified meta back to the item
+            item.setItemMeta(meta);
+        }
+    }
+    public String getCustomData(ItemStack item, String key) {
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null) {
+            PersistentDataContainer dataContainer = meta.getPersistentDataContainer();
+            NamespacedKey dataKey = new NamespacedKey(this, key);
+
+            // Retrieve the custom data (if present)
+            if (dataContainer.has(dataKey, PersistentDataType.STRING)) {
+                return dataContainer.get(dataKey, PersistentDataType.STRING);
+            }
+        }
+
+        return null; // Return null if no custom data found
     }
 }

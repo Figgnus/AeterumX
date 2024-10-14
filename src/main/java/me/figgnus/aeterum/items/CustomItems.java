@@ -100,13 +100,14 @@ public class CustomItems {
     public static ItemStack LIGHTNING_SPEAR;
     public static ItemStack WEATHER_CHANGER;
 
-
+    private static AeterumX plugin;
 
     // Lists of enchantments for items
     List<Map.Entry<Enchantment, Integer>> betterTridentEnchantments = new ArrayList<>();
     List<Map.Entry<Enchantment, Integer>> waterBreathingCrownEnchantments = new ArrayList<>();
 
-    public CustomItems() {
+    public CustomItems(AeterumX plugin) {
+        CustomItems.plugin = plugin;
         reloadItems();
 
         betterTridentEnchantments.add(new AbstractMap.SimpleEntry<>(Enchantment.RIPTIDE, 5));
@@ -125,7 +126,7 @@ public class CustomItems {
     }
 
 
-    public static ItemStack createCustomItem(Material material, int id, String displayName, List<String> lore, Color color, String texture) {
+    public static ItemStack createCustomItem(Material material, int id, String displayName, List<String> lore, Color color, String texture, String metaDataKey) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(ChatColor.GREEN + displayName);
@@ -149,6 +150,9 @@ public class CustomItems {
         }
 
         itemStack.setItemMeta(meta);
+        if (metaDataKey != null){
+            plugin.setCustomData(itemStack, metaDataKey, "true");
+        }
         return itemStack;
     }
 
@@ -207,31 +211,31 @@ public class CustomItems {
         LIGHTNING_SPEAR_LORE = List.of(ChatColor.GRAY + AeterumX.getItemLore("LIGHTNING_SPEAR"));
         WEATHER_CHANGER_LORE = List.of(ChatColor.GRAY + AeterumX.getItemLore("WEATHER_CHANGER"));
 
-        BETTER_BONEMEAL = createCustomItem(AeterumX.getItemMaterial("BETTER_BONEMEAL"), 60001, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null, null);
-        GROWTH_POTION = createCustomItem(AeterumX.getItemMaterial("GROWTH_POTION"), 60002, GROWTH_POTION_NAME, GROWTH_POTION_LORE, AeterumX.getItemColor("GROWTH_POTION"), null);
-        HOE_OF_HARVEST = createCustomItem(AeterumX.getItemMaterial("HOE_OF_THE_HARVEST"), 60003, HOE_OF_HARVEST_NAME, HOE_OF_HARVEST_LORE, null, null);
-        FLOWER_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("FLOWER_HORSE_TAME"), 60004, FLOWER_HORSE_TAME_NAME, FLOWER_HORSE_TAME_LORE, null, null);
-        ZOMBIE_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("ZOMBIE_HORSE_TAME"), 60005, ZOMBIE_HORSE_TAME_NAME, ZOMBIE_HORSE_TAME_LORE, null, null);
-        DRUNK_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("DRUNK_HORSE_TAME"), 60006, DRUNK_HORSE_TAME_NAME, DRUNK_HORSE_TAME_LORE, null, null);
-        SPEED_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("SPEED_HORSE_TAME"), 60007, SPEED_HORSE_TAME_NAME, SPEED_HORSE_TAME_LORE, null, null);
-        SPEED_HORSE_ABILITY = createCustomItem(AeterumX.getItemMaterial("SPEED_HORSE_ABILITY"), 60008, SPEED_HORSE_ABILITY_NAME, SPEED_HORSE_ABILITY_LORE, AeterumX.getItemColor("SPEED_HORSE_ABILITY"), null);
-        SEA_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("SEA_HORSE_TAME"), 60009, SEA_HORSE_TAME_NAME, SEA_HORSE_TAME_LORE, null, null);
-        PEGASUS_TAME = createCustomItem(AeterumX.getItemMaterial("PEGASUS_HORSE_TAME"), 60010, PEGASUS_HORSE_TAME_NAME, PEGASUS_TAME_LORE, null, null);
-        PEGASUS_ABILITY = createCustomItem(AeterumX.getItemMaterial("PEGASUS_HORSE_ABILITY"), 60011, PEGASUS_HORSE_ABILITY_NAME, PEGASUS_ABILITY_LORE, AeterumX.getItemColor("PEGASUS_HORSE_ABILITY"), null);
-        PARTY_BALL = createCustomItem(AeterumX.getItemMaterial("PARTY_BALL"), 60012, PARTY_BALL_NAME, PARTY_BALL_LORE, null, null);
-        PARTY_ATMOSPHERE = createCustomItem(AeterumX.getItemMaterial("PARTY_ATMOSPHERE"), 60013, PARTY_ATMOSPHERE_NAME, PARTY_ATMOSPHERE_LORE, AeterumX.getItemColor("PARTY_ATMOSPHERE"), null);
-        RANDOM_EFFECT_POTION = createCustomItem(AeterumX.getItemMaterial("RANDOM_EFFECT_POTION"), 60014, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, AeterumX.getItemColor("RANDOM_EFFECT_POTION"), null);
-        RANDOMIZER = createCustomItem(AeterumX.getItemMaterial("RANDOMIZER"), 60015, RANDOMIZER_NAME, RANDOMIZER_LORE, null, null);
-        DARKNESS_POTION = createCustomItem(AeterumX.getItemMaterial("DARKNESS_POTION"), 60016, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, AeterumX.getItemColor("DARKNESS_POTION"), null);
-        DARK_PEARL = createCustomItem(AeterumX.getItemMaterial("DARK_PEARL"), 60017, DARK_PEARL_NAME, DARK_PEARL_LORE, null, null);
-        DARK_PORTAL = createCustomItem(AeterumX.getItemMaterial("DARK_PORTAL"), 60018, DARK_PORTAL_NAME, DARK_PORTAL_LORE, AeterumX.getItemColor("DARK_PORTAL"), null);
-        FLYING_ITEM = createCustomItem(AeterumX.getItemMaterial("FLYING_ITEM"), 60019, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null, null);
-        MESSENGER_PACK = createCustomItem(AeterumX.getItemMaterial("MESSENGER_PACK"), 60020, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null, "e92dfa61a324207488e45c79d0355d2163b7a3b35f0e958f88f5423484360978");
-        SPEED_BOOTS = createCustomItem(AeterumX.getItemMaterial("SPEED_BOOTS"), 60021, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null, null);
-        BETTER_TRIDENT = createCustomItem(AeterumX.getItemMaterial("BETTER_TRIDENT"), 60022, BETTER_TRIDENT_NAME, BETTER_TRIDENT_LORE, null, null);
-        WATER_BREATHING_CROWN = createCustomItem(AeterumX.getItemMaterial("WATER_BREATHING_CROWN"), 60023, WATER_BREATHING_CROWN_NAME, WATER_BREATHING_CROW_LORE, null, null);
-        BREEDING_ITEM = createCustomItem(AeterumX.getItemMaterial("BREEDING_ITEM"), 60024, BREEDING_ITEM_NAME, BREEDING_ITEM_LORE, null, null);
-        LIGHTNING_SPEAR = createCustomItem(AeterumX.getItemMaterial("LIGHTNING_SPEAR"), 60025, LIGHTNING_SPEAR_NAME, LIGHTNING_SPEAR_LORE, null, null);
-        WEATHER_CHANGER = createCustomItem(AeterumX.getItemMaterial("WEATHER_CHANGER"), 60026, WEATHER_CHANGER_NAME, WEATHER_CHANGER_LORE, AeterumX.getItemColor("WEATHER_CHANGER"), null);
+        BETTER_BONEMEAL = createCustomItem(AeterumX.getItemMaterial("BETTER_BONEMEAL"), 60001, BETTER_BONEMEAL_NAME, BETTER_BONEMEAL_LORE, null, null, "BETTER_BONEMEAL");
+        GROWTH_POTION = createCustomItem(AeterumX.getItemMaterial("GROWTH_POTION"), 60002, GROWTH_POTION_NAME, GROWTH_POTION_LORE, AeterumX.getItemColor("GROWTH_POTION"), null, null);
+        HOE_OF_HARVEST = createCustomItem(AeterumX.getItemMaterial("HOE_OF_THE_HARVEST"), 60003, HOE_OF_HARVEST_NAME, HOE_OF_HARVEST_LORE, null, null, null);
+        FLOWER_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("FLOWER_HORSE_TAME"), 60004, FLOWER_HORSE_TAME_NAME, FLOWER_HORSE_TAME_LORE, null, null, null);
+        ZOMBIE_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("ZOMBIE_HORSE_TAME"), 60005, ZOMBIE_HORSE_TAME_NAME, ZOMBIE_HORSE_TAME_LORE, null, null, null);
+        DRUNK_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("DRUNK_HORSE_TAME"), 60006, DRUNK_HORSE_TAME_NAME, DRUNK_HORSE_TAME_LORE, null, null , null);
+        SPEED_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("SPEED_HORSE_TAME"), 60007, SPEED_HORSE_TAME_NAME, SPEED_HORSE_TAME_LORE, null, null , null);
+        SPEED_HORSE_ABILITY = createCustomItem(AeterumX.getItemMaterial("SPEED_HORSE_ABILITY"), 60008, SPEED_HORSE_ABILITY_NAME, SPEED_HORSE_ABILITY_LORE, AeterumX.getItemColor("SPEED_HORSE_ABILITY"), null , null);
+        SEA_HORSE_TAME = createCustomItem(AeterumX.getItemMaterial("SEA_HORSE_TAME"), 60009, SEA_HORSE_TAME_NAME, SEA_HORSE_TAME_LORE, null, null , null);
+        PEGASUS_TAME = createCustomItem(AeterumX.getItemMaterial("PEGASUS_HORSE_TAME"), 60010, PEGASUS_HORSE_TAME_NAME, PEGASUS_TAME_LORE, null, null , null);
+        PEGASUS_ABILITY = createCustomItem(AeterumX.getItemMaterial("PEGASUS_HORSE_ABILITY"), 60011, PEGASUS_HORSE_ABILITY_NAME, PEGASUS_ABILITY_LORE, AeterumX.getItemColor("PEGASUS_HORSE_ABILITY"), null , null);
+        PARTY_BALL = createCustomItem(AeterumX.getItemMaterial("PARTY_BALL"), 60012, PARTY_BALL_NAME, PARTY_BALL_LORE, null, null , null);
+        PARTY_ATMOSPHERE = createCustomItem(AeterumX.getItemMaterial("PARTY_ATMOSPHERE"), 60013, PARTY_ATMOSPHERE_NAME, PARTY_ATMOSPHERE_LORE, AeterumX.getItemColor("PARTY_ATMOSPHERE"), null , null);
+        RANDOM_EFFECT_POTION = createCustomItem(AeterumX.getItemMaterial("RANDOM_EFFECT_POTION"), 60014, RANDOM_EFFECT_POTION_NAME, RANDOM_EFFECT_POTION_LORE, AeterumX.getItemColor("RANDOM_EFFECT_POTION"), null , null);
+        RANDOMIZER = createCustomItem(AeterumX.getItemMaterial("RANDOMIZER"), 60015, RANDOMIZER_NAME, RANDOMIZER_LORE, null, null , null);
+        DARKNESS_POTION = createCustomItem(AeterumX.getItemMaterial("DARKNESS_POTION"), 60016, DARKNESS_POTION_NAME, DARKNESS_POTION_LORE, AeterumX.getItemColor("DARKNESS_POTION"), null , null);
+        DARK_PEARL = createCustomItem(AeterumX.getItemMaterial("DARK_PEARL"), 60017, DARK_PEARL_NAME, DARK_PEARL_LORE, null, null , null);
+        DARK_PORTAL = createCustomItem(AeterumX.getItemMaterial("DARK_PORTAL"), 60018, DARK_PORTAL_NAME, DARK_PORTAL_LORE, AeterumX.getItemColor("DARK_PORTAL"), null , null);
+        FLYING_ITEM = createCustomItem(AeterumX.getItemMaterial("FLYING_ITEM"), 60019, FLYING_ITEM_NAME, FLYING_ITEM_LORE, null, null , null);
+        MESSENGER_PACK = createCustomItem(AeterumX.getItemMaterial("MESSENGER_PACK"), 60020, MESSENGER_PACK_NAME, MESSENGER_PACK_LORE, null, "e92dfa61a324207488e45c79d0355d2163b7a3b35f0e958f88f5423484360978", null);
+        SPEED_BOOTS = createCustomItem(AeterumX.getItemMaterial("SPEED_BOOTS"), 60021, SPEED_BOOTS_NAME, SPEED_BOOTS_LORE, null, null, null);
+        BETTER_TRIDENT = createCustomItem(AeterumX.getItemMaterial("BETTER_TRIDENT"), 60022, BETTER_TRIDENT_NAME, BETTER_TRIDENT_LORE, null, null , null);
+        WATER_BREATHING_CROWN = createCustomItem(AeterumX.getItemMaterial("WATER_BREATHING_CROWN"), 60023, WATER_BREATHING_CROWN_NAME, WATER_BREATHING_CROW_LORE, null, null , null);
+        BREEDING_ITEM = createCustomItem(AeterumX.getItemMaterial("BREEDING_ITEM"), 60024, BREEDING_ITEM_NAME, BREEDING_ITEM_LORE, null, null , null);
+        LIGHTNING_SPEAR = createCustomItem(AeterumX.getItemMaterial("LIGHTNING_SPEAR"), 60025, LIGHTNING_SPEAR_NAME, LIGHTNING_SPEAR_LORE, null, null , null);
+        WEATHER_CHANGER = createCustomItem(AeterumX.getItemMaterial("WEATHER_CHANGER"), 60026, WEATHER_CHANGER_NAME, WEATHER_CHANGER_LORE, AeterumX.getItemColor("WEATHER_CHANGER"), null , null);
     }
 }

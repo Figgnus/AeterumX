@@ -5,6 +5,7 @@ permissions:
     permission: "aeterum.demeter.bonemeal"
     custom_id: 60001
     material: "BONE_MEAL"
+    oraxen_id: better_bonemeal
   GROWTH_POTION:
     name: "Lektvar Růstu"
     lore: "Lektvar který urychlý růst rostlin v okolí hráče"
@@ -12,6 +13,7 @@ permissions:
     custom_id: 60002
     material: "HONEY_BOTTLE"
     recipe_potion: regeneration
+    oraxen_id: growth_potion
     color:
       red: 63
       green: 206
@@ -22,12 +24,14 @@ permissions:
     permission: "aeterum.demeter.hoe"
     custom_id: 60003
     material: "NETHERITE_HOE"
+    oraxen_id: hoe_of_harvest
   FLOWER_HORSE_TAME:
     name: "Démétéřin Roh"
     lore: "Zatrub a přivolej svého koně"
     permission: "aeterum.demeter.horse_tame"
     custom_id: 60004
     material: "GOAT_HORN"
+    oraxen_id: demeter_whistle
   FLOWER_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.demeter.horse_ability"
@@ -40,6 +44,7 @@ permissions:
     permission: "aeterum.dionysus.party_atmosphere"
     custom_id: 60013
     material: "HONEY_BOTTLE"
+    oraxen_id: party_atmosphere
     color:
       red: 255
       green: 185
@@ -50,12 +55,14 @@ permissions:
     permission: "aeterum.dionysus.party_ball"
     custom_id: 60012
     material: "SNOWBALL"
+    oraxen_id: party_ball
   RANDOM_EFFECT_POTION:
     name: "Záhadný Nápoj"
     lore: "Kdo vý co se může stát"
     permission: "aeterum.dionysus.random_effect_potion"
     custom_id: 60014
     material: "HONEY_BOTTLE"
+    oraxen_id: random_effect_potion
     color:
       red: 43
       green: 158
@@ -66,6 +73,7 @@ permissions:
     permission: "aeterum.dionysus.horse_tame"
     custom_id: 60006
     material: "GOAT_HORN"
+    oraxen_id: dionysus_whistle
   DRUNK_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.dionysus.horse_ability"
@@ -78,6 +86,7 @@ permissions:
     permission: "aeterum.hades.darkness_potion"
     custom_id: 60016
     material: "HONEY_BOTTLE"
+    oraxen_id: dark_potion
     color:
       red: 16
       green: 41
@@ -88,12 +97,14 @@ permissions:
     permission: "aeterum.hades.dark_pearl"
     custom_id: 60017
     material: "ENDER_PEARL"
+    oraxen_id: dark_pearl
   DARK_PORTAL:
     name: "Temný Portál"
     lore: "Kde se objevíš?"
     permission: "aeterum.hades.portal"
     custom_id: 60018
     material: "SPLASH_POTION"
+    oraxen_id: dark_portal
     color:
       red: 57
       green: 16
@@ -104,6 +115,7 @@ permissions:
     permission: "aeterum.hades.horse_tame"
     custom_id: 60005
     material: "GOAT_HORN"
+    oraxen_id: hades_whistle
   ZOMBIE_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.hades.horse_ability"
@@ -119,18 +131,21 @@ permissions:
     permission: "aeterum.hermes.flying_item"
     custom_id: 60019
     material: "STONE_SWORD"
+    oraxen_id: flying_item
   MESSENGER_PACK:
     name: "Poštovní Brašna"
     lore: "Bůh zpráv potřebuje pořádnou brašnu"
     permission: "aeterum.hermes.messenger_pack"
     custom_id: 60020
     material: "PLAYER_HEAD"
+    oraxen_id: messenger_pack
   SPEED_BOOTS:
     name: "Rychlé botky"
     lore: "Tyhle botky vypadají rychle. Nezakopni."
     permission: "aeterum.hermes.speed_boots"
     custom_id: 60021
     material: "IRON_BOOTS"
+    oraxen_id: speed_boots
   SPEED_HORSE_TAME:
     name: "Hermesův Roh"
     lore: "Zatrub a přivolej svého koně"
@@ -138,12 +153,14 @@ permissions:
     custom_id: 60007
     material: "GOAT_HORN"
     recipe_potion: swiftness
+    oraxen_id: hermes_whistle
   SPEED_HORSE_ABILITY:
     name: "Lektvar Rychlích Kopit"
     lore: "Sedni na svého koně, napij se a drž se"
     permission: "aeterum.hermes.horse_ability"
     custom_id: 60008
     material: "HONEY_BOTTLE"
+    oraxen_id: swift_horse_potion
     color:
       red: 193
       green: 193
@@ -157,6 +174,7 @@ permissions:
     permission: "aeterum.poseidon.horse_tame"
     custom_id: 60009
     material: "GOAT_HORN"
+    oraxen_id: poseidon_whistle
   SEA_HORSE_ABILITY:
     name: "Horse Ability"
     permission: "aeterum.poseidon.horse_ability"
@@ -166,12 +184,14 @@ permissions:
     permission: "aeterum.poseidon.crown"
     custom_id: 60023
     material: "TURTLE_HELMET"
+    oraxen_id: sea_crown
   BETTER_TRIDENT:
     name: "Královský Trojzubec"
     lore: "Zbraň hodná krále moří"
     permission: "aeterum.poseidon.trident"
     custom_id: 60022
     material: "TRIDENT"
+    oraxen_id: better_trident
   POSEIDON_COMMAND:
     name: "Dolphingrace"
     permission: "aeterum.poseidon.command"
@@ -184,12 +204,14 @@ permissions:
     permission: "aeterum.zeus.horse_tame"
     custom_id: 60010
     material: "GOAT_HORN"
+    oraxen_id: zeus_whistle
   PEGASUS_HORSE_ABILITY:
     name: "Lektvar Levitujících Kopit"
     lore: "Napij se když si na svém koni"
     permission: "aeterum.zeus.horse_ability"
     custom_id: 60011
     material: "HONEY_BOTTLE"
+    oraxen_id: levitate_horse_potion
     color:
       red: 204
       green: 205
@@ -200,18 +222,21 @@ permissions:
     permission: "aeterum.zeus.breeding_item"
     custom_id: 60024
     material: "SLIME_BALL"
+    oraxen_id: breeding_item
   LIGHTNING_SPEAR:
     name: "Blesk"
     lore: "Zbraň hodná hrále Olympu"
     permission: "aeterum.zeus.lightning_spear"
     custom_id: 60025
     material: "TRIDENT"
+    oraxen_id: lightning
   WEATHER_CHANGER:
     name: "Lektvar Bouře"
     lore: "Moc slunečno? Tohle by mohlo být řešení"
     permission: "aeterum.zeus.weather_changer"
     custom_id: 60026
     material: "HONEY_BOTTLE"
+    oraxen_id: potion_of_storm
     color:
       red: 165
       green: 161
@@ -225,3 +250,4 @@ permissions:
     permission: "aeterum.trowel.use"
     custom_id: 60015
     material: "IRON_SHOVEL"
+    oraxen_id: lopatka

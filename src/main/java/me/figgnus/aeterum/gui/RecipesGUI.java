@@ -2,7 +2,6 @@ package me.figgnus.aeterum.gui;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,8 +10,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
-
-// oraxen version
 
 public class RecipesGUI implements Listener {
     private final AeterumX plugin;

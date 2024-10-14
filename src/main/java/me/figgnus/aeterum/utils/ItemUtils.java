@@ -3,12 +3,15 @@ package me.figgnus.aeterum.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionType;
 import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
@@ -28,6 +31,24 @@ public class ItemUtils {
         return item != null && item.getItemMeta() != null && item.getItemMeta().hasCustomModelData() &&
                 item.getItemMeta().getCustomModelData() == id;
     }
+    public static boolean isCustomOraxenItem(ItemStack item, String metaValue) {
+        if (item == null || item.getItemMeta() == null) {
+            return false;
+        }
+
+        ItemMeta meta = item.getItemMeta();
+        PersistentDataContainer dataContainer = meta.getPersistentDataContainer();
+        NamespacedKey dataKey = new NamespacedKey("oraxen", "id");
+
+        // Check if the item has the custom data and if it matches the provided metaValue
+        if (dataContainer.has(dataKey, PersistentDataType.STRING)) {
+            String customValue = dataContainer.get(dataKey, PersistentDataType.STRING);
+            return metaValue.equals(customValue); // Return true if the values match
+        }
+
+        return false; // No custom Oraxen data or value does not match
+    }
+
     // Creates basic potion
     public static ItemStack createPotion(PotionType potionType){
         ItemStack potion = new ItemStack(Material.POTION);

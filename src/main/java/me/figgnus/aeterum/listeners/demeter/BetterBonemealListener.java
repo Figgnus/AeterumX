@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
@@ -31,7 +32,7 @@ public class BetterBonemealListener implements Listener {
     private void onBlockRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.BETTER_BONEMEAL.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.BETTER_BONEMEAL_NAME)){
             if (!player.hasPermission(PermissionUtils.demeterBetterBonemeal)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

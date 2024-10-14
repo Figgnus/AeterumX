@@ -1,7 +1,7 @@
 package me.figgnus.aeterum;
 
 import me.figgnus.aeterum.gui.RecipesGUI;
-import me.figgnus.aeterum.listeners._other.CustomTnTListener;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.listeners._other.EnchantmentListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
@@ -135,6 +135,9 @@ public final class AeterumX extends JavaPlugin implements Listener {
         int blue = config.getInt("permissions." + id + ".color.blue");
         return Color.fromRGB(red, green, blue);
     }
+    public static String getOraxenId(String id) {
+        return config.getString("permissions." + id + ".oraxen_id");
+    }
     @Override
     public void onDisable() {
         // Plugin shutdown logic
@@ -157,7 +160,7 @@ public final class AeterumX extends JavaPlugin implements Listener {
         }
         return null;
     }
-    public void setCustomData(ItemStack item, String key, String value) {
+    public void setCustomOraxenData(ItemStack item, String value) {
         // Get the ItemMeta for the item
         ItemMeta meta = item.getItemMeta();
 
@@ -166,7 +169,7 @@ public final class AeterumX extends JavaPlugin implements Listener {
             PersistentDataContainer dataContainer = meta.getPersistentDataContainer();
 
             // Create a NamespacedKey for your plugin and the custom data key
-            NamespacedKey dataKey = new NamespacedKey(this, key);
+            NamespacedKey dataKey = new NamespacedKey("oraxen", "id");
 
             // Set the custom data (e.g., a string in this case)
             dataContainer.set(dataKey, PersistentDataType.STRING, value);
@@ -175,12 +178,12 @@ public final class AeterumX extends JavaPlugin implements Listener {
             item.setItemMeta(meta);
         }
     }
-    public String getCustomData(ItemStack item, String key) {
+    public String getCustomOraxenData(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
             PersistentDataContainer dataContainer = meta.getPersistentDataContainer();
-            NamespacedKey dataKey = new NamespacedKey(this, key);
+            NamespacedKey dataKey = new NamespacedKey("oraxen", "id");
 
             // Retrieve the custom data (if present)
             if (dataContainer.has(dataKey, PersistentDataType.STRING)) {

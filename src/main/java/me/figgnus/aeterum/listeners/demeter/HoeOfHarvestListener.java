@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Location;
@@ -35,7 +36,7 @@ public class HoeOfHarvestListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         UUID playerUuid = player.getUniqueId();
-        if (ItemUtils.isCustomItem(item, CustomItems.HOE_OF_HARVEST.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.HOE_OF_HARVEST_NAME)){
             if (!player.hasPermission(PermissionUtils.demeterHoe)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.listeners.hermes.HermesWhistleListener;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -53,7 +54,7 @@ public class PegasusAbilityListener implements Listener {
     @EventHandler
     public void onItemUse(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PEGASUS_HORSE_ABILITY_NAME)){
             if (!event.getPlayer().hasPermission(PermissionUtils.zeusHorseAbility)){
                 event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);
@@ -64,7 +65,7 @@ public class PegasusAbilityListener implements Listener {
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_ABILITY.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PEGASUS_HORSE_ABILITY_NAME)){
             if (!player.hasPermission(PermissionUtils.zeusHorseAbility)){
                 player.sendMessage(PermissionUtils.ridingPermissionMessage);
                 event.setCancelled(true);

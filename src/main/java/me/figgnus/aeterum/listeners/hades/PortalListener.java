@@ -1,6 +1,7 @@
 package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
@@ -26,7 +27,7 @@ public class PortalListener implements Listener {
     @EventHandler
     public void onPlayerUse(PlayerInteractEvent event) {
      ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())) {
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.DARK_PORTAL_NAME)) {
             if (!event.getPlayer().hasPermission(PermissionUtils.hadesPortal)) {
                 event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);
@@ -45,7 +46,7 @@ public class PortalListener implements Listener {
 
         Player player = (Player) potion.getShooter();
         ItemStack item = potion.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())) {
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.DARK_PORTAL_NAME)) {
             if (!player.hasPermission(PermissionUtils.hadesPortal)) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 return;
@@ -60,7 +61,7 @@ public class PortalListener implements Listener {
     public void onItemThrow(PlayerInteractEvent event){
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.DARK_PORTAL.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.DARK_PORTAL_NAME)){
 
             if (player.getWorld().getName().equals("newgen_world_the_end")){
                 player.sendMessage(ChatColor.RED + "Tento předmět nemůže být použit v Endu.");

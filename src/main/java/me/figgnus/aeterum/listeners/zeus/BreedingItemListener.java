@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.GameMode;
@@ -35,7 +36,7 @@ public class BreedingItemListener implements Listener {
         Player player = event.getPlayer();
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         UUID playerId = player.getUniqueId();
-        if (ItemUtils.isCustomItem(itemInHand, CustomItems.BREEDING_ITEM.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(itemInHand, OraxenItems.BREEDING_ITEM_NAME)){
             if (!player.hasPermission(PermissionUtils.zeusBreedingItem)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

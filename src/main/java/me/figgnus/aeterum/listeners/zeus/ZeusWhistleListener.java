@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.HorseData;
 import me.figgnus.aeterum.utils.HorseDataManager;
 import me.figgnus.aeterum.utils.ItemUtils;
@@ -39,7 +40,7 @@ public class ZeusWhistleListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (ItemUtils.isCustomItem(item, CustomItems.PEGASUS_TAME.getItemMeta().getCustomModelData())) {
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PEGASUS_HORSE_TAME_NAME)) {
             if (!(player.hasPermission(PermissionUtils.zeusHorseTame))) {
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

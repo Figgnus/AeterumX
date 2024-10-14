@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.demeter;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.*;
@@ -26,7 +27,7 @@ public class GrowthPotionListener implements Listener {
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         ItemStack consumedItem = event.getItem();
-        if (ItemUtils.isCustomItem(consumedItem, CustomItems.GROWTH_POTION.getItemMeta().getCustomModelData())) {
+        if (ItemUtils.isCustomOraxenItem(consumedItem, OraxenItems.GROWTH_POTION_NAME)) {
             if (!player.hasPermission(PermissionUtils.demeterGrowthPotion)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

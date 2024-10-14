@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners._other;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.ItemUtils;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class RandomizerListener implements Listener {
 
             // Check if the player has the randomizer item in their offhand
             ItemStack offHandItem = player.getInventory().getItemInOffHand();
-            if (ItemUtils.isCustomItem(offHandItem, CustomItems.RANDOMIZER.getItemMeta().getCustomModelData())) {
+            if (ItemUtils.isCustomOraxenItem(offHandItem, OraxenItems.RANDOMIZER_NAME)) {
 
                 if (!player.hasPermission(PermissionUtils.randomizerPermission)) {
                     player.sendMessage(PermissionUtils.permissionItemMessage);

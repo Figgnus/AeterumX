@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.zeus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.entity.Entity;
@@ -25,7 +26,7 @@ public class LightningSpearListener implements Listener {
     @EventHandler
     public void onItemUse(PlayerInteractEvent event){
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.LIGHTNING_SPEAR.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.LIGHTNING_SPEAR_NAME)){
             if (!event.getPlayer().hasPermission(PermissionUtils.zeusLightningSpear)){
                 event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);
@@ -37,7 +38,7 @@ public class LightningSpearListener implements Listener {
         if (event.getEntity() instanceof Trident trident){
             if (trident.getShooter() instanceof Player player){
                 ItemStack item = trident.getItem();
-                if (ItemUtils.isCustomItem(item, CustomItems.LIGHTNING_SPEAR.getItemMeta().getCustomModelData())){
+                if (ItemUtils.isCustomOraxenItem(item, OraxenItems.LIGHTNING_SPEAR_NAME)){
                     if (!player.hasPermission(PermissionUtils.zeusLightningSpear)){
                         player.sendMessage(PermissionUtils.permissionItemMessage);
                         event.setCancelled(true);

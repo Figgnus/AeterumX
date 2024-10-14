@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.hermes;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class SpeedBootsListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getBoots();
 
-        if (ItemUtils.isCustomItem(item, CustomItems.SPEED_BOOTS.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.SPEED_BOOTS_NAME)){
             if (!(player.hasPermission(PermissionUtils.hermesSpeedBoots))){
                 long currentTime = System.currentTimeMillis();
                 UUID playerUUID = player.getUniqueId();

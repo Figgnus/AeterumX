@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.dionysus;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.FireworkEffect;
@@ -29,7 +30,7 @@ public class PartyBallListener implements Listener {
     @EventHandler
     public void onItemUse(PlayerInteractEvent event){
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.PARTY_BALL.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PARTY_BALL_NAME)){
             if (!event.getPlayer().hasPermission(PermissionUtils.dionysusPartyBall)){
                 event.getPlayer().sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);
@@ -41,7 +42,7 @@ public class PartyBallListener implements Listener {
         if (event.getEntity() instanceof Snowball snowball){
             if (snowball.getShooter() instanceof  Player player){
                 ItemStack item = snowball.getItem();
-                if (ItemUtils.isCustomItem(item, CustomItems.PARTY_BALL.getItemMeta().getCustomModelData())){
+                if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PARTY_BALL_NAME)){
                     if (!player.hasPermission(PermissionUtils.dionysusPartyBall)){
                         player.sendMessage(PermissionUtils.permissionItemMessage);
                         return;

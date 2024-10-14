@@ -3,6 +3,7 @@ package me.figgnus.aeterum.listeners.dionysus;
 import com.dre.brewery.BPlayer;
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Bukkit;
@@ -31,7 +32,7 @@ public class PartyAtmosphereListener implements Listener {
     public void onPlayerConsume(PlayerItemConsumeEvent event){
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.PARTY_ATMOSPHERE.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.PARTY_ATMOSPHERE_NAME)){
             if (!player.hasPermission(PermissionUtils.dionysusPartyAtmosphere)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

@@ -2,6 +2,7 @@ package me.figgnus.aeterum.listeners.hades;
 
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
+import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.utils.PermissionUtils;
 import me.figgnus.aeterum.utils.ItemUtils;
 import org.bukkit.Location;
@@ -29,7 +30,7 @@ public class DarknessPotionListener implements Listener {
     public void onPlayerConsume(PlayerItemConsumeEvent event){
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (ItemUtils.isCustomItem(item, CustomItems.DARKNESS_POTION.getItemMeta().getCustomModelData())){
+        if (ItemUtils.isCustomOraxenItem(item, OraxenItems.DARKNESS_POTION_NAME)){
             if (!player.hasPermission(PermissionUtils.hadesDarknessPotion)){
                 player.sendMessage(PermissionUtils.permissionItemMessage);
                 event.setCancelled(true);

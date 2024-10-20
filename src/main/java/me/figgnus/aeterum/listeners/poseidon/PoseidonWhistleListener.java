@@ -3,10 +3,7 @@ package me.figgnus.aeterum.listeners.poseidon;
 import me.figgnus.aeterum.AeterumX;
 import me.figgnus.aeterum.items.CustomItems;
 import me.figgnus.aeterum.items.OraxenItems;
-import me.figgnus.aeterum.utils.HorseData;
-import me.figgnus.aeterum.utils.HorseDataManager;
-import me.figgnus.aeterum.utils.ItemUtils;
-import me.figgnus.aeterum.utils.PermissionUtils;
+import me.figgnus.aeterum.utils.*;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
@@ -99,6 +96,7 @@ public class PoseidonWhistleListener implements Listener {
                 if (playerLocation == null) {
                     playerLocation = player.getLocation();
                 }
+                HorseUtils.showHorse(horse, plugin);
                 horse.teleport(playerLocation);
                 player.sendMessage(ChatColor.GREEN + "Whoosh!");
 
@@ -127,6 +125,7 @@ public class PoseidonWhistleListener implements Listener {
                         if (playerLocation == null) {
                             playerLocation = player.getLocation();
                         }
+                        HorseUtils.showHorse(horse, plugin);
                         horse.teleport(playerLocation);
                         player.sendMessage(ChatColor.GREEN + "Whoosh!");
                         horseFound = true;

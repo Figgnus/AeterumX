@@ -1,7 +1,6 @@
 package me.figgnus.aeterum;
 
 import me.figgnus.aeterum.gui.RecipesGUI;
-import me.figgnus.aeterum.items.OraxenItems;
 import me.figgnus.aeterum.listeners._other.EnchantmentListener;
 import me.figgnus.aeterum.listeners._other.RandomizerListener;
 import me.figgnus.aeterum.listeners._other.SnowBallDemageListener;
@@ -12,10 +11,7 @@ import me.figgnus.aeterum.listeners.hades.*;
 import me.figgnus.aeterum.listeners.hermes.*;
 import me.figgnus.aeterum.listeners.poseidon.*;
 import me.figgnus.aeterum.listeners.zeus.*;
-import me.figgnus.aeterum.utils.AeterumCommandExecutor;
-import me.figgnus.aeterum.utils.HorseDataManager;
-import me.figgnus.aeterum.utils.HorseDeathListener;
-import me.figgnus.aeterum.utils.HorseLocationUpdater;
+import me.figgnus.aeterum.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -61,6 +57,8 @@ public final class AeterumX extends JavaPlugin implements Listener {
 
 
         //Listeners
+        new UnsummonHorseListener(this);
+
         new BetterBonemealListener(this);
         new GrowthPotionListener(this);
         new HoeOfHarvestListener(this);
